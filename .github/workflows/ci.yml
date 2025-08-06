@@ -41,6 +41,7 @@ jobs:
     permissions:
       packages: write
     with:
+      PLATFORMS: linux/amd64,linux/arm64
       TAG: ${{ needs.release_semantic_dry.outputs.new_release_version }}
   release_semantic:
     needs: build
