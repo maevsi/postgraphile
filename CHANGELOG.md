@@ -1,3 +1,9 @@
+## [1.0.3](https://github.com/maevsi/postgraphile/compare/1.0.2...1.0.3) (2025-08-06)
+
+### Bug Fixes
+
+* **ci:** build for `linux/arm64` too ([17590e8](https://github.com/maevsi/postgraphile/commit/17590e8b16ea851e8933202b2c797482fb85d4ae))
+
 ## [1.0.2](https://github.com/maevsi/postgraphile/compare/1.0.1...1.0.2) (2025-07-31)
 
 ### Bug Fixes
