@@ -1,3 +1,9 @@
+## [1.0.4](https://github.com/maevsi/postgraphile/compare/1.0.3...1.0.4) (2025-08-14)
+
+### Bug Fixes
+
+* schedule release ([f8dcd98](https://github.com/maevsi/postgraphile/commit/f8dcd98a5c83c6cd55a4c246a70976dd5950450f))
+
 ## [1.0.3](https://github.com/maevsi/postgraphile/compare/1.0.2...1.0.3) (2025-08-06)
 
 ### Bug Fixes
