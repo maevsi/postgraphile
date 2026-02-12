@@ -1,3 +1,9 @@
+## [1.0.19](https://github.com/maevsi/postgraphile/compare/1.0.18...1.0.19) (2026-02-12)
+
+### Bug Fixes
+
+* schedule release ([34fc4db](https://github.com/maevsi/postgraphile/commit/34fc4db157a9790d0ec337f6d7fe16b001d4ff17))
+
 ## [1.0.18](https://github.com/maevsi/postgraphile/compare/1.0.17...1.0.18) (2026-01-29)
 
 ### Bug Fixes
