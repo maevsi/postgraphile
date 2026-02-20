@@ -35,6 +35,7 @@ const preset: GraphileConfig.Preset = {
   },
   pgServices: [
     makePgService({
+      connectionString: ENVIRONMENT.POSTGRAPHILE_CONNECTION,
       poolConfig: {
         statement_timeout: 3000,
       },
