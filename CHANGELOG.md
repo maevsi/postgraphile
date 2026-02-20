@@ -1,3 +1,13 @@
+## [2.0.0-beta.1](https://github.com/maevsi/postgraphile/compare/1.0.19...2.0.0-beta.1) (2026-02-20)
+
+### ⚠ BREAKING CHANGES
+
+* **postgraphile:** upgrade to v5
+
+### Features
+
+* **postgraphile:** upgrade to v5 ([892c80b](https://github.com/maevsi/postgraphile/commit/892c80bde0d35725a01f204f87fd8d78159682b8))
+
 ## [1.0.19](https://github.com/maevsi/postgraphile/compare/1.0.18...1.0.19) (2026-02-12)
 
 ### Bug Fixes
