@@ -1,3 +1,9 @@
+## [2.0.0-beta.2](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.1...2.0.0-beta.2) (2026-02-20)
+
+### Bug Fixes
+
+* **postgres:** readd connection string ([f3f7d82](https://github.com/maevsi/postgraphile/commit/f3f7d82cbf2dc363c76b2f2c198e2015746dc6f5))
+
 ## [2.0.0-beta.1](https://github.com/maevsi/postgraphile/compare/1.0.19...2.0.0-beta.1) (2026-02-20)
 
 ### ⚠ BREAKING CHANGES
