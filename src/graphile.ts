@@ -49,7 +49,9 @@ export const grafastContext: NonNullable<
       for (const [key, value] of Object.entries(claims.payload)) {
         if (!JWT_CLAIMS.includes(key)) continue
         if (typeof value === 'undefined' || value === null) continue
-        pgSettings[`jwt.claims.${key}`] = String(value)
+        pgSettings[`jwt.claims.${key}`] = Array.isArray(value)
+          ? JSON.stringify(value)
+          : String(value)
       }
     } catch (e) {
       if (requestContext.node) {
