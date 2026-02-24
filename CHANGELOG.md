@@ -1,3 +1,9 @@
+## [2.0.0-beta.3](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.2...2.0.0-beta.3) (2026-02-24)
+
+### Bug Fixes
+
+* **postgis:** update plugin with geojson/srid fix ([59bf0c5](https://github.com/maevsi/postgraphile/commit/59bf0c5415e07617160475d8398e25ecd4d3f2e7))
+
 ## [2.0.0-beta.2](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.1...2.0.0-beta.2) (2026-02-20)
 
 ### Bug Fixes
