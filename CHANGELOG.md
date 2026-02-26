@@ -1,3 +1,9 @@
+## [2.0.0-beta.4](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.3...2.0.0-beta.4) (2026-02-26)
+
+### Bug Fixes
+
+* **grafast:** correct context claim value encoding ([369cfe9](https://github.com/maevsi/postgraphile/commit/369cfe9981f87fc85e14f2496af13c94877c6592))
+
 ## [2.0.0-beta.3](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.2...2.0.0-beta.3) (2026-02-24)
 
 ### Bug Fixes
