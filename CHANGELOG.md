@@ -1,3 +1,13 @@
+## [2.0.0-beta.6](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.5...2.0.0-beta.6) (2026-03-14)
+
+### ⚠ BREAKING CHANGES
+
+* **jwt:** use ecdsa key
+
+### Features
+
+* **jwt:** use ecdsa key ([65b70d1](https://github.com/maevsi/postgraphile/commit/65b70d1365b8f5871042fc8e562d09b234116408))
+
 ## [2.0.0-beta.5](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.4...2.0.0-beta.5) (2026-03-14)
 
 ### Bug Fixes
