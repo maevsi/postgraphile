@@ -1,3 +1,9 @@
+## [2.0.0-beta.5](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.4...2.0.0-beta.5) (2026-03-14)
+
+### Bug Fixes
+
+* **deps:** update postgraphile ([b84ee8c](https://github.com/maevsi/postgraphile/commit/b84ee8cce462bf0573408fc436163934715ae71b))
+
 ## [2.0.0-beta.4](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.3...2.0.0-beta.4) (2026-02-26)
 
 ### Bug Fixes
