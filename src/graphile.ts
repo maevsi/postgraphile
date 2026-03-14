@@ -7,7 +7,7 @@ const ENVIRONMENT = getValidatedEnvironment([
   'POSTGRAPHILE_JWT_PUBLIC_KEY',
 ] as const)
 const HTTP_STATUS_UNAUTHORIZED = 401
-export const JWT_ALGORITHM = 'RS256'
+export const JWT_ALGORITHM = 'ES256'
 export const JWT_AUDIENCE = 'postgraphile'
 const JWT_CLAIMS = [
   'attendances',
