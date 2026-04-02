@@ -11,8 +11,10 @@ export const JWT_ALGORITHM = 'ES256'
 export const JWT_AUDIENCE = 'postgraphile'
 const JWT_CLAIMS = [
   'attendances',
+  'aud',
   'exp',
   'guests',
+  'iss',
   'jti',
   'role',
   'sub',
