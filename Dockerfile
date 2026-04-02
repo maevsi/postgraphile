@@ -77,8 +77,8 @@ RUN pnpm install --offline --prod
 
 FROM base AS collect
 
-COPY --from=prepare /srv/app/docker-entrypoint.sh /srv/app/package.json ./
 COPY --from=prepare /srv/app/src ./src
+COPY --from=prepare /srv/app/docker-entrypoint.sh /srv/app/package.json ./
 COPY --from=build /srv/app/node_modules ./node_modules
 COPY --from=lint /srv/app/package.json /dev/null
 
@@ -91,7 +91,7 @@ FROM collect AS production
 ENV NODE_ENV=production
 
 USER node
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["/srv/app/docker-entrypoint.sh"]
 CMD ["pnpm", "exec", "postgraphile", "--config", "./src/graphile.config.ts", "-n", "0.0.0.0"]
 EXPOSE 5678
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 CMD wget -q --spider http://127.0.0.1:5678/ || exit 1
