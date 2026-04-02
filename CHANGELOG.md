@@ -1,3 +1,9 @@
+## [2.0.0-beta.9](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.8...2.0.0-beta.9) (2026-04-02)
+
+### Features
+
+* **package:** update description ([8ca4eae](https://github.com/maevsi/postgraphile/commit/8ca4eae7077cb47685c8bb0386e8461102b94232))
+
 ## [2.0.0-beta.8](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.7...2.0.0-beta.8) (2026-04-02)
 
 ### Bug Fixes
