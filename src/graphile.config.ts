@@ -30,6 +30,7 @@ const preset: GraphileConfig.Preset = {
     explain: ENVIRONMENT_DEVELOPMENT,
   },
   grafserv: {
+    graphqlOverGET: true,
     maskError: grafservMaskError,
     watch: ENVIRONMENT_DEVELOPMENT,
   },
