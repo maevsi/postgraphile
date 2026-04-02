@@ -26,6 +26,7 @@
   "license": "MIT",
   "name": "@maevsi/postgraphile",
   "packageManager": "pnpm@10.29.3",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/maevsi/postgraphile.git"
