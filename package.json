@@ -38,5 +38,5 @@
     "lint:ts": "tsc --noEmit"
   },
   "type": "module",
-  "version": "1.0.14"
+  "version": "2.0.0-beta.8"
 }

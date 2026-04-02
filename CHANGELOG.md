@@ -1,3 +1,10 @@
+## [2.0.0-beta.8](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.7...2.0.0-beta.8) (2026-04-02)
+
+### Bug Fixes
+
+* **ci:** update package version ([2cee61d](https://github.com/maevsi/postgraphile/commit/2cee61d162d4be6d14cfe218c013c464f8fe05a8))
+* **docker:** streamline entrypoint ([652fd00](https://github.com/maevsi/postgraphile/commit/652fd00895437de3f8be89c025d49381ee356854))
+
 ## [2.0.0-beta.7](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.6...2.0.0-beta.7) (2026-04-02)
 
 ### Bug Fixes
