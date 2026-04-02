@@ -1,0 +1,42 @@
+{
+  "author": "Jonas Thelemann <e-mail+maevsi_postgraphile@jonas-thelemann.de>",
+  "bugs": {
+    "url": "https://github.com/maevsi/postgraphile/issues"
+  },
+  "dependencies": {
+    "@graphile/postgis": "file:graphile-postgis-v0.2.0.tgz",
+    "jose": "6.2.2",
+    "postgraphile": "5.0.0"
+  },
+  "description": "PostGraphile GraphQL API for the Vibetype platform; includes @graphile/postgis, Amber preset, Grafast optimizations, and JWT authentication.",
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@eslint/json": "1.2.0",
+    "eslint": "10.1.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-prettier": "5.5.5",
+    "grafserv": "1.0.0",
+    "graphile": "5.0.0",
+    "jiti": "2.6.1",
+    "prettier": "3.8.1",
+    "typescript": "6.0.2",
+    "typescript-eslint": "8.58.0"
+  },
+  "homepage": "https://github.com/maevsi/postgraphile#readme",
+  "license": "MIT",
+  "name": "@maevsi/postgraphile",
+  "packageManager": "pnpm@10.29.3",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maevsi/postgraphile.git"
+  },
+  "scripts": {
+    "lint": "pnpm run lint:es && pnpm run lint:ts",
+    "lint:es": "eslint --cache",
+    "lint:fix": "pnpm run lint:es --fix",
+    "lint:ts": "tsc --noEmit"
+  },
+  "type": "module",
+  "version": "2.0.0-beta.9"
+}

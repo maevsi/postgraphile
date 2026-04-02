@@ -1,3 +1,67 @@
+## [2.0.0-beta.9](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.8...2.0.0-beta.9) (2026-04-02)
+
+### Features
+
+* **package:** update description ([8ca4eae](https://github.com/maevsi/postgraphile/commit/8ca4eae7077cb47685c8bb0386e8461102b94232))
+
+## [2.0.0-beta.8](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.7...2.0.0-beta.8) (2026-04-02)
+
+### Bug Fixes
+
+* **ci:** update package version ([2cee61d](https://github.com/maevsi/postgraphile/commit/2cee61d162d4be6d14cfe218c013c464f8fe05a8))
+* **docker:** streamline entrypoint ([652fd00](https://github.com/maevsi/postgraphile/commit/652fd00895437de3f8be89c025d49381ee356854))
+
+## [2.0.0-beta.7](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.6...2.0.0-beta.7) (2026-04-02)
+
+### Bug Fixes
+
+* schedule release ([65f684f](https://github.com/maevsi/postgraphile/commit/65f684f7db2e3997f68dba3ff36f5b4eb82430f3))
+* schedule release ([5f7b799](https://github.com/maevsi/postgraphile/commit/5f7b79993efba96442d7aad7f5e09ca63043e63f))
+
+## [2.0.0-beta.6](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.5...2.0.0-beta.6) (2026-03-14)
+
+### ⚠ BREAKING CHANGES
+
+* **jwt:** use ecdsa key
+
+### Features
+
+* **jwt:** use ecdsa key ([65b70d1](https://github.com/maevsi/postgraphile/commit/65b70d1365b8f5871042fc8e562d09b234116408))
+
+## [2.0.0-beta.5](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.4...2.0.0-beta.5) (2026-03-14)
+
+### Bug Fixes
+
+* **deps:** update postgraphile ([b84ee8c](https://github.com/maevsi/postgraphile/commit/b84ee8cce462bf0573408fc436163934715ae71b))
+
+## [2.0.0-beta.4](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.3...2.0.0-beta.4) (2026-02-26)
+
+### Bug Fixes
+
+* **grafast:** correct context claim value encoding ([369cfe9](https://github.com/maevsi/postgraphile/commit/369cfe9981f87fc85e14f2496af13c94877c6592))
+
+## [2.0.0-beta.3](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.2...2.0.0-beta.3) (2026-02-24)
+
+### Bug Fixes
+
+* **postgis:** update plugin with geojson/srid fix ([59bf0c5](https://github.com/maevsi/postgraphile/commit/59bf0c5415e07617160475d8398e25ecd4d3f2e7))
+
+## [2.0.0-beta.2](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.1...2.0.0-beta.2) (2026-02-20)
+
+### Bug Fixes
+
+* **postgres:** readd connection string ([f3f7d82](https://github.com/maevsi/postgraphile/commit/f3f7d82cbf2dc363c76b2f2c198e2015746dc6f5))
+
+## [2.0.0-beta.1](https://github.com/maevsi/postgraphile/compare/1.0.19...2.0.0-beta.1) (2026-02-20)
+
+### ⚠ BREAKING CHANGES
+
+* **postgraphile:** upgrade to v5
+
+### Features
+
+* **postgraphile:** upgrade to v5 ([892c80b](https://github.com/maevsi/postgraphile/commit/892c80bde0d35725a01f204f87fd8d78159682b8))
+
 ## [1.0.21](https://github.com/maevsi/postgraphile/compare/1.0.20...1.0.21) (2026-03-26)
 
 ### Bug Fixes
