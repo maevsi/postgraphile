@@ -1,3 +1,10 @@
+## [2.0.0-beta.7](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.6...2.0.0-beta.7) (2026-04-02)
+
+### Bug Fixes
+
+* schedule release ([65f684f](https://github.com/maevsi/postgraphile/commit/65f684f7db2e3997f68dba3ff36f5b4eb82430f3))
+* schedule release ([5f7b799](https://github.com/maevsi/postgraphile/commit/5f7b79993efba96442d7aad7f5e09ca63043e63f))
+
 ## [2.0.0-beta.6](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.5...2.0.0-beta.6) (2026-03-14)
 
 ### ⚠ BREAKING CHANGES
