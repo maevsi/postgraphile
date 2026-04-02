@@ -42,6 +42,18 @@
 
 * **postgraphile:** upgrade to v5 ([892c80b](https://github.com/maevsi/postgraphile/commit/892c80bde0d35725a01f204f87fd8d78159682b8))
 
+## [1.0.21](https://github.com/maevsi/postgraphile/compare/1.0.20...1.0.21) (2026-03-26)
+
+### Bug Fixes
+
+* schedule release ([65f684f](https://github.com/maevsi/postgraphile/commit/65f684f7db2e3997f68dba3ff36f5b4eb82430f3))
+
+## [1.0.20](https://github.com/maevsi/postgraphile/compare/1.0.19...1.0.20) (2026-03-12)
+
+### Bug Fixes
+
+* schedule release ([5f7b799](https://github.com/maevsi/postgraphile/commit/5f7b79993efba96442d7aad7f5e09ca63043e63f))
+
 ## [1.0.19](https://github.com/maevsi/postgraphile/compare/1.0.18...1.0.19) (2026-02-12)
 
 ### Bug Fixes
