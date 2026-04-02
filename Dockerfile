@@ -7,14 +7,9 @@ FROM ghcr.io/maevsi/sqitch:11.0.0-beta.1
 ########################
 # Create base.
 
-FROM node:24.13.1-alpine AS base
-
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
+FROM oven/bun:1.3.9-alpine AS base
 
 WORKDIR /srv/app/
-
-RUN corepack enable
 
 
 ########################
@@ -22,21 +17,22 @@ RUN corepack enable
 
 FROM base AS development
 
+ENV DEBUG=graphile-build-pg:sql
 ENV GRAPHILE_ENV=development
 
-RUN mkdir \
-      /srv/.pnpm-store \
+RUN mkdir -p \
+      /home/bun/.bun/install/cache \
       /srv/app/node_modules \
-    && chown node:node \
-      /srv/.pnpm-store \
+    && chown bun \
+      /home/bun/.bun/install/cache \
       /srv/app/node_modules
-VOLUME /srv/.pnpm-store
+VOLUME /home/bun/.bun/install/cache
 VOLUME /srv/app
 VOLUME /srv/app/node_modules
 
 USER node
 ENTRYPOINT ["/srv/app/docker-entrypoint.sh"]
-CMD ["pnpm", "exec", "postgraphile", "--config", "./src/graphile.config.ts", "-n", "0.0.0.0"]
+CMD ["bun", "run", "--cwd", "src", "postgraphile", "--config", "./src/graphile.config.ts", "-n", "0.0.0.0"]
 EXPOSE 5678
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 CMD wget -q --spider http://127.0.0.1:5678/ || exit 1
 
@@ -46,14 +42,12 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 CMD wget 
 
 FROM base AS prepare
 
-COPY ./pnpm-lock.yaml ./package.json ./graphile-postgis-v0.2.0.tgz ./
+COPY package.json bunfig.toml bun.lock graphile-postgis-0.2.0-1.tgz ./
 
-RUN --mount=type=cache,id=pnpm-store,target=/root/.local/share/pnpm/store \
-    pnpm fetch
+RUN --mount=type=cache,id=bun-store,target=/home/bun/.bun/install/cache \
+  bun install --frozen-lockfile
 
-COPY ./ ./
-
-RUN pnpm install --offline
+COPY src/graphile.config.ts ./
 
 
 ########################
@@ -92,7 +86,7 @@ ENV NODE_ENV=production
 
 USER node
 ENTRYPOINT ["/srv/app/docker-entrypoint.sh"]
-CMD ["pnpm", "exec", "postgraphile", "--config", "./src/graphile.config.ts", "-n", "0.0.0.0"]
+CMD ["bun", "run", "--cwd", "src", "postgraphile", "--config", "./src/graphile.config.ts", "-n", "0.0.0.0"]
 EXPOSE 5678
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 CMD wget -q --spider http://127.0.0.1:5678/ || exit 1
 LABEL org.opencontainers.image.description="PostGraphile GraphQL API for the Vibetype platform; includes @graphile/postgis, Amber preset, Grafast optimizations, and JWT authentication."
