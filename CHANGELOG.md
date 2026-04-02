@@ -1,3 +1,25 @@
+## [2.0.0](https://github.com/maevsi/postgraphile/compare/1.0.21...2.0.0) (2026-04-02)
+
+### ⚠ BREAKING CHANGES
+
+* **jwt:** use ecdsa key
+* **postgraphile:** upgrade to v5
+
+### Features
+
+* **jwt:** use ecdsa key ([65b70d1](https://github.com/maevsi/postgraphile/commit/65b70d1365b8f5871042fc8e562d09b234116408))
+* **package:** update description ([8ca4eae](https://github.com/maevsi/postgraphile/commit/8ca4eae7077cb47685c8bb0386e8461102b94232))
+* **postgraphile:** upgrade to v5 ([892c80b](https://github.com/maevsi/postgraphile/commit/892c80bde0d35725a01f204f87fd8d78159682b8))
+
+### Bug Fixes
+
+* **ci:** update package version ([2cee61d](https://github.com/maevsi/postgraphile/commit/2cee61d162d4be6d14cfe218c013c464f8fe05a8))
+* **deps:** update postgraphile ([b84ee8c](https://github.com/maevsi/postgraphile/commit/b84ee8cce462bf0573408fc436163934715ae71b))
+* **docker:** streamline entrypoint ([652fd00](https://github.com/maevsi/postgraphile/commit/652fd00895437de3f8be89c025d49381ee356854))
+* **grafast:** correct context claim value encoding ([369cfe9](https://github.com/maevsi/postgraphile/commit/369cfe9981f87fc85e14f2496af13c94877c6592))
+* **postgis:** update plugin with geojson/srid fix ([59bf0c5](https://github.com/maevsi/postgraphile/commit/59bf0c5415e07617160475d8398e25ecd4d3f2e7))
+* **postgres:** readd connection string ([f3f7d82](https://github.com/maevsi/postgraphile/commit/f3f7d82cbf2dc363c76b2f2c198e2015746dc6f5))
+
 ## [2.0.0-beta.9](https://github.com/maevsi/postgraphile/compare/2.0.0-beta.8...2.0.0-beta.9) (2026-04-02)
 
 ### Features
