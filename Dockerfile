@@ -95,4 +95,4 @@ ENTRYPOINT ["/srv/app/docker-entrypoint.sh"]
 CMD ["pnpm", "exec", "postgraphile", "--config", "./src/graphile.config.ts", "-n", "0.0.0.0"]
 EXPOSE 5678
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 CMD wget -q --spider http://127.0.0.1:5678/ || exit 1
-LABEL org.opencontainers.image.description="Instant high-performance GraphQL API for your PostgreSQL database https://github.com/graphile/postgraphile"
+LABEL org.opencontainers.image.description="PostGraphile GraphQL API for the Vibetype platform; includes @graphile/postgis, Amber preset, Grafast optimizations, and JWT authentication."
