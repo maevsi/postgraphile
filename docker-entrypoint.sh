@@ -14,7 +14,7 @@ load_env_file() {
   file="$1"
   name=$(basename "$file")
   is_valid_var_name "$name" || return 0
-  value="$(printf '%s' "$(cat "$file")")"
+  value=$(cat "$file")
   export "$name=$value"
 }
 
