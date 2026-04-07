@@ -5,6 +5,8 @@
   },
   "dependencies": {
     "@graphile/postgis": "file:graphile-postgis-v0.2.0.tgz",
+    "grafserv": "1.0.0",
+    "graphile": "5.0.0",
     "jose": "6.2.2",
     "postgraphile": "5.0.0"
   },
@@ -15,9 +17,6 @@
     "eslint": "10.2.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.5",
-    "grafserv": "1.0.0",
-    "graphile": "5.0.0",
-    "jiti": "2.6.1",
     "prettier": "3.8.1",
     "typescript": "6.0.2",
     "typescript-eslint": "8.58.0"
