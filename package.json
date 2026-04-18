@@ -8,7 +8,7 @@
     "grafserv": "1.0.0",
     "graphile": "5.0.0",
     "jose": "6.2.2",
-    "postgraphile": "5.0.0"
+    "postgraphile": "5.0.1"
   },
   "description": "PostGraphile GraphQL API for the Vibetype platform; includes @graphile/postgis, Amber preset, Grafast optimizations, and JWT authentication.",
   "devDependencies": {
