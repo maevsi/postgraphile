@@ -32,7 +32,7 @@
   },
   "scripts": {
     "lint": "pnpm run lint:es && pnpm run lint:ts",
-    "lint:es": "eslint --cache",
+    "lint:es": "eslint --cache --flag unstable_native_nodejs_ts_config",
     "lint:fix": "pnpm run lint:es --fix",
     "lint:ts": "tsc --noEmit"
   },
