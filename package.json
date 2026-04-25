@@ -24,7 +24,7 @@
   "homepage": "https://github.com/maevsi/postgraphile#readme",
   "license": "MIT",
   "name": "@maevsi/postgraphile",
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@10.33.1",
   "private": true,
   "repository": {
     "type": "git",
