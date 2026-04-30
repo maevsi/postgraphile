@@ -7,7 +7,7 @@
     "@graphile/postgis": "file:graphile-postgis-v0.2.0.tgz",
     "grafserv": "1.0.0",
     "graphile": "5.0.0",
-    "jose": "6.2.2",
+    "jose": "6.2.3",
     "postgraphile": "5.0.1"
   },
   "description": "PostGraphile GraphQL API for the Vibetype platform; includes @graphile/postgis, Amber preset, Grafast optimizations, and JWT authentication.",
@@ -19,7 +19,7 @@
     "eslint-plugin-prettier": "5.5.5",
     "prettier": "3.8.3",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.59.0"
+    "typescript-eslint": "8.59.1"
   },
   "homepage": "https://github.com/maevsi/postgraphile#readme",
   "license": "MIT",
