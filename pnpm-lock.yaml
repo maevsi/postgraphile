@@ -10,19 +10,19 @@ importers:
     dependencies:
       '@graphile/postgis':
         specifier: file:graphile-postgis-v0.2.0.tgz
-        version: file:graphile-postgis-v0.2.0.tgz(@dataplan/pg@1.0.2(@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0)))(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(postgraphile@5.0.2(3a1553431a9a02cdf0230b2a71b798f8))
+        version: file:graphile-postgis-v0.2.0.tgz(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0)))(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(postgraphile@5.0.2(a97030f4655d420da53f55a7765c7bad))
       grafserv:
         specifier: 1.0.0
-        version: 1.0.0(@types/node@22.19.18)(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))(ws@8.20.0)
+        version: 1.0.0(@types/node@22.19.19)(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))(ws@8.20.1)
       graphile:
         specifier: 5.0.0
-        version: 5.0.0(graphile-build@5.0.1(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(postgraphile@5.0.2(3a1553431a9a02cdf0230b2a71b798f8))
+        version: 5.0.0(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(postgraphile@5.0.2(a97030f4655d420da53f55a7765c7bad))
       jose:
         specifier: 6.2.3
         version: 6.2.3
       postgraphile:
         specifier: 5.0.2
-        version: 5.0.2(3a1553431a9a02cdf0230b2a71b798f8)
+        version: 5.0.2(a97030f4655d420da53f55a7765c7bad)
     devDependencies:
       '@eslint/js':
         specifier: 10.0.1
@@ -57,12 +57,12 @@ packages:
     peerDependencies:
       grafast: ^1.0.0-rc.8
 
-  '@dataplan/pg@1.0.2':
-    resolution: {integrity: sha512-KBE+AVUXBgAv5nQgHpLmwJl2quRFYop8isZSPMZmXy1o4YVDj8BRn2/wD/ERVo90iPBkwkjPnbXDDgHVH6VnFA==}
+  '@dataplan/pg@1.0.3':
+    resolution: {integrity: sha512-DdgPF+Mg8KntTAC5lW/4w34s74NLCgBgpbw3+PtBhi2QC66acD7noVWZAgzUx/ATouLE9gUiKqHnva89vcNEjA==}
     engines: {node: '>=22'}
     peerDependencies:
       '@dataplan/json': ^1.0.0
-      grafast: ^1.0.1
+      grafast: ^1.0.2
       graphile-config: ^1.0.0-rc.5
       graphql: ^16.9.0
       pg: ^8.7.1
@@ -156,33 +156,39 @@ packages:
       '@dataplan/pg': ^1.0.0-rc.4
       postgraphile: ^5.0.0-rc.6
 
-  '@graphiql/plugin-doc-explorer@0.4.1':
-    resolution: {integrity: sha512-+ram1dDDGMqJn/f9n5I8E6grTvxcM9JZYt/HhtYLuCvkN8kERI6/E3zBHBshhIUnQZoXioZ03fAzXg7JOn0Kyg==}
+  '@graphiql/plugin-doc-explorer@0.4.2':
+    resolution: {integrity: sha512-jqRUSaP9pq2JdoovKaiNQoV4ZVcDP5nn+QEa++vEYh0nCn76836SAde2/LkYMc9NnN8/PHMKqeUBnClZ+AUtVQ==}
     peerDependencies:
       '@graphiql/react': ^0.37.0
       graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
       react: ^18 || ^19
-      react-compiler-runtime: 19.1.0-rc.1
       react-dom: ^18 || ^19
 
-  '@graphiql/plugin-history@0.4.1':
-    resolution: {integrity: sha512-UyGI/Nm5tzKNMB71li41p6TfkthLqHkmNi9CgHzAM1zKgPIrtSq7Q8WCWKHLOEB5n4/8X8sXFeyQfHgnGYTXYg==}
+  '@graphiql/plugin-history@0.4.2':
+    resolution: {integrity: sha512-kwQYc1gmmkLbJPRHI/df3wtYNKNBGHxVkbkd+tbnRuCkrpdMm6NygCQeproJFKHTRbd3lYBAolaBcfgWNd196A==}
     peerDependencies:
       '@graphiql/react': ^0.37.0
       react: ^18 || ^19
-      react-compiler-runtime: 19.1.0-rc.1
       react-dom: ^18 || ^19
 
-  '@graphiql/react@0.37.3':
-    resolution: {integrity: sha512-rNJjwsYGhcZRdZ2FnyU6ss06xQaZ4UordyvOhp7+b/bEqQiEBpMOLJjuUr48Z6T7zEbZBnzCJpIJyXNqlcfQeA==}
+  '@graphiql/react@0.37.5':
+    resolution: {integrity: sha512-9LiAtBlJGna19J/zLLq5JDOlVSJpblMWaL23+FSplC9mQIUNtjBBSrl+GZ9azCllt9LAd0MK5whz6PXIZ58RPw==}
     peerDependencies:
       graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
       react: ^18 || ^19
-      react-compiler-runtime: 19.1.0-rc.1
       react-dom: ^18 || ^19
 
   '@graphiql/toolkit@0.11.3':
     resolution: {integrity: sha512-Glf0fK1cdHLNq52UWPzfSrYIJuNxy8h4451Pw1ZVpJ7dtU+tm7GVVC64UjEDQ/v2j3fnG4cX8jvR75IvfL6nzQ==}
+    peerDependencies:
+      graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
+      graphql-ws: '>= 4.5.0'
+    peerDependenciesMeta:
+      graphql-ws:
+        optional: true
+
+  '@graphiql/toolkit@0.12.0':
+    resolution: {integrity: sha512-pT7EMTKmdOM1mTSmQE0XuEs1UJJgZGnQojQ44nEad7p8/7v1m4P5ResL1vsCVxJYpbHX/cXjpRkrG3A2gpRtRQ==}
     peerDependencies:
       graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
       graphql-ws: '>= 4.5.0'
@@ -616,8 +622,8 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/node@22.19.18':
-    resolution: {integrity: sha512-9v00a+dn2yWVsYDEunWC4g/TcRKVq3r8N5FuZp7u0SGrPvdN9c2yXI9bBuf5Fl0hNCb+QTIePTn5pJs2pwBOQQ==}
+  '@types/node@22.19.19':
+    resolution: {integrity: sha512-dyh/xO2Fh5bYrfWaaqGrRQQGkNdmYw6AmaAUvYeUMNTWQtvb796ikLdmTchRmOlOiIJ1TDXfWgVx1QkUlQ6Hew==}
 
   '@types/pg@8.20.0':
     resolution: {integrity: sha512-bEPFOaMAHTEP1EzpvHTbmwR8UsFyHSKsRisLIHVMXnpNefSbGA1bD6CVy+qKjGSqmZqNqBDV2azOBo8TgkcVow==}
@@ -937,8 +943,8 @@ packages:
     resolution: {integrity: sha512-XxwI8EOhVQgWp6iDL+3b0r86f4d6AX6zSU55HfB4ydCEuXLXc5FcYeOu+nnGftS4TEju/11rt4KJPTMgbfmv4A==}
     engines: {node: '>=10.13.0'}
 
-  grafast@1.0.1:
-    resolution: {integrity: sha512-UGq8T7ju4tTXjVHTQOgrdSiUcNrdeUy+mFDayLn2M87ZGQIXIMdadSmfGGCWhP3/Hc0z174l4VLq1tdG4I72mg==}
+  grafast@1.0.2:
+    resolution: {integrity: sha512-E3PH6hfOfhlJxMmiBplWs3KDmJTIQr/iZ9hs4c73k3pLk9Tx2nSdVNBVIe7D1stejgPbyC6wRxLfXtJmDx2P7A==}
     engines: {node: '>=22'}
     peerDependencies:
       '@envelop/core': ^5.0.0
@@ -987,8 +993,8 @@ packages:
       pg:
         optional: true
 
-  graphile-build@5.0.1:
-    resolution: {integrity: sha512-NbMePSw8xppFyA15l+pZv9yXEXGsqhUJh5yEZNEZA3PrXoXAQhYPaR0f/QJO2EET5+cRyVML+28wJKqQFkICjg==}
+  graphile-build@5.0.2:
+    resolution: {integrity: sha512-ELhDDZ2Y3ZWmF+ZziEd9ytMxFnmBoCX4/1My2Jhifr1FUD9IzWFhzH2qAWKmTvDrIy7b6jc4SV23lWmTbiD3ZA==}
     engines: {node: '>=22'}
     peerDependencies:
       grafast: ^1.0.0-rc.8
@@ -1028,15 +1034,15 @@ packages:
       postgraphile:
         optional: true
 
-  graphiql@5.2.2:
-    resolution: {integrity: sha512-qYhw7e2QPLPEIdJXqlLa/XkZtEu2SVYyD71abOpPnrzmJzTdB+QsEswFIMg9u1WGkEtp/wi8epCsuKeA/chRcg==}
+  graphiql@5.2.3:
+    resolution: {integrity: sha512-N0bsZVWCKoZ2STYM3w5hgynmD+hFk8AbzMdUU+mDTa7hlx0W1PtRWhr6oqq8h4MIZwQVpqaC8dniXzGie8ThjA==}
     peerDependencies:
       graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
       react: ^18 || ^19
       react-dom: ^18 || ^19
 
-  graphql-language-service@5.5.0:
-    resolution: {integrity: sha512-9EvWrLLkF6Y5e29/2cmFoAO6hBPPAZlCyjznmpR11iFtRydfkss+9m6x+htA8h7YznGam+TtJwS6JuwoWWgb2Q==}
+  graphql-language-service@5.5.1:
+    resolution: {integrity: sha512-6/sPlE9TFUN8aCFohwo3MWYWn0AgVE+Ze3y+NptK7+ph3QkEryvZq9EruMSeJg6o51x6+ciJC/bm2liJC5dJ2A==}
     hasBin: true
     peerDependencies:
       graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
@@ -1206,8 +1212,8 @@ packages:
   monaco-editor@0.52.2:
     resolution: {integrity: sha512-GEQWEZmfkOGLdd3XK8ryrfWz3AIP8YymVXiPHEdewrUq7mh0qrKrfHLNCXcbB6sTnMLnOZ3ztSiKcciFUkIJwQ==}
 
-  monaco-graphql@1.7.3:
-    resolution: {integrity: sha512-6LAIcg/vT2NGLjHnT+5iIZONsZCaCuz2orbg7qD/u4Ry9R7rDotLh0HAzIF/yKdzEA5fTZC+TofSx2O+Zi+0ow==}
+  monaco-graphql@1.8.0:
+    resolution: {integrity: sha512-rWvWUpJdtpTu6YF2qgeaR2HnGPFthUJKSposB38f5wtBKwHlISYZHZLD/LukoMWDEyegNLOF/1bPMRs0SZrNzA==}
     peerDependencies:
       graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
       monaco-editor: '>= 0.20.0 < 0.53'
@@ -1600,8 +1606,8 @@ packages:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
     engines: {node: '>=10'}
 
-  ws@8.20.0:
-    resolution: {integrity: sha512-sAt8BhgNbzCtgGbt2OxmpuryO63ZoDk/sqaB/znQm94T4fCEsy/yV+7CdC1kJhOU9lboAEU7R3kquuycDoibVA==}
+  ws@8.20.1:
+    resolution: {integrity: sha512-It4dO0K5v//JtTXuPkfEOaI3uUN87iYPnqo/ZzqCoG3g8uhA66QUMs/SrM0YK7/NAu+r4LMh/9dq2A7k+rHs+w==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -1652,21 +1658,21 @@ packages:
 
 snapshots:
 
-  '@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0))':
+  '@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0))':
     dependencies:
       chalk: 4.1.2
-      grafast: 1.0.1(graphql@16.14.0)
+      grafast: 1.0.2(graphql@16.14.0)
       tslib: 2.8.1
 
-  '@dataplan/pg@1.0.2(@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0)))(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)':
+  '@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0)))(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)':
     dependencies:
-      '@dataplan/json': 1.0.0(grafast@1.0.1(graphql@16.14.0))
+      '@dataplan/json': 1.0.0(grafast@1.0.2(graphql@16.14.0))
       '@graphile/lru': 5.0.0
-      '@types/node': 22.19.18
+      '@types/node': 22.19.19
       chalk: 4.1.2
       debug: 4.4.3
       eventemitter3: 5.0.4
-      grafast: 1.0.1(graphql@16.14.0)
+      grafast: 1.0.2(graphql@16.14.0)
       graphile-config: 1.0.1
       graphql: 16.14.0
       pg-sql2: 5.0.1
@@ -1759,18 +1765,18 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@graphile/postgis@file:graphile-postgis-v0.2.0.tgz(@dataplan/pg@1.0.2(@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0)))(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(postgraphile@5.0.2(3a1553431a9a02cdf0230b2a71b798f8))':
+  '@graphile/postgis@file:graphile-postgis-v0.2.0.tgz(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0)))(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(postgraphile@5.0.2(a97030f4655d420da53f55a7765c7bad))':
     dependencies:
-      '@dataplan/pg': 1.0.2(@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0)))(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)
+      '@dataplan/pg': 1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0)))(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)
       debug: 4.4.3
-      postgraphile: 5.0.2(3a1553431a9a02cdf0230b2a71b798f8)
+      postgraphile: 5.0.2(a97030f4655d420da53f55a7765c7bad)
       tslib: 2.8.1
     transitivePeerDependencies:
       - supports-color
 
-  '@graphiql/plugin-doc-explorer@0.4.1(@graphiql/react@0.37.3(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-compiler-runtime@19.1.0-rc.1(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)))(graphql@16.14.0)(react-compiler-runtime@19.1.0-rc.1(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))':
+  '@graphiql/plugin-doc-explorer@0.4.2(@graphiql/react@0.37.5(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))':
     dependencies:
-      '@graphiql/react': 0.37.3(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-compiler-runtime@19.1.0-rc.1(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
+      '@graphiql/react': 0.37.5(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
       '@headlessui/react': 2.2.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       graphql: 16.14.0
       react: 19.2.6
@@ -1782,10 +1788,10 @@ snapshots:
       - immer
       - use-sync-external-store
 
-  '@graphiql/plugin-history@0.4.1(@graphiql/react@0.37.3(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-compiler-runtime@19.1.0-rc.1(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)))(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-compiler-runtime@19.1.0-rc.1(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))':
+  '@graphiql/plugin-history@0.4.2(@graphiql/react@0.37.5(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)))(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))':
     dependencies:
-      '@graphiql/react': 0.37.3(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-compiler-runtime@19.1.0-rc.1(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
-      '@graphiql/toolkit': 0.11.3(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)
+      '@graphiql/react': 0.37.5(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
+      '@graphiql/toolkit': 0.12.0(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)
       react: 19.2.6
       react-compiler-runtime: 19.1.0-rc.1(react@19.2.6)
       react-dom: 19.2.6(react@19.2.6)
@@ -1798,9 +1804,9 @@ snapshots:
       - immer
       - use-sync-external-store
 
-  '@graphiql/react@0.37.3(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-compiler-runtime@19.1.0-rc.1(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))':
+  '@graphiql/react@0.37.5(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))':
     dependencies:
-      '@graphiql/toolkit': 0.11.3(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)
+      '@graphiql/toolkit': 0.12.0(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)
       '@radix-ui/react-dialog': 1.1.15(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@radix-ui/react-dropdown-menu': 2.1.16(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@radix-ui/react-tooltip': 1.2.8(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -1809,11 +1815,11 @@ snapshots:
       framer-motion: 12.38.0(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       get-value: 3.0.1
       graphql: 16.14.0
-      graphql-language-service: 5.5.0(graphql@16.14.0)
+      graphql-language-service: 5.5.1(graphql@16.14.0)
       jsonc-parser: 3.3.1
       markdown-it: 14.1.1
       monaco-editor: 0.52.2
-      monaco-graphql: 1.7.3(graphql@16.14.0)(monaco-editor@0.52.2)(prettier@3.8.3)
+      monaco-graphql: 1.8.0(graphql@16.14.0)(monaco-editor@0.52.2)(prettier@3.8.3)
       prettier: 3.8.3
       react: 19.2.6
       react-compiler-runtime: 19.1.0-rc.1(react@19.2.6)
@@ -1829,13 +1835,23 @@ snapshots:
       - immer
       - use-sync-external-store
 
-  '@graphiql/toolkit@0.11.3(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)':
+  '@graphiql/toolkit@0.11.3(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)':
     dependencies:
       '@n1ru4l/push-pull-async-iterable-iterator': 3.2.0
       graphql: 16.14.0
-      meros: 1.3.2(@types/node@22.19.18)
+      meros: 1.3.2(@types/node@22.19.19)
     optionalDependencies:
-      graphql-ws: 6.0.8(graphql@16.14.0)(ws@8.20.0)
+      graphql-ws: 6.0.8(graphql@16.14.0)(ws@8.20.1)
+    transitivePeerDependencies:
+      - '@types/node'
+
+  '@graphiql/toolkit@0.12.0(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)':
+    dependencies:
+      '@n1ru4l/push-pull-async-iterable-iterator': 3.2.0
+      graphql: 16.14.0
+      meros: 1.3.2(@types/node@22.19.19)
+    optionalDependencies:
+      graphql-ws: 6.0.8(graphql@16.14.0)(ws@8.20.1)
     transitivePeerDependencies:
       - '@types/node'
 
@@ -2160,13 +2176,13 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/node@22.19.18':
+  '@types/node@22.19.19':
     dependencies:
       undici-types: 6.21.0
 
   '@types/pg@8.20.0':
     dependencies:
-      '@types/node': 22.19.18
+      '@types/node': 22.19.19
       pg-protocol: 1.13.0
       pg-types: 2.2.0
 
@@ -2489,7 +2505,7 @@ snapshots:
     dependencies:
       is-glob: 4.0.3
 
-  grafast@1.0.1(graphql@16.14.0):
+  grafast@1.0.2(graphql@16.14.0):
     dependencies:
       '@graphile/lru': 5.0.0
       chalk: 4.1.2
@@ -2502,19 +2518,19 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  grafserv@1.0.0(@types/node@22.19.18)(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))(ws@8.20.0):
+  grafserv@1.0.0(@types/node@22.19.19)(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))(ws@8.20.1):
     dependencies:
       '@graphile/lru': 5.0.0
       debug: 4.4.3
       eventemitter3: 5.0.4
-      grafast: 1.0.1(graphql@16.14.0)
+      grafast: 1.0.2(graphql@16.14.0)
       graphile-config: 1.0.1
       graphql: 16.14.0
-      graphql-ws: 6.0.8(graphql@16.14.0)(ws@8.20.0)
-      ruru: 2.0.0(@types/node@22.19.18)(debug@4.4.3)(graphile-config@1.0.1)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
+      graphql-ws: 6.0.8(graphql@16.14.0)(ws@8.20.1)
+      ruru: 2.0.0(@types/node@22.19.19)(debug@4.4.3)(graphile-config@1.0.1)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
       tslib: 2.8.1
     optionalDependencies:
-      ws: 8.20.0
+      ws: 8.20.1
     transitivePeerDependencies:
       - '@fastify/websocket'
       - '@types/node'
@@ -2527,13 +2543,13 @@ snapshots:
       - supports-color
       - use-sync-external-store
 
-  graphile-build-pg@5.0.2(@dataplan/pg@1.0.2(@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0)))(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(grafast@1.0.1(graphql@16.14.0))(graphile-build@5.0.1(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)(tamedevil@0.1.1):
+  graphile-build-pg@5.0.2(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0)))(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(grafast@1.0.2(graphql@16.14.0))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)(tamedevil@0.1.1):
     dependencies:
-      '@dataplan/pg': 1.0.2(@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0)))(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)
-      '@types/node': 22.19.18
+      '@dataplan/pg': 1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0)))(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)
+      '@types/node': 22.19.19
       debug: 4.4.3
-      grafast: 1.0.1(graphql@16.14.0)
-      graphile-build: 5.0.1(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)
+      grafast: 1.0.2(graphql@16.14.0)
+      graphile-build: 5.0.2(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)
       graphile-config: 1.0.1
       graphql: 16.14.0
       jsonwebtoken: 9.0.3
@@ -2546,14 +2562,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  graphile-build@5.0.1(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0):
+  graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0):
     dependencies:
-      '@types/node': 22.19.18
+      '@types/node': 22.19.19
       '@types/pluralize': 0.0.33
       '@types/semver': 7.7.1
       chalk: 4.1.2
       debug: 4.4.3
-      grafast: 1.0.1(graphql@16.14.0)
+      grafast: 1.0.2(graphql@16.14.0)
       graphile-config: 1.0.1
       graphql: 16.14.0
       lodash: 4.18.1
@@ -2576,23 +2592,23 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  graphile-utils@5.0.1(@dataplan/pg@1.0.2(@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0)))(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(grafast@1.0.1(graphql@16.14.0))(graphile-build-pg@5.0.2(@dataplan/pg@1.0.2(@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0)))(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(grafast@1.0.1(graphql@16.14.0))(graphile-build@5.0.1(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)(tamedevil@0.1.1))(graphile-build@5.0.1(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(tamedevil@0.1.1):
+  graphile-utils@5.0.1(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0)))(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(grafast@1.0.2(graphql@16.14.0))(graphile-build-pg@5.0.2(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0)))(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(grafast@1.0.2(graphql@16.14.0))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)(tamedevil@0.1.1))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(tamedevil@0.1.1):
     dependencies:
-      '@dataplan/pg': 1.0.2(@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0)))(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)
+      '@dataplan/pg': 1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0)))(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)
       debug: 4.4.3
-      grafast: 1.0.1(graphql@16.14.0)
-      graphile-build: 5.0.1(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)
+      grafast: 1.0.2(graphql@16.14.0)
+      graphile-build: 5.0.2(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)
       graphile-config: 1.0.1
       graphql: 16.14.0
       json5: 2.2.3
       tamedevil: 0.1.1
       tslib: 2.8.1
     optionalDependencies:
-      graphile-build-pg: 5.0.2(@dataplan/pg@1.0.2(@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0)))(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(grafast@1.0.1(graphql@16.14.0))(graphile-build@5.0.1(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)(tamedevil@0.1.1)
+      graphile-build-pg: 5.0.2(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0)))(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(grafast@1.0.2(graphql@16.14.0))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)(tamedevil@0.1.1)
     transitivePeerDependencies:
       - supports-color
 
-  graphile@5.0.0(graphile-build@5.0.1(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(postgraphile@5.0.2(3a1553431a9a02cdf0230b2a71b798f8)):
+  graphile@5.0.0(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(postgraphile@5.0.2(a97030f4655d420da53f55a7765c7bad)):
     dependencies:
       '@typescript/vfs': 1.6.4(typescript@5.9.3)
       chalk: 4.1.2
@@ -2601,16 +2617,16 @@ snapshots:
       tslib: 2.8.1
       typescript: 5.9.3
     optionalDependencies:
-      graphile-build: 5.0.1(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)
-      postgraphile: 5.0.2(3a1553431a9a02cdf0230b2a71b798f8)
+      graphile-build: 5.0.2(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)
+      postgraphile: 5.0.2(a97030f4655d420da53f55a7765c7bad)
     transitivePeerDependencies:
       - supports-color
 
-  graphiql@5.2.2(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)):
+  graphiql@5.2.3(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)):
     dependencies:
-      '@graphiql/plugin-doc-explorer': 0.4.1(@graphiql/react@0.37.3(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-compiler-runtime@19.1.0-rc.1(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)))(graphql@16.14.0)(react-compiler-runtime@19.1.0-rc.1(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
-      '@graphiql/plugin-history': 0.4.1(@graphiql/react@0.37.3(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-compiler-runtime@19.1.0-rc.1(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)))(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-compiler-runtime@19.1.0-rc.1(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
-      '@graphiql/react': 0.37.3(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-compiler-runtime@19.1.0-rc.1(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
+      '@graphiql/plugin-doc-explorer': 0.4.2(@graphiql/react@0.37.5(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
+      '@graphiql/plugin-history': 0.4.2(@graphiql/react@0.37.5(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)))(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
+      '@graphiql/react': 0.37.5(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
       graphql: 16.14.0
       react: 19.2.6
       react-compiler-runtime: 19.1.0-rc.1(react@19.2.6)
@@ -2624,18 +2640,18 @@ snapshots:
       - immer
       - use-sync-external-store
 
-  graphql-language-service@5.5.0(graphql@16.14.0):
+  graphql-language-service@5.5.1(graphql@16.14.0):
     dependencies:
       debounce-promise: 3.1.2
       graphql: 16.14.0
       nullthrows: 1.1.1
       vscode-languageserver-types: 3.17.5
 
-  graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0):
+  graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1):
     dependencies:
       graphql: 16.14.0
     optionalDependencies:
-      ws: 8.20.0
+      ws: 8.20.1
 
   graphql@16.14.0: {}
 
@@ -2757,9 +2773,9 @@ snapshots:
 
   mdurl@2.0.0: {}
 
-  meros@1.3.2(@types/node@22.19.18):
+  meros@1.3.2(@types/node@22.19.19):
     optionalDependencies:
-      '@types/node': 22.19.18
+      '@types/node': 22.19.19
 
   minimatch@10.2.5:
     dependencies:
@@ -2767,10 +2783,10 @@ snapshots:
 
   monaco-editor@0.52.2: {}
 
-  monaco-graphql@1.7.3(graphql@16.14.0)(monaco-editor@0.52.2)(prettier@3.8.3):
+  monaco-graphql@1.8.0(graphql@16.14.0)(monaco-editor@0.52.2)(prettier@3.8.3):
     dependencies:
       graphql: 16.14.0
-      graphql-language-service: 5.5.0(graphql@16.14.0)
+      graphql-language-service: 5.5.1(graphql@16.14.0)
       monaco-editor: 0.52.2
       picomatch-browser: 2.2.6
       prettier: 3.8.3
@@ -2858,20 +2874,20 @@ snapshots:
 
   pluralize@7.0.0: {}
 
-  postgraphile@5.0.2(3a1553431a9a02cdf0230b2a71b798f8):
+  postgraphile@5.0.2(a97030f4655d420da53f55a7765c7bad):
     dependencies:
-      '@dataplan/json': 1.0.0(grafast@1.0.1(graphql@16.14.0))
-      '@dataplan/pg': 1.0.2(@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0)))(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)
+      '@dataplan/json': 1.0.0(grafast@1.0.2(graphql@16.14.0))
+      '@dataplan/pg': 1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0)))(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)
       '@graphile/lru': 5.0.0
-      '@types/node': 22.19.18
+      '@types/node': 22.19.19
       '@types/pg': 8.20.0
       debug: 4.4.3
-      grafast: 1.0.1(graphql@16.14.0)
-      grafserv: 1.0.0(@types/node@22.19.18)(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))(ws@8.20.0)
-      graphile-build: 5.0.1(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)
-      graphile-build-pg: 5.0.2(@dataplan/pg@1.0.2(@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0)))(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(grafast@1.0.1(graphql@16.14.0))(graphile-build@5.0.1(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)(tamedevil@0.1.1)
+      grafast: 1.0.2(graphql@16.14.0)
+      grafserv: 1.0.0(@types/node@22.19.19)(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))(ws@8.20.1)
+      graphile-build: 5.0.2(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)
+      graphile-build-pg: 5.0.2(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0)))(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(grafast@1.0.2(graphql@16.14.0))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)(tamedevil@0.1.1)
       graphile-config: 1.0.1
-      graphile-utils: 5.0.1(@dataplan/pg@1.0.2(@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0)))(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(grafast@1.0.1(graphql@16.14.0))(graphile-build-pg@5.0.2(@dataplan/pg@1.0.2(@dataplan/json@1.0.0(grafast@1.0.1(graphql@16.14.0)))(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(grafast@1.0.1(graphql@16.14.0))(graphile-build@5.0.1(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)(tamedevil@0.1.1))(graphile-build@5.0.1(grafast@1.0.1(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(tamedevil@0.1.1)
+      graphile-utils: 5.0.1(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0)))(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(grafast@1.0.2(graphql@16.14.0))(graphile-build-pg@5.0.2(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.0)))(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0))(grafast@1.0.2(graphql@16.14.0))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(pg-sql2@5.0.1)(pg@8.20.0)(tamedevil@0.1.1))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0))(graphile-config@1.0.1)(graphql@16.14.0)(tamedevil@0.1.1)
       graphql: 16.14.0
       iterall: 1.3.0
       jsonwebtoken: 9.0.3
@@ -2879,7 +2895,7 @@ snapshots:
       pg-sql2: 5.0.1
       tamedevil: 0.1.1
       tslib: 2.8.1
-      ws: 8.20.0
+      ws: 8.20.1
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -2971,10 +2987,10 @@ snapshots:
 
   requires-port@1.0.0: {}
 
-  ruru-types@2.0.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)):
+  ruru-types@2.0.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)):
     dependencies:
-      '@graphiql/toolkit': 0.11.3(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)
-      graphiql: 5.2.2(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
+      '@graphiql/toolkit': 0.11.3(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)
+      graphiql: 5.2.3(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
       graphql: 16.14.0
     optionalDependencies:
       react: 19.2.6
@@ -2988,13 +3004,13 @@ snapshots:
       - immer
       - use-sync-external-store
 
-  ruru@2.0.0(@types/node@22.19.18)(debug@4.4.3)(graphile-config@1.0.1)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)):
+  ruru@2.0.0(@types/node@22.19.19)(debug@4.4.3)(graphile-config@1.0.1)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6)):
     dependencies:
       '@emotion/is-prop-valid': 1.4.0
       graphile-config: 1.0.1
       graphql: 16.14.0
       http-proxy: 1.18.1(debug@4.4.3)
-      ruru-types: 2.0.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.18)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.0))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
+      ruru-types: 2.0.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.19.19)(graphql-ws@6.0.8(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
       tslib: 2.8.1
       yargs: 17.7.2
     optionalDependencies:
@@ -3124,7 +3140,7 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
 
-  ws@8.20.0: {}
+  ws@8.20.1: {}
 
   xtend@4.0.2: {}
 
