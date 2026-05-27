@@ -1,3 +1,9 @@
+## [2.1.0](https://github.com/maevsi/postgraphile/compare/2.0.5...2.1.0) (2026-05-27)
+
+### Features
+
+* **presets:** add turnstile ([17c7b28](https://github.com/maevsi/postgraphile/commit/17c7b28d07265ae9a9fd0fdd1d46845ff1f06d59))
+
 ## [2.0.5](https://github.com/maevsi/postgraphile/compare/2.0.4...2.0.5) (2026-05-21)
 
 ### Bug Fixes
