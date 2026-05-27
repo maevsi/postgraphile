@@ -21,10 +21,15 @@
     "typescript": "6.0.3",
     "typescript-eslint": "8.59.4"
   },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.0.8"
+    }
+  },
   "homepage": "https://github.com/maevsi/postgraphile#readme",
   "license": "MIT",
   "name": "@maevsi/postgraphile",
-  "packageManager": "pnpm@11.2.2",
   "private": true,
   "repository": {
     "type": "git",

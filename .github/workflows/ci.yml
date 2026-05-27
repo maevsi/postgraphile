@@ -28,6 +28,8 @@ jobs:
     secrets:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     with:
+      EXTRA_PLUGINS: |
+        @semantic-release/exec
       DRY_RUN: true
   build:
     name: Build
@@ -47,3 +49,7 @@ jobs:
       id-token: write
     secrets:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+    with:
+      COREPACK_ENABLED: true
+      EXTRA_PLUGINS: |
+        @semantic-release/exec
