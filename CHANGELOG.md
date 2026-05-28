@@ -1,3 +1,9 @@
+## [2.1.1](https://github.com/maevsi/postgraphile/compare/2.1.0...2.1.1) (2026-05-28)
+
+### Bug Fixes
+
+* **deps:** update dargmuesli/github-actions to v5.4.0 ([eb4acb1](https://github.com/maevsi/postgraphile/commit/eb4acb15dab176f9e042d0cc1f7180f8653e6143))
+
 ## [2.1.0](https://github.com/maevsi/postgraphile/compare/2.0.5...2.1.0) (2026-05-27)
 
 ### Features
