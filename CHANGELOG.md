@@ -1,3 +1,9 @@
+## [2.1.3](https://github.com/maevsi/postgraphile/compare/2.1.2...2.1.3) (2026-05-28)
+
+### Bug Fixes
+
+* **docker:** initialize corepack ([b048294](https://github.com/maevsi/postgraphile/commit/b048294b12bb0d29cda7fefeb80d5560917c03b6))
+
 ## [2.1.2](https://github.com/maevsi/postgraphile/compare/2.1.1...2.1.2) (2026-05-28)
 
 ### Bug Fixes
