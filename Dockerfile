@@ -77,10 +77,12 @@ RUN pnpm install --offline --prod
 
 FROM base AS collect
 
-COPY --from=prepare /srv/app/src ./src
-COPY --from=prepare /srv/app/docker-entrypoint.sh /srv/app/package.json ./
-COPY --from=build /srv/app/node_modules ./node_modules
-COPY --from=lint /srv/app/package.json /dev/null
+RUN chown node:node .
+
+COPY --from=prepare --chown=node /srv/app/src ./src
+COPY --from=prepare --chown=node /srv/app/docker-entrypoint.sh /srv/app/package.json ./
+COPY --from=build --chown=node /srv/app/node_modules ./node_modules
+COPY --from=lint --chown=node /srv/app/package.json /dev/null
 
 
 ########################
