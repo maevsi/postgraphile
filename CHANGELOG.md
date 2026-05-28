@@ -1,3 +1,9 @@
+## [2.1.2](https://github.com/maevsi/postgraphile/compare/2.1.1...2.1.2) (2026-05-28)
+
+### Bug Fixes
+
+* **docker:** correct production user ([5c2ac95](https://github.com/maevsi/postgraphile/commit/5c2ac95b0b2c74ea18fc981bcbb1a2f70b05b8f2))
+
 ## [2.1.1](https://github.com/maevsi/postgraphile/compare/2.1.0...2.1.1) (2026-05-28)
 
 ### Bug Fixes
