@@ -13,7 +13,7 @@
   "description": "PostGraphile GraphQL API for the Vibetype platform; includes @graphile/postgis, Amber preset, Grafast optimizations, and JWT authentication.",
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@eslint/json": "1.2.0",
+    "@eslint/json": "2.0.0",
     "eslint": "10.4.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.6",
