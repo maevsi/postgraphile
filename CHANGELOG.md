@@ -1,3 +1,5 @@
+## [2.1.6](https://github.com/maevsi/postgraphile/compare/2.1.5...2.1.6) (2026-07-02)
+
 ## [2.1.5](https://github.com/maevsi/postgraphile/compare/2.1.4...2.1.5) (2026-06-18)
 
 ### Bug Fixes
