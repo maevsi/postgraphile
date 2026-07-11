@@ -1,3 +1,5 @@
+import './instrument.ts'
+
 import postgisPreset from '@graphile/postgis'
 import type {} from 'grafserv/node'
 import { PostGraphileAmberPreset } from 'postgraphile/presets/amber'

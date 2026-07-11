@@ -5,6 +5,8 @@
   },
   "dependencies": {
     "@graphile/postgis": "file:graphile-postgis-v0.2.0.tgz",
+    "@sentry/node": "10.65.0",
+    "@sentry/profiling-node": "10.65.0",
     "grafserv": "1.0.0",
     "graphile": "5.0.0",
     "jose": "6.2.3",
