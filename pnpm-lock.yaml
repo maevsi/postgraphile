@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@graphile/postgis':
         specifier: file:graphile-postgis-v0.2.0.tgz
-        version: file:graphile-postgis-v0.2.0.tgz(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0))(postgraphile@5.0.3(99a90ca37be3e268996bcb4064c3e587))
+        version: file:graphile-postgis-v0.2.0.tgz(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0))(postgraphile@5.1.0(70ee95fabc77506cfb6158c4c30187ba))
       '@sentry/node':
         specifier: 10.65.0
         version: 10.65.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))
@@ -18,17 +18,17 @@ importers:
         specifier: 10.65.0
         version: 10.65.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))
       grafserv:
-        specifier: 1.0.0
-        version: 1.0.0(@types/node@22.20.1)(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(use-sync-external-store@1.6.0(react@19.2.7))(ws@8.21.0)
+        specifier: 1.0.1
+        version: 1.0.1(@types/node@22.20.1)(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(use-sync-external-store@1.6.0(react@19.2.7))(ws@8.21.0)
       graphile:
-        specifier: 5.0.0
-        version: 5.0.0(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2))(graphile-config@1.0.1)(postgraphile@5.0.3(99a90ca37be3e268996bcb4064c3e587))
+        specifier: 5.1.0
+        version: 5.1.0(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2))(graphile-config@1.0.1)(postgraphile@5.1.0(70ee95fabc77506cfb6158c4c30187ba))
       jose:
         specifier: 6.2.3
         version: 6.2.3
       postgraphile:
-        specifier: 5.0.3
-        version: 5.0.3(99a90ca37be3e268996bcb4064c3e587)
+        specifier: 5.1.0
+        version: 5.1.0(70ee95fabc77506cfb6158c4c30187ba)
     devDependencies:
       '@eslint/js':
         specifier: 10.0.1
@@ -52,8 +52,8 @@ importers:
         specifier: 6.0.3
         version: 6.0.3
       typescript-eslint:
-        specifier: 8.63.0
-        version: 8.63.0(eslint@10.7.0)(typescript@6.0.3)
+        specifier: 8.64.0
+        version: 8.64.0(eslint@10.7.0)(typescript@6.0.3)
 
 packages:
 
@@ -711,63 +711,63 @@ packages:
   '@types/semver@7.7.1':
     resolution: {integrity: sha512-FmgJfu+MOcQ370SD0ev7EI8TlCAfKYU+B4m5T3yXc1CiRN94g/SZPtsCkk506aUDtlMnFZvasDwHHUcZUEaYuA==}
 
-  '@typescript-eslint/eslint-plugin@8.63.0':
-    resolution: {integrity: sha512-rvwSgqT+DHpWdzfSzPatRLm02a0GlESt++9iy3hLCDY4BgkaLcl8LBi9Yh7XGFBpwcBE/K3024QuXWTpbz4FfQ==}
+  '@typescript-eslint/eslint-plugin@8.64.0':
+    resolution: {integrity: sha512-CGvQPBxN3wZLu6Rz2kFUpZeoCm78xUic92ck39KPePkO1NPOwjCqdQnm5Q87tpWw9vcBvW8XLrDXjH9PWYtJ3Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
-      '@typescript-eslint/parser': ^8.63.0
+      '@typescript-eslint/parser': ^8.64.0
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: '>=4.8.4 <6.1.0'
 
-  '@typescript-eslint/parser@8.63.0':
-    resolution: {integrity: sha512-gwh4gvvlaVDKKxyfxMG+Gnu1u9X0OQBwyGLkbwB65dIzBKnxeRiJlNFqlI3zwVhNXJIs6qV7mlFCn/BIajlVig==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
-      typescript: '>=4.8.4 <6.1.0'
-
-  '@typescript-eslint/project-service@8.63.0':
-    resolution: {integrity: sha512-e5dh0/UI0ok53AlZ5wRkXCB32z/f2jUZqPR/ygAw5WYaSw8j9EoJWlS7wQjr/dmOaqWjnPIn2m+HhVPCMWGZVQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      typescript: '>=4.8.4 <6.1.0'
-
-  '@typescript-eslint/scope-manager@8.63.0':
-    resolution: {integrity: sha512-uUyfMWCnDSN8bCpcrY8nGP2BLkQ9Xn0GsipcONcpIDWhwhO4ZSyHvyS14U3X75mzxWxL3I2UZIrenTzdzcJO8A==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@typescript-eslint/tsconfig-utils@8.63.0':
-    resolution: {integrity: sha512-sUAbkulqBAsncKnbRP3+7CtQFRKicexnj7ZwNC6ddCR7EmrXvjvdCYMJbUIqMd6lwoEriZjwLo08aS5tSjVMHg==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      typescript: '>=4.8.4 <6.1.0'
-
-  '@typescript-eslint/type-utils@8.63.0':
-    resolution: {integrity: sha512-Nzzh/OGxVCOjObjaj1CQF2RUasyYy2Jfuh+zZ3PjLzG2fYRriAiZLib9UKtO+CpQAS3YHiAS+ckZDclwqI1TPA==}
+  '@typescript-eslint/parser@8.64.0':
+    resolution: {integrity: sha512-KA0OshtlcCCXmbfqyZkM5pV3/WNraJf7DkJRLpyrmwPtud57H5BDX7C3k0LPSPxpprfRL+cJDGabF10mvNCoCw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: '>=4.8.4 <6.1.0'
 
-  '@typescript-eslint/types@8.63.0':
-    resolution: {integrity: sha512-xyLtl9DUBBFrcJS4x2pIqGLH68/tC2uOa4Z7pUteW09D3bXnnXUom4dyPikzWgB7llmIc1zoeI3aoUdC4rPK/Q==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@typescript-eslint/typescript-estree@8.63.0':
-    resolution: {integrity: sha512-ygBkU+B7ex5UI/gKhaqexWev79uISfIv7XQCRNYO/jmD8rGLPyWLAb3KMRT6nd8Gt9bmUBi9+iX6tBdYfOY81Q==}
+  '@typescript-eslint/project-service@8.64.0':
+    resolution: {integrity: sha512-tk4WpOJ6IEbGrVHaNmM0YRrwAD3exZlIK3iadQNAxh4YKk6jvUQ4ecq18n+v7+meh+cJ3j+D8nbk8sRKhlwLQg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       typescript: '>=4.8.4 <6.1.0'
 
-  '@typescript-eslint/utils@8.63.0':
-    resolution: {integrity: sha512-fUKaeAvrTuQg/Tgt3nliAUSZHJM6DlCcfyEmxCvlX8kieWSStBX+5O5Fnidtc3i2JrH+9c/GL4RY2iasd/GPTA==}
+  '@typescript-eslint/scope-manager@8.64.0':
+    resolution: {integrity: sha512-CXEaFdYXjSTgKhisNkwCcJwTP8Pl+fmRrEQrri4nm3vU743bALrxzLmq7fHG/7e6a5xO0lDYeURpZmBuhHk54w==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@typescript-eslint/tsconfig-utils@8.64.0':
+    resolution: {integrity: sha512-2yo8rRNKuzbVWQp5kslhANqZ2uDAeROQHBRZNPu8JDsHmeFNj/XJJhX/FhNUWmkHHvoNsKa6+tHJiig87EzsQw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      typescript: '>=4.8.4 <6.1.0'
+
+  '@typescript-eslint/type-utils@8.64.0':
+    resolution: {integrity: sha512-XWG4Fmmv/6SvyS9nH8jWrKs6terwJvE8cyRt1CzYYqzp9OrPhCT4cMc/f7C6RZCwG+qMmiffJS1/qJP8G1URtg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: '>=4.8.4 <6.1.0'
 
-  '@typescript-eslint/visitor-keys@8.63.0':
-    resolution: {integrity: sha512-UexrHGnGTpbuQHct2ExOc2ZcFbGUS9FOesCxxqdBGcpI1BxYu/LZ6U8Aq6/72XtF/qRBk9nhuGHFJIXXMhPMdw==}
+  '@typescript-eslint/types@8.64.0':
+    resolution: {integrity: sha512-qjhfuTfLXjA4IOzXvz0rTjT01BqEiIgPoUeMwiEjnaHKJMTNo8rH5pYW1a2L/0Dnux2fPC85AeyJoWaGa8WxTA==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@typescript-eslint/typescript-estree@8.64.0':
+    resolution: {integrity: sha512-Pztpsn1aCE1oWDvDEfUk31nngvvF7vUB5SwHFEaZIFpvw7WJtqUHHL4plBZDA9HfWJJjL13BdG0YrJInTUvoVA==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      typescript: '>=4.8.4 <6.1.0'
+
+  '@typescript-eslint/utils@8.64.0':
+    resolution: {integrity: sha512-aJUGVB3+U0htrrCjoA8qukw8cm8fNCGAxK/tVoS70k8aeb7DETKeFozRiVFIwEeN9WJLsjaP3ph8I60tY2XZoQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
+      typescript: '>=4.8.4 <6.1.0'
+
+  '@typescript-eslint/visitor-keys@8.64.0':
+    resolution: {integrity: sha512-mrtuL8Nsn6gi2H4mo5KMTp823M+3Q19Ew/i+Zlikq20tIMm99C3Ez0dCmkWWnxut20esQvTg8aUSEhMcAOXhEw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript/vfs@1.6.4':
@@ -1047,14 +1047,14 @@ packages:
       '@envelop/core':
         optional: true
 
-  grafserv@1.0.0:
-    resolution: {integrity: sha512-9w0zwYSHS10DfHOAQhaCVvJnOFuk+YY+nZZqG0ZOqFbner3Zf4GvqfWlNETdmUQdB6dnISfGZCkIaSZt5R7wCQ==}
+  grafserv@1.0.1:
+    resolution: {integrity: sha512-SKcO2Zbf5m+REL0rk6I1xywP3P3Vrg6e1BzCmZIiznJU5KVGADMAOMOVxifiaUiexlGjGoGbT6adOhfU0ZzenA==}
     engines: {node: '>=22'}
     peerDependencies:
       '@envelop/core': ^5.0.0
       '@whatwg-node/server': ^0.9.64
       grafast: ^1.0.0-rc.8
-      graphile-config: ^1.0.0
+      graphile-config: ^1.1.0
       graphql: ^16.9.0
       h3: ^1.13.0
       hono: ^4.6.15
@@ -1099,8 +1099,8 @@ packages:
     resolution: {integrity: sha512-sVdSWNmetW/WZKVQ0Dii2kCu0Le6X6qwuBRecWg575iOMjbZgxo+b4oVeSOTtR6NTKuLsMYQBkzSaeoAKOPB+A==}
     engines: {node: '>=22'}
 
-  graphile-utils@5.0.1:
-    resolution: {integrity: sha512-FtJgxL2BDv1B417sOCsNdu1e3yZkZY7jPMlMHTvzcJLc/7o9rDh+ucJGDmLiKe5Z4lS8KXxVRLZWbxC56/RHcw==}
+  graphile-utils@5.0.2:
+    resolution: {integrity: sha512-BWHlyGYJhSSxSVbphS1qQ52bXKl0OmzKfqnrodxtPH8ezRHPGKVUxANyjMnULptVkLrSEotJuOkUae3UcFUX6g==}
     engines: {node: '>=22'}
     peerDependencies:
       '@dataplan/pg': ^1.0.0-rc.7
@@ -1114,8 +1114,8 @@ packages:
       graphile-build-pg:
         optional: true
 
-  graphile@5.0.0:
-    resolution: {integrity: sha512-0L8dngXOSpblG0q8+7a2wDaBvPCKvaYqId5oNIrstgcvHtx5Usz9NcmGzqrcicAj3mix2UTkn++w9M/fwmWyTA==}
+  graphile@5.1.0:
+    resolution: {integrity: sha512-tXRT9RE0rA1DfsSUEx4H+LfaBSAlBkvdG/SAx4RfA6Ls1t8SRuXJLkoF1mslPD10YEKBIqTcsrBzjvCwp6UjDA==}
     engines: {node: '>=22'}
     hasBin: true
     peerDependencies:
@@ -1420,19 +1420,19 @@ packages:
     resolution: {integrity: sha512-ARhBOdzS3e41FbkW/XWrTEtukqqLoK5+Z/4UeDaLuSW+39JPeFgs4gCGqsrJHVZX0fUrx//4OF0K1CUGwlIFow==}
     engines: {node: '>=4'}
 
-  postgraphile@5.0.3:
-    resolution: {integrity: sha512-gO8xOusrIykV65V1rmkqnUz3ZjDU+1y09uWruUshP+t811JFsEZsE7d3UJNjAxgrBcndU0CzgmEWCbvbD3kehA==}
+  postgraphile@5.1.0:
+    resolution: {integrity: sha512-yi2OccC7e9zYTpQB+qxAEmwzJ8JdU0i9Sbx4fnDY4KenIl6mT0W2DY76gMNEPRXacyGztOrwGLwj6VxSK6rXnw==}
     engines: {node: '>=22'}
     hasBin: true
     peerDependencies:
-      '@dataplan/json': ^1.0.0
-      '@dataplan/pg': ^1.0.3
+      '@dataplan/json': ^1.0.1
+      '@dataplan/pg': ^1.1.0
       '@envelop/core': ^5.0.0
-      grafast: ^1.0.2
-      grafserv: ^1.0.0
-      graphile-build: ^5.0.2
-      graphile-build-pg: ^5.0.2
-      graphile-config: ^1.0.1
+      grafast: ^1.1.0
+      grafserv: ^1.0.1
+      graphile-build: ^5.1.0
+      graphile-build-pg: ^5.1.0
+      graphile-config: ^1.1.0
       graphql: ^16.9.0
       pg: ^8.7.1
       pg-sql2: ^5.0.1
@@ -1564,8 +1564,8 @@ packages:
       react-dom:
         optional: true
 
-  ruru@2.0.0:
-    resolution: {integrity: sha512-I8N4Jw0jsgFqgUnsLMR9BHnWyVX0xj7GfDYIjsvjt538zIVs/PiggdepsYjH6K2ul9bjHoS15p7XL2SnywSdCw==}
+  ruru@2.0.1:
+    resolution: {integrity: sha512-m6W2jZN4LrnOU0N7g+dRFGnW3iFrk7oOq3LGjQ2o9nyP4vdjgcgNtJanCu0mKaCx2H6qqSHwN7qKrqrbjjtw9w==}
     engines: {node: '>=22'}
     hasBin: true
     peerDependencies:
@@ -1662,8 +1662,8 @@ packages:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
 
-  typescript-eslint@8.63.0:
-    resolution: {integrity: sha512-xgwXyzG4sK9ALkBxbyGkTMMOS+imnW65iPhxCQMK83KhxyoDNW7l+IDqEf9vMdoUidHpOoS967RCq4eMiTexwQ==}
+  typescript-eslint@8.64.0:
+    resolution: {integrity: sha512-0qg+pDNMnqYzqH9AnNK+39tejHvsShUOUUoRUgtnTGE7QuMZhiFDnozq8nHJVq+Wae6NMLKNWLg5WmkcC/ndyQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
@@ -1907,11 +1907,11 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@graphile/postgis@file:graphile-postgis-v0.2.0.tgz(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0))(postgraphile@5.0.3(99a90ca37be3e268996bcb4064c3e587))':
+  '@graphile/postgis@file:graphile-postgis-v0.2.0.tgz(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0))(postgraphile@5.1.0(70ee95fabc77506cfb6158c4c30187ba))':
     dependencies:
       '@dataplan/pg': 1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0)
       debug: 4.4.3
-      postgraphile: 5.0.3(99a90ca37be3e268996bcb4064c3e587)
+      postgraphile: 5.1.0(70ee95fabc77506cfb6158c4c30187ba)
       tslib: 2.8.1
     transitivePeerDependencies:
       - supports-color
@@ -2428,14 +2428,14 @@ snapshots:
 
   '@types/semver@7.7.1': {}
 
-  '@typescript-eslint/eslint-plugin@8.63.0(@typescript-eslint/parser@8.63.0(eslint@10.7.0)(typescript@6.0.3))(eslint@10.7.0)(typescript@6.0.3)':
+  '@typescript-eslint/eslint-plugin@8.64.0(@typescript-eslint/parser@8.64.0(eslint@10.7.0)(typescript@6.0.3))(eslint@10.7.0)(typescript@6.0.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
-      '@typescript-eslint/parser': 8.63.0(eslint@10.7.0)(typescript@6.0.3)
-      '@typescript-eslint/scope-manager': 8.63.0
-      '@typescript-eslint/type-utils': 8.63.0(eslint@10.7.0)(typescript@6.0.3)
-      '@typescript-eslint/utils': 8.63.0(eslint@10.7.0)(typescript@6.0.3)
-      '@typescript-eslint/visitor-keys': 8.63.0
+      '@typescript-eslint/parser': 8.64.0(eslint@10.7.0)(typescript@6.0.3)
+      '@typescript-eslint/scope-manager': 8.64.0
+      '@typescript-eslint/type-utils': 8.64.0(eslint@10.7.0)(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.64.0(eslint@10.7.0)(typescript@6.0.3)
+      '@typescript-eslint/visitor-keys': 8.64.0
       eslint: 10.7.0
       ignore: 7.0.6
       natural-compare: 1.4.0
@@ -2444,41 +2444,41 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.63.0(eslint@10.7.0)(typescript@6.0.3)':
+  '@typescript-eslint/parser@8.64.0(eslint@10.7.0)(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/scope-manager': 8.63.0
-      '@typescript-eslint/types': 8.63.0
-      '@typescript-eslint/typescript-estree': 8.63.0(typescript@6.0.3)
-      '@typescript-eslint/visitor-keys': 8.63.0
+      '@typescript-eslint/scope-manager': 8.64.0
+      '@typescript-eslint/types': 8.64.0
+      '@typescript-eslint/typescript-estree': 8.64.0(typescript@6.0.3)
+      '@typescript-eslint/visitor-keys': 8.64.0
       debug: 4.4.3
       eslint: 10.7.0
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/project-service@8.63.0(typescript@6.0.3)':
+  '@typescript-eslint/project-service@8.64.0(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.63.0(typescript@6.0.3)
-      '@typescript-eslint/types': 8.63.0
+      '@typescript-eslint/tsconfig-utils': 8.64.0(typescript@6.0.3)
+      '@typescript-eslint/types': 8.64.0
       debug: 4.4.3
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/scope-manager@8.63.0':
+  '@typescript-eslint/scope-manager@8.64.0':
     dependencies:
-      '@typescript-eslint/types': 8.63.0
-      '@typescript-eslint/visitor-keys': 8.63.0
+      '@typescript-eslint/types': 8.64.0
+      '@typescript-eslint/visitor-keys': 8.64.0
 
-  '@typescript-eslint/tsconfig-utils@8.63.0(typescript@6.0.3)':
+  '@typescript-eslint/tsconfig-utils@8.64.0(typescript@6.0.3)':
     dependencies:
       typescript: 6.0.3
 
-  '@typescript-eslint/type-utils@8.63.0(eslint@10.7.0)(typescript@6.0.3)':
+  '@typescript-eslint/type-utils@8.64.0(eslint@10.7.0)(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/types': 8.63.0
-      '@typescript-eslint/typescript-estree': 8.63.0(typescript@6.0.3)
-      '@typescript-eslint/utils': 8.63.0(eslint@10.7.0)(typescript@6.0.3)
+      '@typescript-eslint/types': 8.64.0
+      '@typescript-eslint/typescript-estree': 8.64.0(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.64.0(eslint@10.7.0)(typescript@6.0.3)
       debug: 4.4.3
       eslint: 10.7.0
       ts-api-utils: 2.5.0(typescript@6.0.3)
@@ -2486,14 +2486,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/types@8.63.0': {}
+  '@typescript-eslint/types@8.64.0': {}
 
-  '@typescript-eslint/typescript-estree@8.63.0(typescript@6.0.3)':
+  '@typescript-eslint/typescript-estree@8.64.0(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/project-service': 8.63.0(typescript@6.0.3)
-      '@typescript-eslint/tsconfig-utils': 8.63.0(typescript@6.0.3)
-      '@typescript-eslint/types': 8.63.0
-      '@typescript-eslint/visitor-keys': 8.63.0
+      '@typescript-eslint/project-service': 8.64.0(typescript@6.0.3)
+      '@typescript-eslint/tsconfig-utils': 8.64.0(typescript@6.0.3)
+      '@typescript-eslint/types': 8.64.0
+      '@typescript-eslint/visitor-keys': 8.64.0
       debug: 4.4.3
       minimatch: 10.2.5
       semver: 7.8.5
@@ -2503,20 +2503,20 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.63.0(eslint@10.7.0)(typescript@6.0.3)':
+  '@typescript-eslint/utils@8.64.0(eslint@10.7.0)(typescript@6.0.3)':
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@10.7.0)
-      '@typescript-eslint/scope-manager': 8.63.0
-      '@typescript-eslint/types': 8.63.0
-      '@typescript-eslint/typescript-estree': 8.63.0(typescript@6.0.3)
+      '@typescript-eslint/scope-manager': 8.64.0
+      '@typescript-eslint/types': 8.64.0
+      '@typescript-eslint/typescript-estree': 8.64.0(typescript@6.0.3)
       eslint: 10.7.0
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/visitor-keys@8.63.0':
+  '@typescript-eslint/visitor-keys@8.64.0':
     dependencies:
-      '@typescript-eslint/types': 8.63.0
+      '@typescript-eslint/types': 8.64.0
       eslint-visitor-keys: 5.0.1
 
   '@typescript/vfs@1.6.4(typescript@5.9.3)':
@@ -2766,7 +2766,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  grafserv@1.0.0(@types/node@22.20.1)(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(use-sync-external-store@1.6.0(react@19.2.7))(ws@8.21.0):
+  grafserv@1.0.1(@types/node@22.20.1)(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(use-sync-external-store@1.6.0(react@19.2.7))(ws@8.21.0):
     dependencies:
       '@graphile/lru': 5.0.0
       debug: 4.4.3
@@ -2775,7 +2775,7 @@ snapshots:
       graphile-config: 1.0.1
       graphql: 16.14.2
       graphql-ws: 6.1.0(graphql@16.14.2)(ws@8.21.0)
-      ruru: 2.0.0(@types/node@22.20.1)(debug@4.4.3)(graphile-config@1.0.1)(graphql-ws@6.1.0(graphql@16.14.2)(ws@8.21.0))(graphql@16.14.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(use-sync-external-store@1.6.0(react@19.2.7))
+      ruru: 2.0.1(@types/node@22.20.1)(debug@4.4.3)(graphile-config@1.0.1)(graphql-ws@6.1.0(graphql@16.14.2)(ws@8.21.0))(graphql@16.14.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(use-sync-external-store@1.6.0(react@19.2.7))
       tslib: 2.8.1
     optionalDependencies:
       ws: 8.21.0
@@ -2840,7 +2840,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  graphile-utils@5.0.1(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0))(grafast@1.0.2(graphql@16.14.2))(graphile-build-pg@5.0.2(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0))(grafast@1.0.2(graphql@16.14.2))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0)(tamedevil@0.1.1))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(tamedevil@0.1.1):
+  graphile-utils@5.0.2(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0))(grafast@1.0.2(graphql@16.14.2))(graphile-build-pg@5.0.2(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0))(grafast@1.0.2(graphql@16.14.2))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0)(tamedevil@0.1.1))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(tamedevil@0.1.1):
     dependencies:
       '@dataplan/pg': 1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0)
       debug: 4.4.3
@@ -2856,7 +2856,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  graphile@5.0.0(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2))(graphile-config@1.0.1)(postgraphile@5.0.3(99a90ca37be3e268996bcb4064c3e587)):
+  graphile@5.1.0(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2))(graphile-config@1.0.1)(postgraphile@5.1.0(70ee95fabc77506cfb6158c4c30187ba)):
     dependencies:
       '@typescript/vfs': 1.6.4(typescript@5.9.3)
       chalk: 4.1.2
@@ -2866,7 +2866,7 @@ snapshots:
       typescript: 5.9.3
     optionalDependencies:
       graphile-build: 5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)
-      postgraphile: 5.0.3(99a90ca37be3e268996bcb4064c3e587)
+      postgraphile: 5.1.0(70ee95fabc77506cfb6158c4c30187ba)
     transitivePeerDependencies:
       - supports-color
 
@@ -3140,7 +3140,7 @@ snapshots:
 
   pluralize@7.0.0: {}
 
-  postgraphile@5.0.3(99a90ca37be3e268996bcb4064c3e587):
+  postgraphile@5.1.0(70ee95fabc77506cfb6158c4c30187ba):
     dependencies:
       '@dataplan/json': 1.0.0(grafast@1.0.2(graphql@16.14.2))
       '@dataplan/pg': 1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0)
@@ -3149,11 +3149,11 @@ snapshots:
       '@types/pg': 8.20.0
       debug: 4.4.3
       grafast: 1.0.2(graphql@16.14.2)
-      grafserv: 1.0.0(@types/node@22.20.1)(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(use-sync-external-store@1.6.0(react@19.2.7))(ws@8.21.0)
+      grafserv: 1.0.1(@types/node@22.20.1)(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(use-sync-external-store@1.6.0(react@19.2.7))(ws@8.21.0)
       graphile-build: 5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)
       graphile-build-pg: 5.0.2(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0))(grafast@1.0.2(graphql@16.14.2))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0)(tamedevil@0.1.1)
       graphile-config: 1.0.1
-      graphile-utils: 5.0.1(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0))(grafast@1.0.2(graphql@16.14.2))(graphile-build-pg@5.0.2(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0))(grafast@1.0.2(graphql@16.14.2))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0)(tamedevil@0.1.1))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(tamedevil@0.1.1)
+      graphile-utils: 5.0.2(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0))(grafast@1.0.2(graphql@16.14.2))(graphile-build-pg@5.0.2(@dataplan/pg@1.0.3(@dataplan/json@1.0.0(grafast@1.0.2(graphql@16.14.2)))(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0))(grafast@1.0.2(graphql@16.14.2))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(pg-sql2@5.0.1)(pg@8.22.0)(tamedevil@0.1.1))(graphile-build@5.0.2(grafast@1.0.2(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2))(graphile-config@1.0.1)(graphql@16.14.2)(tamedevil@0.1.1)
       graphql: 16.14.2
       iterall: 1.3.0
       jsonwebtoken: 9.0.3
@@ -3277,7 +3277,7 @@ snapshots:
       - immer
       - use-sync-external-store
 
-  ruru@2.0.0(@types/node@22.20.1)(debug@4.4.3)(graphile-config@1.0.1)(graphql-ws@6.1.0(graphql@16.14.2)(ws@8.21.0))(graphql@16.14.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(use-sync-external-store@1.6.0(react@19.2.7)):
+  ruru@2.0.1(@types/node@22.20.1)(debug@4.4.3)(graphile-config@1.0.1)(graphql-ws@6.1.0(graphql@16.14.2)(ws@8.21.0))(graphql@16.14.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(use-sync-external-store@1.6.0(react@19.2.7)):
     dependencies:
       '@emotion/is-prop-valid': 1.4.0
       graphile-config: 1.0.1
@@ -3365,12 +3365,12 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
 
-  typescript-eslint@8.63.0(eslint@10.7.0)(typescript@6.0.3):
+  typescript-eslint@8.64.0(eslint@10.7.0)(typescript@6.0.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.63.0(@typescript-eslint/parser@8.63.0(eslint@10.7.0)(typescript@6.0.3))(eslint@10.7.0)(typescript@6.0.3)
-      '@typescript-eslint/parser': 8.63.0(eslint@10.7.0)(typescript@6.0.3)
-      '@typescript-eslint/typescript-estree': 8.63.0(typescript@6.0.3)
-      '@typescript-eslint/utils': 8.63.0(eslint@10.7.0)(typescript@6.0.3)
+      '@typescript-eslint/eslint-plugin': 8.64.0(@typescript-eslint/parser@8.64.0(eslint@10.7.0)(typescript@6.0.3))(eslint@10.7.0)(typescript@6.0.3)
+      '@typescript-eslint/parser': 8.64.0(eslint@10.7.0)(typescript@6.0.3)
+      '@typescript-eslint/typescript-estree': 8.64.0(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.64.0(eslint@10.7.0)(typescript@6.0.3)
       eslint: 10.7.0
       typescript: 6.0.3
     transitivePeerDependencies:
