@@ -80,7 +80,7 @@ FROM base AS collect
 RUN chown node:node .
 
 COPY --from=prepare --chown=node /srv/app/src ./src
-COPY --from=prepare --chown=node /srv/app/docker-entrypoint.sh /srv/app/package.json ./
+COPY --from=prepare --chown=node /srv/app/docker-entrypoint.sh /srv/app/graphile-postgis-v0.2.0.tgz /srv/app/package.json ./
 COPY --from=build --chown=node /srv/app/node_modules ./node_modules
 COPY --from=build --chown=node /srv/app/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=lint --chown=node /srv/app/package.json /dev/null
