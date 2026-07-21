@@ -102,4 +102,8 @@ echo "$RESPONSE" | jq -e '(.data.__typename // "") != "" and (.errors | not)'
 echo "GraphQL endpoint OK."
 echo "::endgroup::"
 
+echo "::group::Container logs"
+docker logs postgraphile-smoke
+echo "::endgroup::"
+
 echo "Smoke test passed."
