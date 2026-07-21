@@ -1,3 +1,5 @@
+## [2.1.10](https://github.com/maevsi/postgraphile/compare/2.1.9...2.1.10) (2026-07-21)
+
 ## [2.1.9](https://github.com/maevsi/postgraphile/compare/2.1.8...2.1.9) (2026-07-20)
 
 ## [2.1.8](https://github.com/maevsi/postgraphile/compare/2.1.7...2.1.8) (2026-07-20)
