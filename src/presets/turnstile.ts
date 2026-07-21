@@ -39,6 +39,11 @@ const TurnstilePlugin: GraphileConfig.Plugin = {
           return next()
         }
 
+        if (process.env['TURNSTILE_BYPASS']) {
+          logger.debug('Turnstile bypass enabled, skipping verification.')
+          return next()
+        }
+
         // TODO: only test turnstile for certain operations, e.g. authentication and account registration
         const key = event.request.getHeader('x-turnstile-key')
         const verificationTimeoutMs = 5000

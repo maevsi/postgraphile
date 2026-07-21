@@ -29,10 +29,101 @@ jobs:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     with:
       DRY_RUN: true
+  smoke-test:
+    name: Docker smoke test
+    needs: release_semantic_dry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build production image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: production
+          tags: postgraphile:test
+          load: true
+
+      - name: Generate ES256 key pair
+        run: |
+          openssl ecparam -genkey -name prime256v1 | \
+            openssl pkcs8 -topk8 -nocrypt -outform PEM > private.pem
+          openssl ec -in private.pem -pubout -outform PEM > public.pem
+
+      - name: Create test network
+        run: docker network create postgraphile-test || true
+
+      - name: Start PostgreSQL
+        run: |
+          docker run --detach --name postgraphile-db \
+            --network postgraphile-test \
+            -e POSTGRES_DB=postgraphile \
+            -e POSTGRES_USER=postgres \
+            -e POSTGRES_PASSWORD=postgres \
+            postgres:18-alpine
+          until docker exec postgraphile-db psql -U postgres -d postgraphile \
+            -c 'CREATE SCHEMA IF NOT EXISTS postgraphile'; do
+            sleep 1
+          done
+
+      - name: Start PostGraphile
+        run: |
+          mkdir -p env-vars
+          echo "postgresql://postgres:postgres@postgraphile-db:5432/postgraphile" > env-vars/POSTGRAPHILE_CONNECTION
+          echo "postgresql://postgres:postgres@postgraphile-db:5432/postgraphile" > env-vars/POSTGRAPHILE_OWNER_CONNECTION
+          echo "true" > env-vars/TURNSTILE_BYPASS
+          cp private.pem env-vars/POSTGRAPHILE_JWT_SECRET_KEY
+          cp public.pem env-vars/POSTGRAPHILE_JWT_PUBLIC_KEY
+          docker run --detach --name postgraphile \
+            --network postgraphile-test \
+            --volume "$(pwd)/env-vars:/run/environment-variables:ro" \
+            -p 5678:5678 \
+            postgraphile:test
+
+      - name: Wait for healthy
+        run: |
+          for i in $(seq 1 60); do
+            STATUS=$(docker inspect --format='{{.State.Health.Status}}' postgraphile)
+            if [ "$STATUS" = "healthy" ]; then
+              echo "Container is healthy after ${i}s"
+              exit 0
+            fi
+            if [ "$STATUS" = "unhealthy" ]; then
+              echo "Container became unhealthy"
+              docker logs postgraphile
+              exit 1
+            fi
+            sleep 1
+          done
+          echo "Timeout waiting for healthy status"
+          docker logs postgraphile
+          exit 1
+
+      - name: Smoke test GraphQL endpoint
+        run: |
+          RESPONSE=$(curl -fsS -X POST http://localhost:5678/graphql \
+            -H 'Content-Type: application/json' \
+            -d '{"query":"{ __typename }"}') || {
+            echo "Request failed, container logs:"
+            docker logs postgraphile
+            exit 1
+          }
+          echo "Response: $RESPONSE"
+          echo "$RESPONSE" | jq -e '(.data.__typename // "") != "" and (.errors | not)'
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker rm --force postgraphile postgraphile-db || true
+          docker network rm postgraphile-test || true
   build:
+    needs: smoke-test
     name: Build
     uses: dargmuesli/github-actions/.github/workflows/docker.yml@51cd57700bedc5b189c5dce3902645e00b4e4ccf # 5.5.3
-    needs: release_semantic_dry
     permissions:
       packages: write
     with:
