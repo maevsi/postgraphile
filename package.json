@@ -5,8 +5,8 @@
   },
   "dependencies": {
     "@graphile/postgis": "file:graphile-postgis-v0.2.0.tgz",
-    "@sentry/node": "10.66.0",
-    "@sentry/profiling-node": "10.66.0",
+    "@sentry/node": "10.67.0",
+    "@sentry/profiling-node": "10.67.0",
     "grafserv": "1.0.1",
     "graphile": "5.1.0",
     "jose": "6.2.3",
@@ -21,7 +21,7 @@
     "eslint-plugin-prettier": "5.5.6",
     "prettier": "3.9.5",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.64.0"
+    "typescript-eslint": "8.65.0"
   },
   "devEngines": {
     "packageManager": {
