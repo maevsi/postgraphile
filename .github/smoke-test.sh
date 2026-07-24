@@ -2,7 +2,7 @@
 set -euo pipefail
 
 IMAGE="${SMOKE_TEST_IMAGE:?SMOKE_TEST_IMAGE not set}"
-ENV_DIR=""
+
 SUFFIX="${GITHUB_RUN_ID:-$$}-${GITHUB_RUN_ATTEMPT:-1}"
 CONTAINER="smoke-${SUFFIX}"
 CONTAINER_DB="smoke-db-${SUFFIX}"
@@ -21,9 +21,6 @@ cleanup() {
   docker rm --force "$CONTAINER" "$CONTAINER_DB" >/dev/null 2>&1 || true
   docker network rm "$NETWORK" >/dev/null 2>&1 || true
   rm -f private.pem public.pem || true
-  if [ -n "${ENV_DIR:-}" ]; then
-    rm -rf "$ENV_DIR" || true
-  fi
   echo "Cleanup complete."
   echo "::endgroup::"
 }
@@ -58,16 +55,16 @@ echo "PostgreSQL is ready."
 echo "::endgroup::"
 
 echo "::group::Start"
-ENV_DIR="$(mktemp -d -p "$(pwd)" smoke-env.XXXXXX)"
-echo "postgresql://postgres:postgres@${CONTAINER_DB}:5432/postgraphile" > "$ENV_DIR/POSTGRAPHILE_CONNECTION"
-echo "postgresql://postgres:postgres@${CONTAINER_DB}:5432/postgraphile" > "$ENV_DIR/POSTGRAPHILE_OWNER_CONNECTION"
-echo "true" > "$ENV_DIR/TURNSTILE_BYPASS"
-cp private.pem "$ENV_DIR/POSTGRAPHILE_JWT_SECRET_KEY"
-cp public.pem "$ENV_DIR/POSTGRAPHILE_JWT_PUBLIC_KEY"
+JWT_SECRET_KEY="$(cat private.pem)"
+JWT_PUBLIC_KEY="$(cat public.pem)"
 
 docker run --detach --name "$CONTAINER" \
   --network "$NETWORK" \
-  --volume "$ENV_DIR:/run/environment-variables:ro" \
+  --env "POSTGRAPHILE_CONNECTION=postgresql://postgres:postgres@${CONTAINER_DB}:5432/postgraphile" \
+  --env "POSTGRAPHILE_JWT_PUBLIC_KEY=$JWT_PUBLIC_KEY" \
+  --env "POSTGRAPHILE_JWT_SECRET_KEY=$JWT_SECRET_KEY" \
+  --env "POSTGRAPHILE_OWNER_CONNECTION=postgresql://postgres:postgres@${CONTAINER_DB}:5432/postgraphile" \
+  --env "TURNSTILE_BYPASS=true" \
   -p 0:5678 \
   "$IMAGE"
 echo "Container started."
