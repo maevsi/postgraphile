@@ -9,7 +9,7 @@
     "@sentry/profiling-node": "10.67.0",
     "grafserv": "1.0.1",
     "graphile": "5.1.0",
-    "jose": "6.2.3",
+    "jose": "6.2.4",
     "postgraphile": "5.1.0"
   },
   "description": "PostGraphile GraphQL API for the Vibetype platform; includes @graphile/postgis, Amber preset, Grafast optimizations, and JWT authentication.",
