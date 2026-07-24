@@ -3,19 +3,24 @@ set -euo pipefail
 
 IMAGE="${SMOKE_TEST_IMAGE:?SMOKE_TEST_IMAGE not set}"
 
+SUFFIX="${GITHUB_RUN_ID:-$$}-${GITHUB_RUN_ATTEMPT:-1}"
+CONTAINER="smoke-${SUFFIX}"
+CONTAINER_DB="smoke-db-${SUFFIX}"
+NETWORK="smoke-${SUFFIX}"
+
 echo "::group::Environment"
 echo "Image: $IMAGE"
 echo "Platform: $(uname -m)"
 echo "Docker: $(docker --version 2>/dev/null || echo 'not found')"
+echo "Suffix: $SUFFIX"
 echo "::endgroup::"
 
 cleanup() {
   echo "::group::Cleanup"
   echo "Removing containers and network..."
-  docker rm --force postgraphile-smoke postgraphile-smoke-db >/dev/null 2>&1 || true
-  docker network rm postgraphile-smoke >/dev/null 2>&1 || true
+  docker rm --force "$CONTAINER" "$CONTAINER_DB" >/dev/null 2>&1 || true
+  docker network rm "$NETWORK" >/dev/null 2>&1 || true
   rm -f private.pem public.pem || true
-  rm -rf env-vars || true
   echo "Cleanup complete."
   echo "::endgroup::"
 }
@@ -29,52 +34,68 @@ echo "Key pair generated."
 echo "::endgroup::"
 
 echo "::group::Create test network"
-docker network create postgraphile-smoke || true
+docker network inspect "$NETWORK" >/dev/null 2>&1 || docker network create "$NETWORK"
 echo "Network ready."
 echo "::endgroup::"
 
 echo "::group::Start PostgreSQL"
-docker run --detach --name postgraphile-smoke-db \
-  --network postgraphile-smoke \
+docker run --detach --name "$CONTAINER_DB" \
+  --network "$NETWORK" \
   -e POSTGRES_DB=postgraphile \
   -e POSTGRES_USER=postgres \
   -e POSTGRES_PASSWORD=postgres \
   postgres:18-alpine
 
 echo "Waiting for PostgreSQL to be ready..."
-until docker exec postgraphile-smoke-db psql -U postgres -d postgraphile \
+until docker exec "$CONTAINER_DB" psql -U postgres -d postgraphile \
   -c 'CREATE SCHEMA IF NOT EXISTS postgraphile'; do
   sleep 1
 done
 echo "PostgreSQL is ready."
 echo "::endgroup::"
 
-echo "::group::Start PostGraphile"
-mkdir -p env-vars
-echo "postgresql://postgres:postgres@postgraphile-smoke-db:5432/postgraphile" > env-vars/POSTGRAPHILE_CONNECTION
-echo "postgresql://postgres:postgres@postgraphile-smoke-db:5432/postgraphile" > env-vars/POSTGRAPHILE_OWNER_CONNECTION
-echo "true" > env-vars/TURNSTILE_BYPASS
-cp private.pem env-vars/POSTGRAPHILE_JWT_SECRET_KEY
-cp public.pem env-vars/POSTGRAPHILE_JWT_PUBLIC_KEY
+echo "::group::Start"
+JWT_SECRET_KEY="$(cat private.pem)"
+JWT_PUBLIC_KEY="$(cat public.pem)"
 
-docker run --detach --name postgraphile-smoke \
-  --network postgraphile-smoke \
-  --volume "$(pwd)/env-vars:/run/environment-variables:ro" \
-  -p 5678:5678 \
+docker run --detach --name "$CONTAINER" \
+  --network "$NETWORK" \
+  --env "POSTGRAPHILE_CONNECTION=postgresql://postgres:postgres@${CONTAINER_DB}:5432/postgraphile" \
+  --env "POSTGRAPHILE_JWT_PUBLIC_KEY=$JWT_PUBLIC_KEY" \
+  --env "POSTGRAPHILE_JWT_SECRET_KEY=$JWT_SECRET_KEY" \
+  --env "POSTGRAPHILE_OWNER_CONNECTION=postgresql://postgres:postgres@${CONTAINER_DB}:5432/postgraphile" \
+  --env "TURNSTILE_BYPASS=true" \
+  -p 0:5678 \
   "$IMAGE"
-echo "PostGraphile container started."
+echo "Container started."
 echo "::endgroup::"
+
+HOST_PORT="$(docker port "$CONTAINER" 5678/tcp | head -1 | awk -F: '{print $NF}')"
+if [ -z "$HOST_PORT" ]; then
+  echo "Failed to determine host port for container"
+  docker logs "$CONTAINER"
+  exit 1
+fi
 
 echo "::group::Wait for healthy"
 for i in $(seq 1 60); do
-  STATUS=$(docker inspect --format='{{.State.Health.Status}}' postgraphile-smoke)
+  if ! STATUS=$(docker inspect --format='{{if .State.Health}}{{.State.Health.Status}}{{else}}no-healthcheck{{end}}' "$CONTAINER"); then
+    echo "Failed to inspect container health status"
+    docker logs "$CONTAINER"
+    exit 1
+  fi
+  if [ "$STATUS" = "no-healthcheck" ]; then
+    echo "Image does not define a Docker HEALTHCHECK"
+    docker logs "$CONTAINER"
+    exit 1
+  fi
   if [ "$STATUS" = "healthy" ]; then
     echo "Container is healthy after ${i}s"
     break
   fi
   if [ "$STATUS" = "unhealthy" ]; then
     echo "Container became unhealthy"
-    docker logs postgraphile-smoke
+    docker logs "$CONTAINER"
     exit 1
   fi
   if [ "$((i % 10))" -eq 0 ]; then
@@ -84,26 +105,30 @@ for i in $(seq 1 60); do
 done
 if [ "$STATUS" != "healthy" ]; then
   echo "Timeout waiting for healthy status"
-  docker logs postgraphile-smoke
+  docker logs "$CONTAINER"
   exit 1
 fi
 echo "::endgroup::"
 
-echo "::group::Smoke test GraphQL endpoint"
-RESPONSE=$(curl -fsS -X POST http://localhost:5678/graphql \
+echo "::group::Smoke test"
+RESPONSE=$(curl -fsS --max-time 10 -X POST "http://localhost:${HOST_PORT}/graphql" \
   -H 'Content-Type: application/json' \
   -d '{"query":"{ __typename }"}') || {
   echo "Request failed, container logs:"
-  docker logs postgraphile-smoke
+  docker logs "$CONTAINER"
   exit 1
 }
 echo "Response: $RESPONSE"
-echo "$RESPONSE" | jq -e '(.data.__typename // "") != "" and (.errors | not)'
-echo "GraphQL endpoint OK."
+echo "$RESPONSE" | jq -e '(.data.__typename // "") != "" and (.errors | not)' || {
+  echo "Response assertion failed, container logs:"
+  docker logs "$CONTAINER"
+  exit 1
+}
+echo "Smoke test OK."
 echo "::endgroup::"
 
 echo "::group::Container logs"
-docker logs postgraphile-smoke
+docker logs "$CONTAINER"
 echo "::endgroup::"
 
 echo "Smoke test passed."
