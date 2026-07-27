@@ -1,3 +1,5 @@
+## [2.2.0-beta.3](https://github.com/maevsi/postgraphile/compare/2.2.0-beta.2...2.2.0-beta.3) (2026-07-27)
+
 ## [2.2.0-beta.2](https://github.com/maevsi/postgraphile/compare/2.2.0-beta.1...2.2.0-beta.2) (2026-07-27)
 
 ## [2.2.0-beta.1](https://github.com/maevsi/postgraphile/compare/2.1.10...2.2.0-beta.1) (2026-07-27)
