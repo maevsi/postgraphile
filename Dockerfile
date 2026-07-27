@@ -46,7 +46,11 @@ HEALTHCHECK --start-period=300s CMD wget -q --spider http://127.0.0.1:5678/ || e
 
 FROM base AS prepare
 
-COPY ./graphile-postgis-v0.2.0.tgz ./package.json ./pnpm-lock.yaml ./pnpm-workspace.yaml ./
+COPY ./package.json ./pnpm-lock.yaml ./pnpm-workspace.yaml ./
+# vendor/ holds local tarball deps (currently graphile/crystal#3109, see
+# pnpm-workspace.yaml `overrides`) - unlike registry/git deps, `pnpm fetch`
+# needs these present on disk already, it can't fetch a `file:` spec.
+COPY ./vendor ./vendor
 
 RUN --mount=type=cache,id=pnpm-store,target=/root/.local/share/pnpm/store \
     pnpm fetch
@@ -80,7 +84,7 @@ FROM base AS collect
 RUN chown node:node .
 
 COPY --from=prepare --chown=node /srv/app/src ./src
-COPY --from=prepare --chown=node /srv/app/docker-entrypoint.sh /srv/app/graphile-postgis-v0.2.0.tgz /srv/app/package.json /srv/app/pnpm-workspace.yaml ./
+COPY --from=prepare --chown=node /srv/app/docker-entrypoint.sh /srv/app/package.json /srv/app/pnpm-workspace.yaml ./
 COPY --from=build --chown=node /srv/app/node_modules ./node_modules
 COPY --from=build --chown=node /srv/app/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=lint --chown=node /srv/app/package.json /dev/null
