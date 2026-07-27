@@ -4,7 +4,7 @@
     "url": "https://github.com/maevsi/postgraphile/issues"
   },
   "dependencies": {
-    "@graphile/postgis": "file:graphile-postgis-v0.2.0.tgz",
+    "@graphile/postgis": "file:vendor/crystal-3109/graphile-postgis-0.2.0.tgz",
     "@sentry/node": "10.67.0",
     "@sentry/profiling-node": "10.67.0",
     "grafserv": "1.0.1",
