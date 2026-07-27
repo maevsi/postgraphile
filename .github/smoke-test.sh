@@ -66,7 +66,11 @@ docker run --detach --name "$CONTAINER" \
 echo "Container started."
 echo "::endgroup::"
 
-HOST_PORT="$(docker port "$CONTAINER" 5678/tcp | head -1 | awk -F: '{print $NF}')"
+if ! HOST_PORT="$(docker port "$CONTAINER" 5678/tcp | head -1 | awk -F: '{print $NF}')"; then
+  echo "Failed to determine host port for container"
+  docker logs "$CONTAINER"
+  exit 1
+fi
 if [ -z "$HOST_PORT" ]; then
   echo "Failed to determine host port for container"
   docker logs "$CONTAINER"
