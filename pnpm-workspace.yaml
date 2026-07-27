@@ -1,22 +1,2 @@
 allowBuilds:
   '@sentry/node-cpu-profiler': false
-
-# Force every (including transitive, e.g. postgraphile's own) resolution of
-# these packages onto the local builds of graphile/crystal#3109
-# (https://github.com/graphile/crystal/pull/3109, unmerged) vendored in
-# vendor/crystal-3109/. Without this, postgraphile would pull its own
-# registry copies alongside these, and having two instances of the same
-# package (e.g. grafast) loaded at once throws at runtime. Remove once
-# crystal#3109 ships in a real release and @graphile/postgis goes back to
-# a normal dependency.
-overrides:
-  '@dataplan/json': file:vendor/crystal-3109/dataplan-json-1.0.1.tgz
-  '@dataplan/pg': file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz
-  '@graphile/lru': file:vendor/crystal-3109/graphile-lru-5.0.0.tgz
-  grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz
-  graphile-build: file:vendor/crystal-3109/graphile-build-5.1.0.tgz
-  graphile-build-pg: file:vendor/crystal-3109/graphile-build-pg-5.1.0.tgz
-  graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz
-  pg-introspection: file:vendor/crystal-3109/pg-introspection-1.0.1.tgz
-  pg-sql2: file:vendor/crystal-3109/pg-sql2-5.0.1.tgz
-  tamedevil: file:vendor/crystal-3109/tamedevil-0.1.1.tgz

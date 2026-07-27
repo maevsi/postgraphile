@@ -4,13 +4,23 @@
     "url": "https://github.com/maevsi/postgraphile/issues"
   },
   "dependencies": {
+    "@dataplan/json": "file:vendor/crystal-3109/dataplan-json-1.0.1.tgz",
+    "@dataplan/pg": "file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz",
+    "@graphile/lru": "file:vendor/crystal-3109/graphile-lru-5.0.0.tgz",
     "@graphile/postgis": "file:vendor/crystal-3109/graphile-postgis-0.2.0.tgz",
     "@sentry/node": "10.67.0",
     "@sentry/profiling-node": "10.67.0",
+    "grafast": "file:vendor/crystal-3109/grafast-1.1.0.tgz",
     "grafserv": "1.0.1",
     "graphile": "5.1.0",
+    "graphile-build": "file:vendor/crystal-3109/graphile-build-5.1.0.tgz",
+    "graphile-build-pg": "file:vendor/crystal-3109/graphile-build-pg-5.1.0.tgz",
+    "graphile-config": "file:vendor/crystal-3109/graphile-config-1.1.0.tgz",
     "jose": "6.2.4",
-    "postgraphile": "5.1.1"
+    "pg-introspection": "file:vendor/crystal-3109/pg-introspection-1.0.1.tgz",
+    "pg-sql2": "file:vendor/crystal-3109/pg-sql2-5.0.1.tgz",
+    "postgraphile": "5.1.1",
+    "tamedevil": "file:vendor/crystal-3109/tamedevil-0.1.1.tgz"
   },
   "description": "PostGraphile GraphQL API for the Vibetype platform; includes @graphile/postgis, Amber preset, Grafast optimizations, and JWT authentication.",
   "devDependencies": {

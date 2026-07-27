@@ -36,7 +36,6 @@ import { fileURLToPath } from 'node:url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const REPO_ROOT = path.resolve(__dirname, '../..')
 const VENDOR_DIR = path.join(REPO_ROOT, 'vendor/crystal-3109')
-const WORKSPACE_YAML = path.join(REPO_ROOT, 'pnpm-workspace.yaml')
 
 const CRYSTAL_REMOTE =
   process.env.CRYSTAL_REMOTE ?? 'https://github.com/benjaie/crystal.git'
@@ -165,30 +164,26 @@ function fixWorkspaceRefs(tgzPath, versionsByName) {
   rmSync(workdir, { recursive: true, force: true })
 }
 
-function updateWorkspaceOverrides(versionToFilename) {
-  let yaml = readFileSync(WORKSPACE_YAML, 'utf8')
-  for (const [pkgName, filename] of Object.entries(versionToFilename)) {
-    if (pkgName === '@graphile/postgis') continue // that's `dependencies`, not `overrides`
-    const escaped = pkgName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    const re = new RegExp(
-      `(^\\s*['"]?${escaped}['"]?\\s*:\\s*file:vendor/crystal-3109/)[^\\s]+`,
-      'm',
-    )
-    if (!re.test(yaml)) {
-      console.warn(
-        `  WARNING: no existing override line found for '${pkgName}' in pnpm-workspace.yaml - add one manually:\n    '${pkgName}': file:vendor/crystal-3109/${filename}`,
-      )
-      continue
-    }
-    yaml = yaml.replace(re, `$1${filename}`)
-  }
-  writeFileSync(WORKSPACE_YAML, yaml)
-}
-
-function updatePackageJsonPostgisDep(filename) {
+// IMPORTANT: these must be real top-level `dependencies` entries, not just
+// pnpm `overrides` (in pnpm-workspace.yaml or package.json's `pnpm` field).
+// Overrides alone were tried first and silently did NOT take effect here -
+// likely because @graphile/postgis declares several of these as
+// `peerDependencies`, and pnpm's `autoInstallPeers` auto-installation of
+// those peers doesn't reliably go through the overrides mechanism. The
+// symptom if this regresses: postgraphile silently falls back to the base
+// interface type (e.g. GeographyInterface) instead of a narrowed type (e.g.
+// GeographyPoint) for every typmod-constrained column, with no error at all
+// - always verify against a live schema after re-syncing, not just that the
+// install/build succeeds. See the git history of this file/README for the
+// incident.
+function updatePackageJsonDeps(filenameByName, postgisFilename) {
   const pkgJsonPath = path.join(REPO_ROOT, 'package.json')
   const pkg = JSON.parse(readFileSync(pkgJsonPath, 'utf8'))
-  pkg.dependencies['@graphile/postgis'] = `file:vendor/crystal-3109/${filename}`
+  for (const [pkgName, filename] of Object.entries(filenameByName)) {
+    pkg.dependencies[pkgName] = `file:vendor/crystal-3109/${filename}`
+  }
+  pkg.dependencies['@graphile/postgis'] =
+    `file:vendor/crystal-3109/${postgisFilename}`
   writeFileSync(pkgJsonPath, JSON.stringify(pkg, null, 2) + '\n')
 }
 
@@ -279,19 +274,28 @@ async function main() {
     cpSync(path.join(PACK_DIR, filename), path.join(VENDOR_DIR, filename))
   }
 
-  log('Updating pnpm-workspace.yaml overrides and package.json')
-  updateWorkspaceOverrides(filenameByName)
-  updatePackageJsonPostgisDep(postgisFilename)
+  log('Updating package.json dependencies')
+  updatePackageJsonDeps(filenameByName, postgisFilename)
 
   log('Done. Next steps (not automated - review before trusting them):')
   console.log(`
-  1. cd ${REPO_ROOT} && pnpm install
-  2. pnpm run lint   (or: docker build --target lint .)
-  3. docker build --target production .   (confirm it still builds)
-  4. Ideally run graphile-postgis's own test suite against this same crystal
-     build too (see ${POSTGIS_DIR}, __tests__/) before trusting the result -
-     this script doesn't run it for you.
-  5. git status / git diff - check pnpm-lock.yaml and vendor/crystal-3109/*
+  1. rm -rf node_modules pnpm-lock.yaml && cd ${REPO_ROOT} && pnpm install
+     (a full reinstall, not an incremental one - re-resolving from a stale
+     lockfile/store has silently kept wrong package versions around before)
+  2. grep -c "graphile-build-pg@[0-9]" pnpm-lock.yaml - if this finds more
+     than one distinct version, or more than one distinct '@dataplan/pg@',
+     STOP: something is pulling in the real registry package alongside the
+     vendored one, and every typmod-constrained column will silently fall
+     back to its base interface type at runtime with no error anywhere.
+  3. pnpm run lint   (or: docker build --target lint .)
+  4. docker build --target production .   (confirm it still builds)
+  5. Actually RUN the built image against a real (or reproduced) database
+     and check a known typmod-constrained geometry/geography column via a
+     live GraphQL query - a successful build proves nothing here, this is
+     the one check that would have caught the bug that motivated this
+     comment. Also run graphile-postgis's own test suite against this same
+     crystal build (see ${POSTGIS_DIR}, __tests__/).
+  6. git status / git diff - check pnpm-lock.yaml and vendor/crystal-3109/*
      look sane, then commit.
 
   crystal commit vendored: ${crystalSha}
