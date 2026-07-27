@@ -6,7 +6,6 @@ ENV_DIR=""
 SUFFIX="${GITHUB_RUN_ID:-$$}-${GITHUB_RUN_ATTEMPT:-1}"
 CONTAINER="smoke-${SUFFIX}"
 CONTAINER_DB="smoke-db-${SUFFIX}"
-NETWORK="smoke-${SUFFIX}"
 
 echo "::group::Environment"
 echo "Image: $IMAGE"
@@ -17,9 +16,8 @@ echo "::endgroup::"
 
 cleanup() {
   echo "::group::Cleanup"
-  echo "Removing containers and network..."
+  echo "Removing containers..."
   docker rm --force "$CONTAINER" "$CONTAINER_DB" >/dev/null 2>&1 || true
-  docker network rm "$NETWORK" >/dev/null 2>&1 || true
   rm -f private.pem public.pem || true
   if [ -n "${ENV_DIR:-}" ]; then
     rm -rf "$ENV_DIR" || true
@@ -36,14 +34,8 @@ openssl ec -in private.pem -pubout -outform PEM > public.pem
 echo "Key pair generated."
 echo "::endgroup::"
 
-echo "::group::Create test network"
-docker network inspect "$NETWORK" >/dev/null 2>&1 || docker network create "$NETWORK"
-echo "Network ready."
-echo "::endgroup::"
-
 echo "::group::Start PostgreSQL"
 docker run --detach --name "$CONTAINER_DB" \
-  --network "$NETWORK" \
   -e POSTGRES_DB=postgraphile \
   -e POSTGRES_USER=postgres \
   -e POSTGRES_PASSWORD=postgres \
@@ -68,7 +60,6 @@ cp private.pem "$ENV_DIR/POSTGRAPHILE_JWT_SECRET_KEY"
 cp public.pem "$ENV_DIR/POSTGRAPHILE_JWT_PUBLIC_KEY"
 
 docker run --detach --name "$CONTAINER" \
-  --network "$NETWORK" \
   --volume "$ENV_DIR:/run/environment-variables:ro" \
   -p 0:5678 \
   "$IMAGE"
