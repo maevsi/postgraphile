@@ -19,13 +19,13 @@ importers:
         version: file:vendor/crystal-3109/graphile-lru-5.0.0.tgz
       '@graphile/postgis':
         specifier: file:vendor/crystal-3109/graphile-postgis-0.2.0.tgz
-        version: file:vendor/crystal-3109/graphile-postgis-0.2.0.tgz(@dataplan/pg@file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(graphql@16.14.2)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.22.0))(postgraphile@5.1.1(68b95ea4f7f6703d061bae0b1f870bb0))
+        version: file:vendor/crystal-3109/graphile-postgis-0.2.0.tgz(@dataplan/pg@file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(graphql@16.14.2)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.22.0))(postgraphile@5.1.2(68b95ea4f7f6703d061bae0b1f870bb0))
       '@sentry/node':
-        specifier: 10.68.0
-        version: 10.68.0(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))
+        specifier: 10.69.0
+        version: 10.69.0(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))
       '@sentry/profiling-node':
-        specifier: 10.68.0
-        version: 10.68.0(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))
+        specifier: 10.69.0
+        version: 10.69.0(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))
       grafast:
         specifier: file:vendor/crystal-3109/grafast-1.1.0.tgz
         version: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2)
@@ -34,7 +34,7 @@ importers:
         version: 1.0.1(@types/node@22.20.1)(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))(ws@8.21.1)
       graphile:
         specifier: 5.1.0
-        version: 5.1.0(graphile-build@file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(postgraphile@5.1.1(68b95ea4f7f6703d061bae0b1f870bb0))
+        version: 5.1.0(graphile-build@file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(postgraphile@5.1.2(68b95ea4f7f6703d061bae0b1f870bb0))
       graphile-build:
         specifier: file:vendor/crystal-3109/graphile-build-5.1.0.tgz
         version: file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(graphql@16.14.2)
@@ -54,8 +54,8 @@ importers:
         specifier: file:vendor/crystal-3109/pg-sql2-5.0.1.tgz
         version: file:vendor/crystal-3109/pg-sql2-5.0.1.tgz
       postgraphile:
-        specifier: 5.1.1
-        version: 5.1.1(68b95ea4f7f6703d061bae0b1f870bb0)
+        specifier: 5.1.2
+        version: 5.1.2(68b95ea4f7f6703d061bae0b1f870bb0)
       tamedevil:
         specifier: file:vendor/crystal-3109/tamedevil-0.1.1.tgz
         version: file:vendor/crystal-3109/tamedevil-0.1.1.tgz
@@ -87,8 +87,8 @@ importers:
 
 packages:
 
-  '@apm-js-collab/code-transformer-bundler-plugins@0.7.1':
-    resolution: {integrity: sha512-Yidf5GOl60db80UxUtNdKK3pnY7obU/gs0xOfA0SCdnvVLMCvfYIer/egC3TqpPiT0Jg22eg3RlzcO+zKfPMcA==}
+  '@apm-js-collab/code-transformer-bundler-plugins@0.7.3':
+    resolution: {integrity: sha512-qNbPwuMZ8f5ZuGj/ttPeB7a6C/S1bB6tNYaEL5vNiRKydSAxa4AU0gxCWgaP4fVju+AuwhcumSFjrEcGF9Dv7Q==}
     engines: {node: '>=18.0.0'}
 
   '@apm-js-collab/code-transformer@0.18.1':
@@ -665,12 +665,12 @@ packages:
     resolution: {integrity: sha512-fO9PLmHdVURcSPUpWCItWAtgKiMwGdJHbovoSEyLplX5sxs2ugvI4CBPTrkkgqhObnZOD0CnWBKDzSVQYBKEyQ==}
     engines: {node: '>=14'}
 
-  '@sentry/core@10.68.0':
-    resolution: {integrity: sha512-5Amhx8ltVz7vb1bRGyf3c4J69/iHW8R/H+SJxTRILHlsSOBrnVVc/IQEYDC6PTRdRdZ3x2u7RVjxZi2Mhe525g==}
+  '@sentry/core@10.69.0':
+    resolution: {integrity: sha512-+uuqVEeiDzYuAKjZLqsROKXvRTbl/QeH0gfGRtpYib1cud4rAFWRIkFmcR7Jb7JGFYwmReyQotiTj/hcDszTZg==}
     engines: {node: '>=18'}
 
-  '@sentry/node-core@10.68.0':
-    resolution: {integrity: sha512-VreORXnruy8A2SyprZKENAq3ArGwn35KPewLQSQ5dgDXSFtUj2scLuzZoVsZ/Uyt83td0WPvD6Lv0X7MvSYAMQ==}
+  '@sentry/node-core@10.69.0':
+    resolution: {integrity: sha512-IgArHczrZJxkgxoffHscj0NxQrG6kCazgmGQnlf3j58J1ec21YaUu8Tu+7G4Lo5tCiW3teQnwlKW1ttMXSqWRw==}
     engines: {node: '>=18'}
     peerDependencies:
       '@opentelemetry/api': ^1.9.0
@@ -694,25 +694,25 @@ packages:
     resolution: {integrity: sha512-E6q+eE/sTpiofzW9jFKAx6ZQaDAoZDnsaLA/nRlkiK+K2X4k+hSyKhhLfw8PJlejB8edk7uxJF57r5JoRnyaPA==}
     engines: {node: '>=18'}
 
-  '@sentry/node@10.68.0':
-    resolution: {integrity: sha512-bnvRzEehquG/894DD3BWNCBUbDWsLQfYPU+SNCMd6G4Ext75RthVkRs8R0sRaE6b8Tw9HSEgySHL834Tf8lVsA==}
+  '@sentry/node@10.69.0':
+    resolution: {integrity: sha512-xEXA1YGIiTZbrW6MWV34uS6JGQuQg2ijTI0zed+FsJb9JZKPYel/GZK8Km26vfTVb+yCXFmWZNBesKegNcVdzg==}
     engines: {node: '>=18'}
 
-  '@sentry/opentelemetry@10.68.0':
-    resolution: {integrity: sha512-JDNH9dacX0MSi7FRvabPCJUAXRMTe16bE/Gajc/7Gfcw7Rwvo4DZ0nd162PCSAW9QoEjUT12upDehEHJuFmsXg==}
+  '@sentry/opentelemetry@10.69.0':
+    resolution: {integrity: sha512-3FyWV6YcEJuvLrlaKGE1dHXCI+1YO0a62w7PkwlRg8yp6K6YXkmdwu9GjqaYD+Ju4tm7uC7mHIsGFQMm0M7pqQ==}
     engines: {node: '>=18'}
     peerDependencies:
       '@opentelemetry/api': ^1.9.0
       '@opentelemetry/core': ^1.30.1 || ^2.1.0
       '@opentelemetry/sdk-trace-base': ^1.30.1 || ^2.1.0
 
-  '@sentry/profiling-node@10.68.0':
-    resolution: {integrity: sha512-QBow1tkBmN4YENSjH6ceb3crCF4IS+PBE3EbYNE3IGeU2AGQEBxrI3ftd8TfjY32IebPYG8f/AaLBC7xjTAqcA==}
+  '@sentry/profiling-node@10.69.0':
+    resolution: {integrity: sha512-Xp85pRtPi8AIplXArYFLO5ggphP31h3EAXLsNEYxaCRMp4e8Kt0X57mq6Zney+eHa6mi1x7HJaScI8NBhmUKXw==}
     engines: {node: '>=18'}
     hasBin: true
 
-  '@sentry/server-utils@10.68.0':
-    resolution: {integrity: sha512-lp1ZSs1auw7HrCESSYt/n4dOUaKPVUIAKyVYRk6xVr4bMIN3RPub/H5Wm7QPj9CpXVC5bQFvB6+dHZXz809oMg==}
+  '@sentry/server-utils@10.69.0':
+    resolution: {integrity: sha512-0MwHrA8+nNvMIsqf8m3cXwCBlUjr6AS7N6CZvHJtY1DkqEvQqEbD5VIrhzEyHN/KMZIgQ8XeDCQRhjnXFQGRhg==}
     engines: {node: '>=18'}
 
   '@swc/helpers@0.5.23':
@@ -1470,8 +1470,8 @@ packages:
     resolution: {integrity: sha512-ARhBOdzS3e41FbkW/XWrTEtukqqLoK5+Z/4UeDaLuSW+39JPeFgs4gCGqsrJHVZX0fUrx//4OF0K1CUGwlIFow==}
     engines: {node: '>=4'}
 
-  postgraphile@5.1.1:
-    resolution: {integrity: sha512-B830q7XijTVBh47o/xnmrjPPiyeFcBOFGxH2F3UFeQt98a7tdicC483oWefv1iFl9OJj5E8Q+u1wZ/DLeR18gw==}
+  postgraphile@5.1.2:
+    resolution: {integrity: sha512-Ok6of4rqFaGg1mpa2o7fKXdHlrxOnuAWbUi/MthGSRcyppPgRpI7tW1DLbOLof+fhgcgWzlLdSi7sZa3oTxpMQ==}
     engines: {node: '>=22'}
     hasBin: true
     peerDependencies:
@@ -1480,8 +1480,8 @@ packages:
       '@envelop/core': ^5.0.0
       grafast: ^1.1.0
       grafserv: ^1.0.1
-      graphile-build: ^5.1.0
-      graphile-build-pg: ^5.1.1
+      graphile-build: ^5.1.1
+      graphile-build-pg: ^5.1.2
       graphile-config: ^1.1.0
       graphql: ^16.9.0
       pg: ^8.7.1
@@ -1837,7 +1837,7 @@ packages:
 
 snapshots:
 
-  '@apm-js-collab/code-transformer-bundler-plugins@0.7.1':
+  '@apm-js-collab/code-transformer-bundler-plugins@0.7.3':
     dependencies:
       '@apm-js-collab/code-transformer': 0.18.1
       es-module-lexer: 2.3.1
@@ -1967,11 +1967,11 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@graphile/postgis@file:vendor/crystal-3109/graphile-postgis-0.2.0.tgz(@dataplan/pg@file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(graphql@16.14.2)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.22.0))(postgraphile@5.1.1(68b95ea4f7f6703d061bae0b1f870bb0))':
+  '@graphile/postgis@file:vendor/crystal-3109/graphile-postgis-0.2.0.tgz(@dataplan/pg@file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(graphql@16.14.2)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.22.0))(postgraphile@5.1.2(68b95ea4f7f6703d061bae0b1f870bb0))':
     dependencies:
       '@dataplan/pg': file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(graphql@16.14.2)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.22.0)
       debug: 4.4.3
-      postgraphile: 5.1.1(68b95ea4f7f6703d061bae0b1f870bb0)
+      postgraphile: 5.1.2(68b95ea4f7f6703d061bae0b1f870bb0)
       tslib: 2.8.1
     transitivePeerDependencies:
       - supports-color
@@ -2393,15 +2393,15 @@ snapshots:
 
   '@sentry/conventions@0.16.0': {}
 
-  '@sentry/core@10.68.0':
+  '@sentry/core@10.69.0':
     dependencies:
       '@sentry/conventions': 0.16.0
 
-  '@sentry/node-core@10.68.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.220.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.9.1))':
+  '@sentry/node-core@10.69.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.220.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.9.1))':
     dependencies:
       '@sentry/conventions': 0.16.0
-      '@sentry/core': 10.68.0
-      '@sentry/opentelemetry': 10.68.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.9.1))
+      '@sentry/core': 10.69.0
+      '@sentry/opentelemetry': 10.69.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.9.1))
       import-in-the-middle: 3.3.2
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
@@ -2414,46 +2414,46 @@ snapshots:
       detect-libc: 2.1.2
       node-abi: 3.94.0
 
-  '@sentry/node@10.68.0(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))':
+  '@sentry/node@10.69.0(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))':
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/instrumentation': 0.220.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-base': 2.10.0(@opentelemetry/api@1.9.1)
       '@sentry/conventions': 0.16.0
-      '@sentry/core': 10.68.0
-      '@sentry/node-core': 10.68.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.220.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.9.1))
-      '@sentry/opentelemetry': 10.68.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.9.1))
-      '@sentry/server-utils': 10.68.0
+      '@sentry/core': 10.69.0
+      '@sentry/node-core': 10.69.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.220.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.9.1))
+      '@sentry/opentelemetry': 10.69.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.9.1))
+      '@sentry/server-utils': 10.69.0
       import-in-the-middle: 3.3.2
     transitivePeerDependencies:
       - '@opentelemetry/core'
       - '@opentelemetry/exporter-trace-otlp-http'
       - supports-color
 
-  '@sentry/opentelemetry@10.68.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.9.1))':
+  '@sentry/opentelemetry@10.69.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.9.1))':
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/core': 2.10.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-base': 2.10.0(@opentelemetry/api@1.9.1)
       '@sentry/conventions': 0.16.0
-      '@sentry/core': 10.68.0
+      '@sentry/core': 10.69.0
 
-  '@sentry/profiling-node@10.68.0(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))':
+  '@sentry/profiling-node@10.69.0(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))':
     dependencies:
-      '@sentry/core': 10.68.0
-      '@sentry/node': 10.68.0(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))
+      '@sentry/core': 10.69.0
+      '@sentry/node': 10.69.0(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))
       '@sentry/node-cpu-profiler': 2.4.2
     transitivePeerDependencies:
       - '@opentelemetry/core'
       - '@opentelemetry/exporter-trace-otlp-http'
       - supports-color
 
-  '@sentry/server-utils@10.68.0':
+  '@sentry/server-utils@10.69.0':
     dependencies:
-      '@apm-js-collab/code-transformer-bundler-plugins': 0.7.1
+      '@apm-js-collab/code-transformer-bundler-plugins': 0.7.3
       '@apm-js-collab/tracing-hooks': 0.13.0
       '@sentry/conventions': 0.16.0
-      '@sentry/core': 10.68.0
+      '@sentry/core': 10.69.0
       meriyah: 6.1.4
     transitivePeerDependencies:
       - supports-color
@@ -2927,7 +2927,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  graphile@5.1.0(graphile-build@file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(postgraphile@5.1.1(68b95ea4f7f6703d061bae0b1f870bb0)):
+  graphile@5.1.0(graphile-build@file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(postgraphile@5.1.2(68b95ea4f7f6703d061bae0b1f870bb0)):
     dependencies:
       '@typescript/vfs': 1.6.4(typescript@5.9.3)
       chalk: 4.1.2
@@ -2937,7 +2937,7 @@ snapshots:
       typescript: 5.9.3
     optionalDependencies:
       graphile-build: file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(graphql@16.14.2)
-      postgraphile: 5.1.1(68b95ea4f7f6703d061bae0b1f870bb0)
+      postgraphile: 5.1.2(68b95ea4f7f6703d061bae0b1f870bb0)
     transitivePeerDependencies:
       - supports-color
 
@@ -3215,7 +3215,7 @@ snapshots:
 
   pluralize@7.0.0: {}
 
-  postgraphile@5.1.1(68b95ea4f7f6703d061bae0b1f870bb0):
+  postgraphile@5.1.2(68b95ea4f7f6703d061bae0b1f870bb0):
     dependencies:
       '@dataplan/json': file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2))
       '@dataplan/pg': file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.14.2))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz)(graphql@16.14.2)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.22.0)
