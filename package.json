@@ -16,7 +16,7 @@
     "graphile-build": "file:vendor/crystal-3109/graphile-build-5.1.0.tgz",
     "graphile-build-pg": "file:vendor/crystal-3109/graphile-build-pg-5.1.0.tgz",
     "graphile-config": "file:vendor/crystal-3109/graphile-config-1.1.0.tgz",
-    "jose": "6.2.4",
+    "jose": "6.2.5",
     "pg-introspection": "file:vendor/crystal-3109/pg-introspection-1.0.1.tgz",
     "pg-sql2": "file:vendor/crystal-3109/pg-sql2-5.0.1.tgz",
     "postgraphile": "5.1.2",
