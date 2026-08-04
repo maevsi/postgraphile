@@ -45,8 +45,8 @@ importers:
         specifier: file:vendor/crystal-3109/graphile-config-1.1.0.tgz
         version: file:vendor/crystal-3109/graphile-config-1.1.0.tgz
       jose:
-        specifier: 6.2.6
-        version: 6.2.6
+        specifier: 6.2.7
+        version: 6.2.7
       pg-introspection:
         specifier: file:vendor/crystal-3109/pg-introspection-1.0.1.tgz
         version: file:vendor/crystal-3109/pg-introspection-1.0.1.tgz
@@ -1263,8 +1263,8 @@ packages:
   iterall@1.3.0:
     resolution: {integrity: sha512-QZ9qOMdF+QLHxy1QIpUHUU1D5pS2CG2P69LF6L6CPjPYA/XMOmKV3PZpawHoAjHNyB0swdVTRxdYT4tbBbxqwg==}
 
-  jose@6.2.6:
-    resolution: {integrity: sha512-HwMtbJjMw8rC8dUTwCNilHJD+fxTeKM3JV1eprSmTjS41qwXSSt6exJXgyPK1QOu0jB9eDYLESRDkB3qaT3jnw==}
+  jose@6.2.7:
+    resolution: {integrity: sha512-hq1OB1bALKfydZNoViyg6hPVGV4i93ny9Op+n4zP5RSf7SCZEXa/TsG2O3IEr7+WlHRTPnpqDmHfMH6qXAD60w==}
 
   json-buffer@3.0.1:
     resolution: {integrity: sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==}
@@ -3018,7 +3018,7 @@ snapshots:
 
   iterall@1.3.0: {}
 
-  jose@6.2.6: {}
+  jose@6.2.7: {}
 
   json-buffer@3.0.1: {}
 
