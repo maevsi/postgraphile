@@ -258,6 +258,9 @@ importers:
       postgraphile:
         specifier: 5.1.4
         version: 5.1.4(0451b4f65cb9c3b89306f4a25fe431ff)
+      postgraphile-plugin-connection-filter:
+        specifier: 3.0.3
+        version: 3.0.3(postgraphile@5.1.4(0451b4f65cb9c3b89306f4a25fe431ff))
       tamedevil:
         specifier: file:vendor/crystal-3109/tamedevil-0.1.1.tgz
         version: file:vendor/crystal-3109/tamedevil-0.1.1.tgz
@@ -928,6 +931,9 @@ packages:
 
   '@tanstack/virtual-core@3.17.8':
     resolution: {integrity: sha512-BfEvehNpOT75r5Ksc5xW6NZuXujTfb7nlSEyVu4XHG3gdxNg1KqXruWbDewXOUaUYIo4oRbSfkjIajz4MAT8tA==}
+
+  '@tsconfig/node20@20.1.10':
+    resolution: {integrity: sha512-5OZgdnxbFuvwm05iVwPXMU5/7iPuVDDZzAnxPDLj+kjN7fwQZSSVgHQhKTNkBPOO6Qef2D5MxPAoPLCGqE2VuQ==}
 
   '@types/esrecurse@4.3.1':
     resolution: {integrity: sha512-xJBAbDifo5hpffDBuHl0Y8ywswbiAp/Wi7Y/GtAgSlZyIABppyurxVueOPE8LUQOxdlgi6Zqce7uoEpqNTeiUw==}
@@ -1671,6 +1677,14 @@ packages:
   pluralize@7.0.0:
     resolution: {integrity: sha512-ARhBOdzS3e41FbkW/XWrTEtukqqLoK5+Z/4UeDaLuSW+39JPeFgs4gCGqsrJHVZX0fUrx//4OF0K1CUGwlIFow==}
     engines: {node: '>=4'}
+
+  postgraphile-plugin-connection-filter@3.0.3:
+    resolution: {integrity: sha512-C6Q8uT2Abu8UEGTvJUWZ9PYnnu4FBzSXrBUNyebaVGyohvsPB5yOuMQGpIxoURHGB396F+SF+ImRogUeicz8wA==}
+    peerDependencies:
+      postgraphile: ^5.0.3
+    peerDependenciesMeta:
+      postgraphile:
+        optional: true
 
   postgraphile@5.1.4:
     resolution: {integrity: sha512-Nmtp4lj44nBo0KmARiFoL3TrHfHlrbjn38TgCc3jZ4y1uD6r0vsM8FMmBPs0N2avMLXnqS2t8RQk6MfCG/nLkw==}
@@ -2672,6 +2686,8 @@ snapshots:
 
   '@tanstack/virtual-core@3.17.8': {}
 
+  '@tsconfig/node20@20.1.10': {}
+
   '@types/esrecurse@4.3.1': {}
 
   '@types/estree@1.0.9': {}
@@ -3418,6 +3434,13 @@ snapshots:
   picomatch@4.0.5: {}
 
   pluralize@7.0.0: {}
+
+  postgraphile-plugin-connection-filter@3.0.3(postgraphile@5.1.4(0451b4f65cb9c3b89306f4a25fe431ff)):
+    dependencies:
+      '@tsconfig/node20': 20.1.10
+      tslib: 2.8.1
+    optionalDependencies:
+      postgraphile: 5.1.4(0451b4f65cb9c3b89306f4a25fe431ff)
 
   postgraphile@5.1.4(0451b4f65cb9c3b89306f4a25fe431ff):
     dependencies:
