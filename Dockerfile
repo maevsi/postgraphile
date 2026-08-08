@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # <DEPENDENCIES>
-FROM ghcr.io/maevsi/sqitch:12.1.0
+FROM ghcr.io/maevsi/sqitch:12.2.1
 # </DEPENDENCIES>
 
 ########################
