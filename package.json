@@ -19,7 +19,7 @@
     "jose": "6.2.8",
     "pg-introspection": "file:vendor/crystal-3109/pg-introspection-1.0.1.tgz",
     "pg-sql2": "file:vendor/crystal-3109/pg-sql2-5.0.1.tgz",
-    "postgraphile": "5.1.3",
+    "postgraphile": "5.1.4",
     "tamedevil": "file:vendor/crystal-3109/tamedevil-0.1.1.tgz"
   },
   "description": "PostGraphile GraphQL API for the Vibetype platform; includes @graphile/postgis, Amber preset, Grafast optimizations, and JWT authentication.",
