@@ -41,9 +41,6 @@ docker network inspect "$NETWORK" >/dev/null 2>&1 || docker network create "$NET
 echo "Network ready."
 echo "::endgroup::"
 
-ENV_DIR="$(mktemp -d -p "$(pwd)" smoke-env.XXXXXX)"
-chmod 755 "$ENV_DIR"
-
 echo "::group::Start PostgreSQL"
 docker run --detach --name "$CONTAINER_DB" \
   --network "$NETWORK" \
@@ -59,21 +56,21 @@ done
 echo "PostgreSQL is ready."
 echo "::endgroup::"
 
-echo "::group::Deploy database migrations"
-# The `vibetype` schema (incl. the `account` table the healthcheck and smoke
-# test query) is owned by the sqitch repo; deploy it with the same image
-# version pinned in the Dockerfile's dependency stage.
-SQITCH_IMAGE="$(grep -m1 '^FROM .*/sqitch:' Dockerfile | awk '{print $2}')"
-echo "Sqitch image: $SQITCH_IMAGE"
-echo "db:pg://postgres:postgres@${CONTAINER_DB}:5432/postgraphile" > "$ENV_DIR/sqitch-target"
-docker run --rm \
-  --network "$NETWORK" \
-  --volume "$ENV_DIR/sqitch-target:/run/secrets/sqitch-target:ro" \
-  "$SQITCH_IMAGE"
-echo "Migrations deployed."
+echo "::group::Set up database schema"
+# A minimal stand-in for the sqitch-managed `vibetype` schema, just enough
+# for PostGraphile to expose the `allAccounts` field the healthcheck and
+# smoke test query.
+docker exec "$CONTAINER_DB" psql -U postgres -d postgraphile -c '
+  CREATE SCHEMA vibetype;
+  CREATE TABLE vibetype.account (id serial PRIMARY KEY);
+'
+echo "Schema ready."
 echo "::endgroup::"
 
 echo "::group::Start"
+ENV_DIR="$(mktemp -d -p "$(pwd)" smoke-env.XXXXXX)"
+chmod 755 "$ENV_DIR"
+
 echo "postgresql://postgres:postgres@${CONTAINER_DB}:5432/postgraphile" > "$ENV_DIR/POSTGRAPHILE_CONNECTION"
 echo "postgresql://postgres:postgres@${CONTAINER_DB}:5432/postgraphile" > "$ENV_DIR/POSTGRAPHILE_OWNER_CONNECTION"
 echo "true" > "$ENV_DIR/TURNSTILE_BYPASS"
