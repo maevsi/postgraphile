@@ -50,11 +50,21 @@ docker run --detach --name "$CONTAINER_DB" \
   postgres:18-alpine
 
 echo "Waiting for PostgreSQL to be ready..."
-until docker exec "$CONTAINER_DB" psql -U postgres -d postgraphile \
-  -c 'CREATE SCHEMA IF NOT EXISTS postgraphile'; do
+until docker exec "$CONTAINER_DB" pg_isready -U postgres -d postgraphile >/dev/null 2>&1; do
   sleep 1
 done
 echo "PostgreSQL is ready."
+echo "::endgroup::"
+
+echo "::group::Set up database schema"
+# A minimal stand-in for the sqitch-managed `vibetype` schema, just enough
+# for PostGraphile to expose the `allAccounts` field the healthcheck and
+# smoke test query.
+docker exec "$CONTAINER_DB" psql -U postgres -d postgraphile -c '
+  CREATE SCHEMA vibetype;
+  CREATE TABLE vibetype.account (id serial PRIMARY KEY);
+'
+echo "Schema ready."
 echo "::endgroup::"
 
 echo "::group::Start"
@@ -122,13 +132,13 @@ echo "::endgroup::"
 echo "::group::Smoke test"
 RESPONSE=$(curl -fsS --max-time 10 -X POST "http://localhost:${HOST_PORT}/graphql" \
   -H 'Content-Type: application/json' \
-  -d '{"query":"{ __typename }"}') || {
+  -d '{"query":"query health { allAccounts { totalCount } }"}') || {
   echo "Request failed, container logs:"
   docker logs "$CONTAINER"
   exit 1
 }
 echo "Response: $RESPONSE"
-echo "$RESPONSE" | jq -e '(.data.__typename // "") != "" and (.errors | not)' || {
+echo "$RESPONSE" | jq -e '(.data.allAccounts.totalCount | type) == "number" and (.errors | not)' || {
   echo "Response assertion failed, container logs:"
   docker logs "$CONTAINER"
   exit 1
