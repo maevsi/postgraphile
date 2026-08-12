@@ -55,6 +55,7 @@ const preset: GraphileConfig.Preset = {
       audience: JWT_AUDIENCE,
       issuer: JWT_ISSUER,
     },
+    retryOnInitFail: true, // required to prevent postgraphile from caching a connection failure and never completing startup
   },
 }
 
