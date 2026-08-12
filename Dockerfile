@@ -38,7 +38,7 @@ USER node
 ENTRYPOINT ["/srv/app/docker-entrypoint.sh"]
 CMD ["pnpm", "exec", "postgraphile", "--config", "./src/graphile.config.ts", "-n", "0.0.0.0"]
 EXPOSE 5678
-HEALTHCHECK --start-period=300s CMD wget -q --spider http://127.0.0.1:5678/ || exit 1
+HEALTHCHECK --start-period=300s CMD RESPONSE=$(wget -q -O- --header='Content-Type: application/json' --post-data='{"query":"query health { allAccounts { totalCount } }"}' http://127.0.0.1:5678/graphql) && echo "$RESPONSE" | grep -q '"totalCount"' && ! echo "$RESPONSE" | grep -q '"errors"' || exit 1
 
 
 ########################
@@ -105,5 +105,5 @@ RUN corepack prepare
 ENTRYPOINT ["/srv/app/docker-entrypoint.sh"]
 CMD ["pnpm", "exec", "postgraphile", "--config", "./src/graphile.config.ts", "-n", "0.0.0.0"]
 EXPOSE 5678
-HEALTHCHECK --interval=10s --timeout=5s CMD wget -q --spider http://127.0.0.1:5678/ || exit 1
+HEALTHCHECK --interval=10s --timeout=5s CMD RESPONSE=$(wget -q -O- --header='Content-Type: application/json' --post-data='{"query":"query health { allAccounts { totalCount } }"}' http://127.0.0.1:5678/graphql) && echo "$RESPONSE" | grep -q '"totalCount"' && ! echo "$RESPONSE" | grep -q '"errors"' || exit 1
 LABEL org.opencontainers.image.description="PostGraphile GraphQL API for the Vibetype platform; includes @graphile/postgis, Amber preset, Grafast optimizations, and JWT authentication."
