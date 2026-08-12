@@ -41,6 +41,9 @@ docker network inspect "$NETWORK" >/dev/null 2>&1 || docker network create "$NET
 echo "Network ready."
 echo "::endgroup::"
 
+ENV_DIR="$(mktemp -d -p "$(pwd)" smoke-env.XXXXXX)"
+chmod 755 "$ENV_DIR"
+
 echo "::group::Start PostgreSQL"
 docker run --detach --name "$CONTAINER_DB" \
   --network "$NETWORK" \
@@ -50,17 +53,27 @@ docker run --detach --name "$CONTAINER_DB" \
   postgres:18-alpine
 
 echo "Waiting for PostgreSQL to be ready..."
-until docker exec "$CONTAINER_DB" psql -U postgres -d postgraphile \
-  -c 'CREATE SCHEMA IF NOT EXISTS postgraphile'; do
+until docker exec "$CONTAINER_DB" pg_isready -U postgres -d postgraphile >/dev/null 2>&1; do
   sleep 1
 done
 echo "PostgreSQL is ready."
 echo "::endgroup::"
 
-echo "::group::Start"
-ENV_DIR="$(mktemp -d -p "$(pwd)" smoke-env.XXXXXX)"
-chmod 755 "$ENV_DIR"
+echo "::group::Deploy database migrations"
+# The `vibetype` schema (incl. the `account` table the healthcheck and smoke
+# test query) is owned by the sqitch repo; deploy it with the same image
+# version pinned in the Dockerfile's dependency stage.
+SQITCH_IMAGE="$(grep -m1 '^FROM .*/sqitch:' Dockerfile | awk '{print $2}')"
+echo "Sqitch image: $SQITCH_IMAGE"
+echo "db:pg://postgres:postgres@${CONTAINER_DB}:5432/postgraphile" > "$ENV_DIR/sqitch-target"
+docker run --rm \
+  --network "$NETWORK" \
+  --volume "$ENV_DIR/sqitch-target:/run/secrets/sqitch-target:ro" \
+  "$SQITCH_IMAGE"
+echo "Migrations deployed."
+echo "::endgroup::"
 
+echo "::group::Start"
 echo "postgresql://postgres:postgres@${CONTAINER_DB}:5432/postgraphile" > "$ENV_DIR/POSTGRAPHILE_CONNECTION"
 echo "postgresql://postgres:postgres@${CONTAINER_DB}:5432/postgraphile" > "$ENV_DIR/POSTGRAPHILE_OWNER_CONNECTION"
 echo "true" > "$ENV_DIR/TURNSTILE_BYPASS"
@@ -122,13 +135,13 @@ echo "::endgroup::"
 echo "::group::Smoke test"
 RESPONSE=$(curl -fsS --max-time 10 -X POST "http://localhost:${HOST_PORT}/graphql" \
   -H 'Content-Type: application/json' \
-  -d '{"query":"{ __typename }"}') || {
+  -d '{"query":"query health { allAccounts { totalCount } }"}') || {
   echo "Request failed, container logs:"
   docker logs "$CONTAINER"
   exit 1
 }
 echo "Response: $RESPONSE"
-echo "$RESPONSE" | jq -e '(.data.__typename // "") != "" and (.errors | not)' || {
+echo "$RESPONSE" | jq -e '(.data.allAccounts.totalCount | type) == "number" and (.errors | not)' || {
   echo "Response assertion failed, container logs:"
   docker logs "$CONTAINER"
   exit 1
