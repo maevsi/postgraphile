@@ -8,8 +8,8 @@
     "@dataplan/pg": "file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz",
     "@graphile/lru": "file:vendor/crystal-3109/graphile-lru-5.0.0.tgz",
     "@graphile/postgis": "file:vendor/crystal-3109/graphile-postgis-0.2.0.tgz",
-    "@sentry/node": "10.69.0",
-    "@sentry/profiling-node": "10.69.0",
+    "@sentry/node": "10.70.0",
+    "@sentry/profiling-node": "10.70.0",
     "grafast": "file:vendor/crystal-3109/grafast-1.1.0.tgz",
     "grafserv": "1.0.1",
     "graphile": "5.1.0",
@@ -32,7 +32,7 @@
     "eslint-plugin-prettier": "5.5.6",
     "prettier": "3.9.6",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.66.0"
+    "typescript-eslint": "8.67.0"
   },
   "devEngines": {
     "packageManager": {
