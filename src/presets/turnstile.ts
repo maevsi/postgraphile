@@ -1,6 +1,6 @@
-import { Kind, parse } from 'graphql'
-import type { OperationDefinitionNode } from 'graphql'
 import type { ProcessGraphQLRequestBodyEvent } from 'postgraphile/grafserv'
+
+import { resolveOperation } from './graphqlOperation.ts'
 
 const IS_DEV = process.env['NODE_ENV'] !== 'production'
 const logger = {
@@ -25,32 +25,8 @@ const setStatusCode = (
 
 // Determines whether the resolved operation is a plain query, purely from the document's syntax (query/mutation/subscription keyword).
 // Anything ambiguous or unparseable is treated as not a query, so verification is still requested when unsure.
-const isQueryOnlyRequest = (event: ProcessGraphQLRequestBodyEvent) => {
-  const { operationName, query } = event.body
-
-  if (typeof query !== 'string') return false
-
-  let operations: OperationDefinitionNode[]
-  try {
-    operations = parse(query).definitions.filter(
-      (definition): definition is OperationDefinitionNode =>
-        definition.kind === Kind.OPERATION_DEFINITION,
-    )
-  } catch {
-    return false
-  }
-
-  const operation =
-    typeof operationName === 'string'
-      ? operations.find(
-          (definition) => definition.name?.value === operationName,
-        )
-      : operations.length === 1
-        ? operations[0]
-        : undefined
-
-  return operation?.operation === 'query'
-}
+const isQueryOnlyRequest = (event: ProcessGraphQLRequestBodyEvent) =>
+  resolveOperation(event)?.operation === 'query'
 
 const TurnstilePlugin: GraphileConfig.Plugin = {
   name: 'TurnstilePlugin',
