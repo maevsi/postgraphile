@@ -9,6 +9,10 @@ import { resolveOperation } from './graphqlOperation.ts'
 
 const { ZxcvbnFactory } = ZxcvbnCore
 
+// TODO: this configuration is duplicated in vibetype's app/utils/passwordStrength.ts,
+// which risks the two services silently drifting apart. Consider extracting it into a shared
+// @maevsi package so both consume the same dictionaries and score threshold.
+
 // Mutations that set a new password, and the `input` field carrying it.
 const PASSWORD_MUTATIONS = [
   { fieldName: 'accountPasswordChange', passwordFieldName: 'passwordNew' },
