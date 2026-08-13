@@ -26,7 +26,7 @@ const setStatusCode = (
 // Determines whether the resolved operation is a plain query, purely from the document's syntax (query/mutation/subscription keyword).
 // Anything ambiguous or unparseable is treated as not a query, so verification is still requested when unsure.
 const isQueryOnlyRequest = (event: ProcessGraphQLRequestBodyEvent) =>
-  resolveOperation(event)?.operation === 'query'
+  resolveOperation(event)?.operation.operation === 'query'
 
 const TurnstilePlugin: GraphileConfig.Plugin = {
   name: 'TurnstilePlugin',

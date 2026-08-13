@@ -3,7 +3,12 @@ import * as zxcvbnCommonPackage from '@zxcvbn-ts/language-common'
 import * as zxcvbnDePackage from '@zxcvbn-ts/language-de'
 import * as zxcvbnEnPackage from '@zxcvbn-ts/language-en'
 import { Kind } from 'graphql'
-import type { FieldNode, OperationDefinitionNode } from 'graphql'
+import type {
+  DocumentNode,
+  FieldNode,
+  FragmentDefinitionNode,
+  SelectionSetNode,
+} from 'graphql'
 
 import { resolveOperation } from './graphqlOperation.ts'
 
@@ -35,14 +40,68 @@ const zxcvbn = new ZxcvbnFactory({
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null
 
-const findField = (
-  operation: OperationDefinitionNode,
-  fieldName: string,
-): FieldNode | undefined =>
-  operation.selectionSet.selections.find(
-    (selection): selection is FieldNode =>
-      selection.kind === Kind.FIELD && selection.name.value === fieldName,
+const getFragmentDefinitions = (
+  document: DocumentNode,
+): Map<string, FragmentDefinitionNode> =>
+  new Map(
+    document.definitions
+      .filter(
+        (definition): definition is FragmentDefinitionNode =>
+          definition.kind === Kind.FRAGMENT_DEFINITION,
+      )
+      .map((fragment) => [fragment.name.value, fragment]),
   )
+
+// Recursively walks the selection set, resolving fragment spreads and inline
+// fragments, and returns every field matching `fieldName` regardless of how
+// deeply it's nested or how many times it's aliased. `ancestorFragments`
+// guards against cyclic fragment references without skipping legitimate
+// re-use of the same fragment in sibling branches.
+const findFields = (
+  selectionSet: SelectionSetNode,
+  fieldName: string,
+  fragments: Map<string, FragmentDefinitionNode>,
+  ancestorFragments: ReadonlySet<string>,
+): FieldNode[] =>
+  selectionSet.selections.flatMap((selection) => {
+    if (selection.kind === Kind.FIELD) {
+      const nested = selection.selectionSet
+        ? findFields(
+            selection.selectionSet,
+            fieldName,
+            fragments,
+            ancestorFragments,
+          )
+        : []
+
+      return selection.name.value === fieldName
+        ? [selection, ...nested]
+        : nested
+    }
+
+    if (selection.kind === Kind.INLINE_FRAGMENT) {
+      return findFields(
+        selection.selectionSet,
+        fieldName,
+        fragments,
+        ancestorFragments,
+      )
+    }
+
+    // Kind.FRAGMENT_SPREAD
+    const fragmentName = selection.name.value
+    if (ancestorFragments.has(fragmentName)) return []
+
+    const fragment = fragments.get(fragmentName)
+    if (!fragment) return []
+
+    return findFields(
+      fragment.selectionSet,
+      fieldName,
+      fragments,
+      new Set([...ancestorFragments, fragmentName]),
+    )
+  })
 
 const extractPassword = (
   field: FieldNode,
@@ -81,16 +140,18 @@ const extractPassword = (
 }
 
 const findPasswordsToCheck = (
-  operation: OperationDefinitionNode,
+  document: DocumentNode,
+  selectionSet: SelectionSetNode,
   variableValues: Record<string, unknown>,
-): string[] =>
-  PASSWORD_MUTATIONS.flatMap(({ fieldName, passwordFieldName }) => {
-    const field = findField(operation, fieldName)
-    if (!field) return []
+): string[] => {
+  const fragments = getFragmentDefinitions(document)
 
-    const password = extractPassword(field, passwordFieldName, variableValues)
-    return password === undefined ? [] : [password]
-  })
+  return PASSWORD_MUTATIONS.flatMap(({ fieldName, passwordFieldName }) =>
+    findFields(selectionSet, fieldName, fragments, new Set())
+      .map((field) => extractPassword(field, passwordFieldName, variableValues))
+      .filter((password): password is string => password !== undefined),
+  )
+}
 
 const PasswordStrengthPlugin: GraphileConfig.Plugin = {
   name: 'PasswordStrengthPlugin',
@@ -102,11 +163,12 @@ const PasswordStrengthPlugin: GraphileConfig.Plugin = {
           return next()
         }
 
-        const operation = resolveOperation(event)
+        const resolved = resolveOperation(event)
         const passwords =
-          operation?.operation === 'mutation'
+          resolved?.operation.operation === 'mutation'
             ? findPasswordsToCheck(
-                operation,
+                resolved.document,
+                resolved.operation.selectionSet,
                 isRecord(event.body.variableValues)
                   ? event.body.variableValues
                   : {},
