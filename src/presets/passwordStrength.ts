@@ -14,13 +14,16 @@ import { resolveOperation } from './graphqlOperation.ts'
 
 const { ZxcvbnFactory } = ZxcvbnCore
 
-// TODO: this configuration is duplicated in vibetype's app/utils/passwordStrength.ts,
-// which risks the two services silently drifting apart. Consider extracting it into a shared
-// @maevsi package so both consume the same dictionaries and score threshold.
+// This configuration must match vibetype's app/utils/passwordStrength.ts; see the shared
+// contract at stack:docs/password-strength.md.
+// TODO: consider extracting this into a shared @maevsi package instead of duplicating it.
 
-// Mutations that set a new password, and the `input` field carrying it.
+// Mutations that set a new password, and the `input` field carrying it. The minimum length
+// itself is enforced identically (>= 8 characters) by every underlying sqitch function, so
+// this plugin only needs to cover the zxcvbn score.
 const PASSWORD_MUTATIONS = [
   { fieldName: 'accountPasswordChange', passwordFieldName: 'passwordNew' },
+  { fieldName: 'accountPasswordReset', passwordFieldName: 'password' },
   { fieldName: 'accountRegistration', passwordFieldName: 'password' },
 ]
 // Score 3 ("safely unguessable") is zxcvbn's own threshold for resisting an
