@@ -27,8 +27,8 @@ const SCHEMA_NAME = 'vibetype'
 const preset: GraphileConfig.Preset = {
   extends: [
     PostGraphileAmberPreset,
-    PasswordStrengthPreset,
     TurnstilePreset,
+    PasswordStrengthPreset,
     postgisPreset,
   ],
   gather: {

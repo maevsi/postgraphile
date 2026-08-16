@@ -10,7 +10,7 @@ import type {
   SelectionSetNode,
 } from 'graphql'
 
-import { resolveOperation } from './graphqlOperation.ts'
+import { resolveOperation, setStatusCode } from './graphqlOperation.ts'
 
 const { ZxcvbnFactory } = ZxcvbnCore
 
@@ -181,10 +181,7 @@ const PasswordStrengthPlugin: GraphileConfig.Plugin = {
         for (const password of passwords) {
           const { score } = zxcvbn.check(password)
           if (score < PASSWORD_SCORE_MINIMUM) {
-            const requestContext = event.request?.requestContext
-            if (requestContext?.node?.res) {
-              requestContext.node.res.statusCode = 422
-            }
+            setStatusCode(event, 422)
 
             throw new Error('Password is too weak')
           }

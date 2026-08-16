@@ -1,6 +1,6 @@
 import type { ProcessGraphQLRequestBodyEvent } from 'postgraphile/grafserv'
 
-import { resolveOperation } from './graphqlOperation.ts'
+import { resolveOperation, setStatusCode } from './graphqlOperation.ts'
 
 const IS_DEV = process.env['NODE_ENV'] !== 'production'
 const logger = {
@@ -12,15 +12,6 @@ const logger = {
   error: (message: string, data?: unknown) => {
     console.error(`[turnstile] ${message}`, data)
   },
-}
-const setStatusCode = (
-  event: ProcessGraphQLRequestBodyEvent,
-  statusCode: number,
-) => {
-  const requestContext = event.request?.requestContext
-  if (requestContext?.node?.res) {
-    requestContext.node.res.statusCode = statusCode
-  }
 }
 
 // Determines whether the resolved operation is a plain query, purely from the document's syntax (query/mutation/subscription keyword).
