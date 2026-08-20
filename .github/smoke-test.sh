@@ -50,10 +50,22 @@ docker run --detach --name "$CONTAINER_DB" \
   postgres:18-alpine
 
 echo "Waiting for PostgreSQL to be ready..."
-until docker exec "$CONTAINER_DB" pg_isready -U postgres -d postgraphile >/dev/null 2>&1; do
+# pg_isready alone is not enough: the official postgres image briefly accepts
+# connections on a temporary server (used to run init scripts and create
+# POSTGRES_DB) before stopping and starting the final server. Querying the
+# actual database catches that race instead of just checking the socket.
+for i in $(seq 1 60); do
+  if docker exec "$CONTAINER_DB" psql -U postgres -d postgraphile -c 'SELECT 1' >/dev/null 2>&1; then
+    echo "PostgreSQL is ready after ${i}s"
+    break
+  fi
   sleep 1
 done
-echo "PostgreSQL is ready."
+if ! docker exec "$CONTAINER_DB" psql -U postgres -d postgraphile -c 'SELECT 1' >/dev/null 2>&1; then
+  echo "Timeout waiting for PostgreSQL to be ready"
+  docker logs "$CONTAINER_DB"
+  exit 1
+fi
 echo "::endgroup::"
 
 echo "::group::Set up database schema"
