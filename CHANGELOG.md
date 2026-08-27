@@ -1,3 +1,17 @@
+## [3.0.0-beta.2](https://github.com/maevsi/postgraphile/compare/3.0.0-beta.1...3.0.0-beta.2) (2026-08-27)
+
+### ⚠ BREAKING CHANGES
+
+* **turnstile:** protect by smart tag (#46)
+
+### Features
+
+* **turnstile:** protect by smart tag ([#46](https://github.com/maevsi/postgraphile/issues/46)) ([00a6f4a](https://github.com/maevsi/postgraphile/commit/00a6f4aed3371f518672ce3ac1edb7ef9d00a46b))
+
+### Bug Fixes
+
+* schedule release ([90a601e](https://github.com/maevsi/postgraphile/commit/90a601e29ee53b6d2cbb0f7640dfa2da769d157c))
+
 ## [3.0.0-beta.1](https://github.com/maevsi/postgraphile/compare/2.2.3...3.0.0-beta.1) (2026-08-17)
 
 ## [2.2.4](https://github.com/maevsi/postgraphile/compare/2.2.3...2.2.4) (2026-08-27)
