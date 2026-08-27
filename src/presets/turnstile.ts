@@ -4,6 +4,7 @@ import type {
   FragmentDefinitionNode,
   SelectionSetNode,
 } from 'graphql'
+import { SafeError } from 'postgraphile/grafast'
 import type { ProcessGraphQLRequestBodyEvent } from 'postgraphile/grafserv'
 
 const IS_DEV = process.env['NODE_ENV'] !== 'production'
@@ -14,7 +15,7 @@ const TURNSTILE_SITEVERIFY_URL =
 
 if (!TURNSTILE_SECRET_KEY && !TURNSTILE_BYPASS) {
   throw new Error(
-    'TURNSTILE_SECRET_KEY is required unless TURNSTILE_BYPASS is set.',
+    'TURNSTILE_SECRET_KEY is required unless TURNSTILE_BYPASS is set to the exact string `true`.',
   )
 }
 
@@ -33,60 +34,38 @@ const logger = {
     console.error(`[turnstile] ${message}`, data)
   },
 }
-const setStatusCode = (
-  event: ProcessGraphQLRequestBodyEvent,
-  statusCode: number,
-) => {
-  const requestContext = event.request?.requestContext
-  if (requestContext?.node?.res) {
-    requestContext.node.res.statusCode = statusCode
-  }
-}
 
 declare global {
-  // Ambient module augmentation requires a `declare global { namespace ... }`
-  // block; there is no ES module equivalent for extending third-party types.
+  // Ambient module augmentation requires a `declare global { namespace ... }` block; there is no ES module equivalent for extending third-party types.
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace GraphileBuild {
     interface Build {
-      // Populated once per schema build (see the `build` and
-      // `GraphQLObjectType_fields_field` hooks below) with the GraphQL field
-      // names of root Mutation fields whose underlying Postgres resource
-      // (custom function or table) carries the `@turnstileProtected` smart
-      // comment tag.
-      // This is the single source of truth for which mutations require
-      // Turnstile verification; the tag travels with the resource itself,
-      // so a rename doesn't silently drop protection.
+      // Populated once per schema build (see the `init` and `GraphQLObjectType_fields_field` hooks below) with the GraphQL field names of root Mutation fields whose underlying Postgres resource (custom function or table) carries the `@turnstileProtected` smart comment tag.
+      // This is the single source of truth for which mutations require Turnstile verification; the tag travels with the resource itself, so a rename doesn't silently drop protection.
       turnstileProtectedFieldNames: Set<string>
+      // Resources carrying the tag that have not (yet) contributed a field name to the Set above.
+      // Whatever is left in here when the schema is finalized is a tag that silently does nothing, which is worth shouting about.
+      turnstilePendingTaggedResources: Set<
+        GraphileBuild.Build['pgResources'][string]
+      >
     }
   }
 }
 
-// `processGraphQLRequestBody` (below) runs ahead of grafast's schema-aware
-// request pipeline, so it has no direct handle on the `build` object that
-// produced the currently-serving schema; grafserv's
-// `ProcessGraphQLRequestBodyEvent` only exposes `resolvedPreset`, `body`,
-// `request` and `graphqlWsContext`, none of which reach back to `build`.
-// We mirror the build-scoped Set here with a single atomic pointer swap once
-// a schema build finishes (see the `finalize` hook below), so a concurrent
-// request can never observe a half-populated Set the way the previous
-// clear()-then-repopulate-in-place implementation could under watch-mode
-// hot reload. This doesn't give each in-flight request a pin to the exact
-// schema build it started against (grafserv's API doesn't expose that), so
-// a request that started just before a hot reload could still observe the
-// new build's Set; that's an inherent limitation of this plugin operating
-// outside grafserv's schema-aware pipeline, not something fixable from here.
+// `processGraphQLRequestBody` (below) runs ahead of grafast's schema-aware request pipeline, so it has no direct handle on the `build` object that produced the currently-serving schema; grafserv's `ProcessGraphQLRequestBodyEvent` only exposes `resolvedPreset`, `body`, `request` and `graphqlWsContext`, none of which reach back to `build`.
+// We mirror the build-scoped Set here with a single atomic pointer swap once a schema build finishes (see the `finalize` hook below), so a concurrent request can never observe a half-populated Set the way the previous clear()-then-repopulate-in-place implementation could under watch-mode hot reload.
+// This doesn't give each in-flight request a pin to the exact schema build it started against (grafserv's API doesn't expose that), so a request that started just before a hot reload could still observe the new build's Set; that's an inherent limitation of this plugin operating outside grafserv's schema-aware pipeline, not something fixable from here.
 let currentTurnstileProtectedFieldNames = new Set<string>()
+
+// grafserv installs its GraphQL handler as soon as the *preset* resolves, which is well before the first schema build finishes; with `retryOnInitFail` and a slow Postgres that gap is seconds to minutes after every restart.
+// During that window the Set above is simply empty, which must not be mistaken for "nothing is protected", so we fail closed until a build has actually published its names.
+let hasPublishedTurnstileProtectedFieldNames = false
 
 const PARSE_CACHE_MAX_SIZE = 50
 const PARSE_ERROR = Symbol('turnstile-parse-error')
 const parseCache = new Map<string, DocumentNode | typeof PARSE_ERROR>()
 
-// grafserv's own `parseAndValidate` (see
-// `node_modules/grafserv/dist/middleware/graphql.js`) parses and caches the
-// query too, but that happens downstream of this hook, so we can't share
-// its cache; memoize our own parse here instead of re-parsing the same
-// query text on every request.
+// grafserv's own `parseAndValidate` (see `node_modules/grafserv/dist/middleware/graphql.js`) parses and caches the query too, but that happens downstream of this hook, so we can't share its cache; memoize our own parse here instead of re-parsing the same query text on every request.
 const parseWithCache = (query: string): DocumentNode | typeof PARSE_ERROR => {
   const cached = parseCache.get(query)
   if (cached !== undefined) {
@@ -176,9 +155,12 @@ const requiresTurnstileVerification = (
   )
 
   if (!operation) return true
-  // Only plain queries are exempt; both mutations and subscriptions can
-  // invoke protected fields and must be checked.
+  // Only plain queries are exempt.
+  // Whether an operation is a query is decided by the document's syntax alone, so this verdict holds even before a schema exists.
   if (operation.operation === 'query') return false
+
+  // Everything below needs to know which fields are protected, so without a published Set there is nothing to decide against.
+  if (!hasPublishedTurnstileProtectedFieldNames) return true
 
   const fragmentsByName = new Map(
     document.definitions
@@ -202,35 +184,43 @@ const TurnstilePlugin: GraphileConfig.Plugin = {
   version: '0.0.0',
   schema: {
     hooks: {
-      // Root mutation fields backed by a custom function don't carry their pgResource in field scope (only computed columns and connection/list fields do), so instead of hooking each field, walk build.pgResources directly here: every resource tagged '@turnstileProtected' that's a mutation gets its final GraphQL field name computed via the same inflector graphile-build-pg itself uses to name that field, so this stays correct regardless of naming config.
+      // `build` is frozen the moment its hooks have run, so the Sets the later hooks fill have to be created here.
       build(build) {
-        const protectedFieldNames = new Set<string>()
+        build.turnstileProtectedFieldNames = new Set()
+        build.turnstilePendingTaggedResources = new Set()
 
+        return build
+      },
+      // Root mutation fields backed by a custom function don't carry their pgResource in field scope (only computed columns and connection/list fields do), so instead of hooking each field, walk build.pgResources directly here; the field name comes from the same inflector graphile-build-pg itself uses to name that field, so this stays correct regardless of naming config.
+      // Whether such a function is exposed under `Mutation` at all is decided by `pgResourceMatches(resource, 'mutationField')`, not by `resource.isMutation` (which merely feeds that behavior's default, so a `@behavior mutationField` tag can expose a resource the flag says nothing about); `build.behavior` only exists once the `build` phase is over, hence `init` rather than `build`.
+      init(_, build) {
         type MutationResource = Parameters<
           typeof build.inflection.customMutationField
         >[0]['resource']
 
         for (const resourceName in build.pgResources) {
-          const resource = build.pgResources[resourceName] as MutationResource
+          const resource = build.pgResources[resourceName]
+
+          if (!resource?.extensions?.tags?.['turnstileProtected']) continue
+
+          build.turnstilePendingTaggedResources.add(resource)
 
           if (
-            resource.isMutation &&
-            resource.extensions?.tags?.['turnstileProtected']
+            resource.parameters &&
+            build.behavior.pgResourceMatches(resource, 'mutationField')
           ) {
-            protectedFieldNames.add(
-              build.inflection.customMutationField({ resource }),
+            build.turnstileProtectedFieldNames.add(
+              build.inflection.customMutationField({
+                resource: resource as MutationResource,
+              }),
             )
+            build.turnstilePendingTaggedResources.delete(resource)
           }
         }
 
-        build.turnstileProtectedFieldNames = protectedFieldNames
-
-        return build
+        return _
       },
-      // Table-backed CRUD mutations (createX/updateX/deleteX) always carry
-      // their originating `pgResource` in field scope, unlike the
-      // custom-function mutations handled above, so they're identified
-      // directly here instead of via inflector-based name guessing.
+      // Table-backed CRUD mutations (createX/updateX/deleteX) always carry their originating `pgResource` in field scope, unlike the custom-function mutations handled above, so they're identified directly here instead of via inflector-based name guessing.
       GraphQLObjectType_fields_field(field, build, context) {
         const { scope } = context
 
@@ -242,14 +232,27 @@ const TurnstilePlugin: GraphileConfig.Plugin = {
           scope.pgFieldResource?.extensions?.tags?.['turnstileProtected']
         ) {
           build.turnstileProtectedFieldNames.add(scope.fieldName)
+          build.turnstilePendingTaggedResources.delete(scope.pgFieldResource)
         }
 
         return field
       },
       finalize(schema, build) {
-        // Publish the fully-populated Set in one atomic pointer swap; see
-        // the comment on `currentTurnstileProtectedFieldNames` above.
-        currentTurnstileProtectedFieldNames = build.turnstileProtectedFieldNames
+        // The hook above only runs for the Mutation type once graphql-js forces that type's lazy `fields` thunk, which it would otherwise not do until `validateSchema` runs downstream of this hook.
+        // Forcing it here is what makes the Set genuinely complete at this point, rather than one that merely gains the table-backed CRUD names moments later through a shared reference.
+        schema.getMutationType()?.getFields()
+
+        for (const resource of build.turnstilePendingTaggedResources) {
+          logger.error(
+            `The '@turnstileProtected' tag on '${resource.name}' has no effect: the resource exposes no root mutation field. Only mutations can be protected.`,
+          )
+        }
+
+        // Publish in one atomic pointer swap; see the comment on `currentTurnstileProtectedFieldNames` above.
+        currentTurnstileProtectedFieldNames = new Set(
+          build.turnstileProtectedFieldNames,
+        )
+        hasPublishedTurnstileProtectedFieldNames = true
 
         return schema
       },
@@ -285,10 +288,12 @@ const TurnstilePlugin: GraphileConfig.Plugin = {
         const token = event.request.getHeader('x-turnstile-key')
         logger.debug('Received Turnstile token', { present: Boolean(token) })
 
+        // Only a `SafeError` keeps its status code and message on the way out: grafserv replaces every other throw from this hook with a generic `400 Parsing failed`, which would leave the client unable to tell "re-run the challenge" from "my request was malformed".
         if (!token) {
           logger.error('No Turnstile token provided.')
-          setStatusCode(event, 422)
-          throw new Error('Turnstile token not provided')
+          throw new SafeError('Turnstile token not provided', {
+            statusCode: 422,
+          })
         }
 
         const verificationTimeoutMs = 5000
@@ -297,70 +302,69 @@ const TurnstilePlugin: GraphileConfig.Plugin = {
           () => controller.abort(),
           verificationTimeoutMs,
         )
-        let result: Response
+        const requestFailure = (error: unknown) =>
+          error instanceof Error &&
+          (error.name === 'AbortError' || controller.signal.aborted)
+            ? new SafeError(
+                'Turnstile verification timed out',
+                { statusCode: 504 },
+                { cause: error },
+              )
+            : new SafeError(
+                'Turnstile verification service unavailable',
+                { statusCode: 503 },
+                { cause: error },
+              )
+        let verification: TurnstileSiteverifyResponse
 
+        // The timeout has to stay armed until the response body has been read, not just until its headers arrive: the body is read through the same abort signal, and clearing the timer early would let a stalled body pin this request, its socket and its pool slot open indefinitely.
         try {
-          result = await fetch(TURNSTILE_SITEVERIFY_URL, {
-            body: new URLSearchParams({
-              response: token,
-              secret: TURNSTILE_SECRET_KEY ?? '',
-            }),
-            method: 'POST',
-            signal: controller.signal,
-          })
-        } catch (error) {
-          logger.error('Verification request failed', error)
+          let result: Response
 
-          if (
-            error instanceof Error &&
-            (error.name === 'AbortError' || controller.signal.aborted)
-          ) {
-            setStatusCode(event, 504)
-            throw new Error('Turnstile verification timed out', {
-              cause: error,
+          try {
+            result = await fetch(TURNSTILE_SITEVERIFY_URL, {
+              body: new URLSearchParams({
+                response: token,
+                secret: TURNSTILE_SECRET_KEY ?? '',
+              }),
+              method: 'POST',
+              signal: controller.signal,
+            })
+          } catch (error) {
+            logger.error('Verification request failed', error)
+            throw requestFailure(error)
+          }
+
+          if (!result.ok) {
+            logger.error('Verification service returned an error', {
+              status: result.status,
+              statusText: result.statusText,
+            })
+            throw new SafeError('Turnstile verification service unavailable', {
+              statusCode: 503,
             })
           }
 
-          setStatusCode(event, 503)
-          throw new Error('Turnstile verification service unavailable', {
-            cause: error,
-          })
+          try {
+            verification = (await result.json()) as TurnstileSiteverifyResponse
+          } catch (error) {
+            logger.error('Verification response could not be read', error)
+            throw requestFailure(error)
+          }
         } finally {
           clearTimeout(timeout)
         }
 
-        if (!result.ok) {
-          logger.error('Verification service returned an error', {
-            status: result.status,
-            statusText: result.statusText,
-          })
-          setStatusCode(event, 503)
-          throw new Error('Turnstile verification service unavailable')
-        }
-
-        let verification: TurnstileSiteverifyResponse
-
-        try {
-          verification = (await result.json()) as TurnstileSiteverifyResponse
-        } catch (error) {
-          logger.error('Verification response could not be parsed', error)
-          setStatusCode(event, 503)
-          throw new Error('Turnstile verification service unavailable', {
-            cause: error,
-          })
-        }
-
-        if (IS_DEV) {
-          logger.debug('Verification response', verification)
-        }
+        logger.debug('Verification response', verification)
 
         if (!verification.success) {
           logger.error('Verification failed', {
             errorCodes: verification['error-codes'],
           })
-          setStatusCode(event, 401)
 
-          throw new Error('Turnstile verification failed')
+          throw new SafeError('Turnstile verification failed', {
+            statusCode: 401,
+          })
         }
 
         logger.debug('Verification succeeded')
