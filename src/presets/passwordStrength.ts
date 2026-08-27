@@ -10,7 +10,9 @@ import type {
   SelectionSetNode,
 } from 'graphql'
 
-import { resolveOperation, setStatusCode } from './graphqlOperation.ts'
+import { SafeError } from 'postgraphile/grafast'
+
+import { resolveOperation } from './graphqlOperation.ts'
 
 const { ZxcvbnFactory } = ZxcvbnCore
 
@@ -181,9 +183,8 @@ const PasswordStrengthPlugin: GraphileConfig.Plugin = {
         for (const password of passwords) {
           const { score } = zxcvbn.check(password)
           if (score < PASSWORD_SCORE_MINIMUM) {
-            setStatusCode(event, 422)
-
-            throw new Error('Password is too weak')
+            // Only a `SafeError` keeps its status code and message on the way out: grafserv replaces every other throw from this hook with a generic `400 Parsing failed`, which would leave the client unable to tell a weak password from a malformed request.
+            throw new SafeError('Password is too weak', { statusCode: 422 })
           }
         }
 
