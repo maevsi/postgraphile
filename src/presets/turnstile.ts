@@ -1,11 +1,9 @@
-import { Kind, getOperationAST, parse } from 'graphql'
-import type {
-  DocumentNode,
-  FragmentDefinitionNode,
-  SelectionSetNode,
-} from 'graphql'
+import { Kind } from 'graphql'
+import type { FragmentDefinitionNode, SelectionSetNode } from 'graphql'
 import { SafeError } from 'postgraphile/grafast'
 import type { ProcessGraphQLRequestBodyEvent } from 'postgraphile/grafserv'
+
+import { resolveOperation } from './graphqlOperation.ts'
 
 const IS_DEV = process.env['NODE_ENV'] !== 'production'
 const TURNSTILE_BYPASS = process.env['TURNSTILE_BYPASS'] === 'true'
@@ -61,36 +59,6 @@ let currentTurnstileProtectedFieldNames = new Set<string>()
 // During that window the Set above is simply empty, which must not be mistaken for "nothing is protected", so we fail closed until a build has actually published its names.
 let hasPublishedTurnstileProtectedFieldNames = false
 
-const PARSE_CACHE_MAX_SIZE = 50
-const PARSE_ERROR = Symbol('turnstile-parse-error')
-const parseCache = new Map<string, DocumentNode | typeof PARSE_ERROR>()
-
-// grafserv's own `parseAndValidate` (see `node_modules/grafserv/dist/middleware/graphql.js`) parses and caches the query too, but that happens downstream of this hook, so we can't share its cache; memoize our own parse here instead of re-parsing the same query text on every request.
-const parseWithCache = (query: string): DocumentNode | typeof PARSE_ERROR => {
-  const cached = parseCache.get(query)
-  if (cached !== undefined) {
-    // Refresh recency so frequently-seen queries survive eviction.
-    parseCache.delete(query)
-    parseCache.set(query, cached)
-    return cached
-  }
-
-  let parsed: DocumentNode | typeof PARSE_ERROR
-  try {
-    parsed = parse(query)
-  } catch {
-    parsed = PARSE_ERROR
-  }
-
-  parseCache.set(query, parsed)
-  if (parseCache.size > PARSE_CACHE_MAX_SIZE) {
-    const oldestKey = parseCache.keys().next().value
-    if (oldestKey !== undefined) parseCache.delete(oldestKey)
-  }
-
-  return parsed
-}
-
 // Recursively resolves the field names actually selected by a selection set, expanding fragment spreads and inline fragments.
 // A security check based only on direct field selections could be bypassed by wrapping a protected field call in a fragment.
 const collectFieldNames = (
@@ -142,28 +110,18 @@ const collectFieldNames = (
 const requiresTurnstileVerification = (
   event: ProcessGraphQLRequestBodyEvent,
 ) => {
-  const { operationName, query } = event.body
+  const resolved = resolveOperation(event)
 
-  if (typeof query !== 'string') return true
-
-  const document = parseWithCache(query)
-  if (document === PARSE_ERROR) return true
-
-  const operation = getOperationAST(
-    document,
-    typeof operationName === 'string' ? operationName : undefined,
-  )
-
-  if (!operation) return true
+  if (!resolved) return true
   // Only plain queries are exempt.
   // Whether an operation is a query is decided by the document's syntax alone, so this verdict holds even before a schema exists.
-  if (operation.operation === 'query') return false
+  if (resolved.operation.operation === 'query') return false
 
   // Everything below needs to know which fields are protected, so without a published Set there is nothing to decide against.
   if (!hasPublishedTurnstileProtectedFieldNames) return true
 
   const fragmentsByName = new Map(
-    document.definitions
+    resolved.document.definitions
       .filter(
         (definition): definition is FragmentDefinitionNode =>
           definition.kind === Kind.FRAGMENT_DEFINITION,
@@ -171,7 +129,10 @@ const requiresTurnstileVerification = (
       .map((definition) => [definition.name.value, definition] as const),
   )
 
-  const fieldNames = collectFieldNames(fragmentsByName, operation.selectionSet)
+  const fieldNames = collectFieldNames(
+    fragmentsByName,
+    resolved.operation.selectionSet,
+  )
   for (const fieldName of fieldNames) {
     if (currentTurnstileProtectedFieldNames.has(fieldName)) return true
   }
