@@ -408,23 +408,23 @@ packages:
       '@dataplan/pg': ^1.0.0-rc.4
       postgraphile: ^5.0.0-rc.6
 
-  '@graphiql/plugin-doc-explorer@0.4.2':
-    resolution: {integrity: sha512-jqRUSaP9pq2JdoovKaiNQoV4ZVcDP5nn+QEa++vEYh0nCn76836SAde2/LkYMc9NnN8/PHMKqeUBnClZ+AUtVQ==}
+  '@graphiql/plugin-doc-explorer@0.4.3':
+    resolution: {integrity: sha512-uwCR8NoZLeYXWRyvGZlZSZhyfL5I5sq++ya7i3pCZNoHQ/BrtK2QCqjEFz+BOfFzQ+R2GA2MFh0kPyonqC+nYQ==}
     peerDependencies:
-      '@graphiql/react': ^0.37.0
+      '@graphiql/react': ^0.38.0
       graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
       react: ^18 || ^19
       react-dom: ^18 || ^19
 
-  '@graphiql/plugin-history@0.4.2':
-    resolution: {integrity: sha512-kwQYc1gmmkLbJPRHI/df3wtYNKNBGHxVkbkd+tbnRuCkrpdMm6NygCQeproJFKHTRbd3lYBAolaBcfgWNd196A==}
+  '@graphiql/plugin-history@0.4.3':
+    resolution: {integrity: sha512-IdJu7qLDOXKv30IknlF/q56koWp4bg0rR5O+pDaqRdBj4Iq46TBzuXT/Na2TPlZtf0ilP3vO6RNLrSHQvoeOCQ==}
     peerDependencies:
-      '@graphiql/react': ^0.37.0
+      '@graphiql/react': ^0.38.0
       react: ^18 || ^19
       react-dom: ^18 || ^19
 
-  '@graphiql/react@0.37.7':
-    resolution: {integrity: sha512-yHK+9wk9xWggrDdAOEOPwNJFCgkAG01ZDVcwuteBw1DCkDaPyBYC6H7hkw5AVYw8PbhlgPOEWBwXzceb9IV4zw==}
+  '@graphiql/react@0.38.0':
+    resolution: {integrity: sha512-vXxEDFoYNKjGS2sbtrG0vSCC8G1iRoRAGA4Te59m4AOpCryJN3zFj2rWvVqgFz+o2rPNLQhV0B2QlSGZ1CyuwQ==}
     peerDependencies:
       graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
       react: ^18 || ^19
@@ -488,8 +488,8 @@ packages:
   '@internationalized/string@3.2.10':
     resolution: {integrity: sha512-PDx6//vHSpRnHfxqMqto11zQvhsaU74O3mKv2F/0eicGZcl9NLjQmGlbHz/LsJh5tLKp4A4L7ZVTzN1/MmMTvA==}
 
-  '@jridgewell/sourcemap-codec@1.5.5':
-    resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
+  '@jridgewell/sourcemap-codec@1.6.0':
+    resolution: {integrity: sha512-T7jf+5zgsZHwNJ4lvQ7/aezbyk0nNX+zJVWpmHA7VYsEx7a7qr5Rg5IbtJFqkgze5Y2sruq1RUY8Q837Od7iFw==}
 
   '@n1ru4l/push-pull-async-iterable-iterator@3.2.0':
     resolution: {integrity: sha512-3fkKj25kEjsfObL6IlKPAlHYPq/oYwUkkQ03zsTTiDjD7vg/RxjdiLeCydqtxHZP0JgsXL3D/X5oAkMGzuUp/Q==}
@@ -1374,15 +1374,15 @@ packages:
       postgraphile:
         optional: true
 
-  graphiql@5.2.4:
-    resolution: {integrity: sha512-UfxiFYWM3BYfydi/ljfFvVim2pShR5Law+23BFokvgJ3F7zEqRak8gTQdw5EBFKYZynR1DsvDrjj6QuGP/ByWQ==}
+  graphiql@5.3.0:
+    resolution: {integrity: sha512-HTEBbLjONUnz7Epenaq7xjPxZygVY5mR6ULSUO0Luq0fDaOoYhwKk8G1De8ccQQI21lzMH26B7lq+hXb28c1Ng==}
     peerDependencies:
       graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
       react: ^18 || ^19
       react-dom: ^18 || ^19
 
-  graphql-language-service@5.5.2:
-    resolution: {integrity: sha512-NJhgEKTArkyNPcy4NRUFdbpNs5/F99LcvXbNtmGzNGwwruN8tBE3YPMjpYmp8KpBQtOx3uSuvXJlOOE3Vy2KRQ==}
+  graphql-language-service@5.6.0:
+    resolution: {integrity: sha512-q5aXhVtqk7/43FVV4PmuxtJWJ2baj8CsePHxdYVPrDe//n9n0h7Z61ICMY6B7wS1Z8NUCKaBJb3r0tMCIf5k8w==}
     hasBin: true
     peerDependencies:
       graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
@@ -1536,8 +1536,8 @@ packages:
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
-  markdown-it@14.3.0:
-    resolution: {integrity: sha512-RCEsPjR+sr0x+AuYp601tKTkgFG4YEPLCzHST3cQ/fhlJkqAkz1L2/Qbp1j9qw5SBwQHFBoW8+hoN5xssOF0Tw==}
+  markdown-it@14.3.1:
+    resolution: {integrity: sha512-4Ej49aYTDFIQ+uBkfX8GBvJGccoARxxPep+7aWTs55ozbjQJpW9M26Fe53vnGgvLeVzva/amzjQQaQu9w0vMhA==}
     hasBin: true
 
   mdurl@2.1.0:
@@ -1585,8 +1585,8 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  node-abi@3.94.0:
-    resolution: {integrity: sha512-W5ZNO5KRPB5TkYmGVD9F6YqhsglXJzE6etpbmT+f6EQElhiX/UTG551cnsRGvLG3fyZEg9HwaDmNmj5nwJ4z9g==}
+  node-abi@3.96.0:
+    resolution: {integrity: sha512-rebQ/lz7i0EkoLzUVSrKRzA69zMkwLp95kKMWoMDkkM00Suxz0D7zEQPwRml5fQum24mj7bPvmlgLAmu2JCiYg==}
     engines: {node: '>=10'}
 
   nullthrows@1.1.1:
@@ -1664,8 +1664,8 @@ packages:
     resolution: {integrity: sha512-0ypsOQt9D4e3hziV8O4elD9uN0z/jtUEfxVRtNaAAtXIyUx9m/SzlO020i8YNL2aL/E6blOvvHQcin6HZlFy/w==}
     engines: {node: '>=8.6'}
 
-  picomatch@4.0.5:
-    resolution: {integrity: sha512-RvwwcruNjI1ncT5xRakeyS9Lf8lcItv34KD+aif+VH9kduAyfYBipGh12274xtenIPZ119/R9BdTBa8gAwSh0A==}
+  picomatch@4.0.7:
+    resolution: {integrity: sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==}
     engines: {node: '>=12'}
 
   pluralize@7.0.0:
@@ -1971,8 +1971,8 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  vscode-languageserver-types@3.18.0:
-    resolution: {integrity: sha512-8TsGPNMIMiiBdkORgRSvLjuiEIiAFtO+KssmYWxQ+uSVvlf7RjK8YKCOjPzZ+YA04jXEV7+7LvkSmHkhpNS99g==}
+  vscode-languageserver-types@3.18.3:
+    resolution: {integrity: sha512-XIlzJ7Qp/jzSI1ds7/FwPAWrPeTZA7pAtlW4hdJ1J6xXWJL6dR9QYnDhJOdLzdKhUQ5Mm6mvUMw+3DcOQQasPw==}
 
   which@2.0.2:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}
@@ -2178,9 +2178,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@graphiql/plugin-doc-explorer@0.4.2(@graphiql/react@0.37.7(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8)))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))':
+  '@graphiql/plugin-doc-explorer@0.4.3(@graphiql/react@0.38.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8)))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))':
     dependencies:
-      '@graphiql/react': 0.37.7(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))
+      '@graphiql/react': 0.38.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))
       '@headlessui/react': 2.2.10(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       graphql: 16.14.2
       react: 19.2.8
@@ -2192,9 +2192,9 @@ snapshots:
       - immer
       - use-sync-external-store
 
-  '@graphiql/plugin-history@0.4.2(@graphiql/react@0.37.7(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8)))(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))':
+  '@graphiql/plugin-history@0.4.3(@graphiql/react@0.38.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8)))(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))':
     dependencies:
-      '@graphiql/react': 0.37.7(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))
+      '@graphiql/react': 0.38.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))
       '@graphiql/toolkit': 0.12.1(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)
       react: 19.2.8
       react-compiler-runtime: 19.1.0-rc.1(react@19.2.8)
@@ -2208,7 +2208,7 @@ snapshots:
       - immer
       - use-sync-external-store
 
-  '@graphiql/react@0.37.7(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))':
+  '@graphiql/react@0.38.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))':
     dependencies:
       '@graphiql/toolkit': 0.12.1(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)
       '@radix-ui/react-dialog': 1.1.23(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -2219,9 +2219,9 @@ snapshots:
       framer-motion: 12.43.0(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       get-value: 3.0.1
       graphql: 16.14.2
-      graphql-language-service: 5.5.2(graphql@16.14.2)
+      graphql-language-service: 5.6.0(graphql@16.14.2)
       jsonc-parser: 3.3.1
-      markdown-it: 14.3.0
+      markdown-it: 14.3.1
       monaco-editor: 0.52.2
       monaco-graphql: 1.8.0(graphql@16.14.2)(monaco-editor@0.52.2)(prettier@3.9.6)
       prettier: 3.9.6
@@ -2299,7 +2299,7 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
 
-  '@jridgewell/sourcemap-codec@1.5.5': {}
+  '@jridgewell/sourcemap-codec@1.6.0': {}
 
   '@n1ru4l/push-pull-async-iterable-iterator@3.2.0': {}
 
@@ -2614,7 +2614,7 @@ snapshots:
   '@sentry/node-cpu-profiler@2.4.3':
     dependencies:
       detect-libc: 2.1.2
-      node-abi: 3.94.0
+      node-abi: 3.96.0
 
   '@sentry/node@10.71.0(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1))(supports-color@7.2.0)':
     dependencies:
@@ -2971,9 +2971,9 @@ snapshots:
 
   fast-levenshtein@2.0.6: {}
 
-  fdir@6.5.0(picomatch@4.0.5):
+  fdir@6.5.0(picomatch@4.0.7):
     optionalDependencies:
-      picomatch: 4.0.5
+      picomatch: 4.0.7
 
   file-entry-cache@8.0.0:
     dependencies:
@@ -3145,11 +3145,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  graphiql@5.2.4(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8)):
+  graphiql@5.3.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8)):
     dependencies:
-      '@graphiql/plugin-doc-explorer': 0.4.2(@graphiql/react@0.37.7(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8)))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))
-      '@graphiql/plugin-history': 0.4.2(@graphiql/react@0.37.7(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8)))(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))
-      '@graphiql/react': 0.37.7(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))
+      '@graphiql/plugin-doc-explorer': 0.4.3(@graphiql/react@0.38.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8)))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))
+      '@graphiql/plugin-history': 0.4.3(@graphiql/react@0.38.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8)))(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))
+      '@graphiql/react': 0.38.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))
       graphql: 16.14.2
       react: 19.2.8
       react-compiler-runtime: 19.1.0-rc.1(react@19.2.8)
@@ -3163,12 +3163,12 @@ snapshots:
       - immer
       - use-sync-external-store
 
-  graphql-language-service@5.5.2(graphql@16.14.2):
+  graphql-language-service@5.6.0(graphql@16.14.2):
     dependencies:
       debounce-promise: 3.1.2
       graphql: 16.14.2
       nullthrows: 1.1.1
-      vscode-languageserver-types: 3.18.0
+      vscode-languageserver-types: 3.18.3
 
   graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3):
     dependencies:
@@ -3293,9 +3293,9 @@ snapshots:
 
   magic-string@0.30.21:
     dependencies:
-      '@jridgewell/sourcemap-codec': 1.5.5
+      '@jridgewell/sourcemap-codec': 1.6.0
 
-  markdown-it@14.3.0:
+  markdown-it@14.3.1:
     dependencies:
       argparse: 2.0.1
       entities: 4.5.0
@@ -3323,7 +3323,7 @@ snapshots:
   monaco-graphql@1.8.0(graphql@16.14.2)(monaco-editor@0.52.2)(prettier@3.9.6):
     dependencies:
       graphql: 16.14.2
-      graphql-language-service: 5.5.2(graphql@16.14.2)
+      graphql-language-service: 5.6.0(graphql@16.14.2)
       monaco-editor: 0.52.2
       picomatch-browser: 2.2.6
       prettier: 3.9.6
@@ -3338,7 +3338,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  node-abi@3.94.0:
+  node-abi@3.96.0:
     dependencies:
       semver: 7.8.5
 
@@ -3415,7 +3415,7 @@ snapshots:
 
   picomatch-browser@2.2.6: {}
 
-  picomatch@4.0.5: {}
+  picomatch@4.0.7: {}
 
   pluralize@7.0.0: {}
 
@@ -3542,7 +3542,7 @@ snapshots:
   ruru-types@2.0.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8)):
     dependencies:
       '@graphiql/toolkit': 0.11.3(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)
-      graphiql: 5.2.4(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))
+      graphiql: 5.3.0(@emotion/is-prop-valid@1.4.0)(@types/node@22.20.1)(graphql-ws@6.2.1(graphql@16.14.2)(ws@8.21.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))
       graphql: 16.14.2
     optionalDependencies:
       react: 19.2.8
@@ -3634,8 +3634,8 @@ snapshots:
 
   tinyglobby@0.2.17:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.5)
-      picomatch: 4.0.5
+      fdir: 6.5.0(picomatch@4.0.7)
+      picomatch: 4.0.7
 
   transliteration@2.6.1: {}
 
@@ -3687,7 +3687,7 @@ snapshots:
     dependencies:
       react: 19.2.8
 
-  vscode-languageserver-types@3.18.0: {}
+  vscode-languageserver-types@3.18.3: {}
 
   which@2.0.2:
     dependencies:
