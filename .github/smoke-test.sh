@@ -69,13 +69,41 @@ fi
 echo "::endgroup::"
 
 echo "::group::Set up database schema"
-# A minimal stand-in for the sqitch-managed `vibetype` schema, just enough
-# for PostGraphile to expose the `allAccounts` field the healthcheck and
-# smoke test query.
-docker exec "$CONTAINER_DB" psql -U postgres -d postgraphile -c '
-  CREATE SCHEMA vibetype;
-  CREATE TABLE vibetype.account (id serial PRIMARY KEY);
-'
+# A minimal stand-in for the sqitch-managed `vibetype` schema, covering what the healthcheck and the
+# smoke test query as well as the shapes the connection filter test asserts on: `event` opts into
+# filtering, `account` does not, and `empty_filter` opts in without owning a single filterable
+# column.
+docker exec -i "$CONTAINER_DB" psql -q -v ON_ERROR_STOP=1 -U postgres -d postgraphile <<'SQL'
+CREATE SCHEMA vibetype;
+
+CREATE TYPE vibetype.jwt AS (id uuid, exp bigint);
+
+CREATE TABLE vibetype.account (
+  id serial PRIMARY KEY,
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE TABLE vibetype.event (
+  id serial PRIMARY KEY,
+  account_id integer NOT NULL REFERENCES vibetype.account (id),
+  name text NOT NULL,
+  start timestamptz NOT NULL,
+  "end" timestamptz
+);
+CREATE INDEX ON vibetype.event (start);
+COMMENT ON TABLE vibetype.event IS '@behavior +filter';
+COMMENT ON COLUMN vibetype.event."end" IS '@behavior +attribute:filterBy';
+
+CREATE FUNCTION vibetype.event_duration(e vibetype.event) RETURNS timestamptz AS $$
+  SELECT e.start
+$$ LANGUAGE sql STABLE;
+
+CREATE TABLE vibetype.empty_filter (
+  id serial PRIMARY KEY,
+  label text NOT NULL
+);
+COMMENT ON TABLE vibetype.empty_filter IS '@behavior +filter';
+SQL
 echo "Schema ready."
 echo "::endgroup::"
 
@@ -156,6 +184,61 @@ echo "$RESPONSE" | jq -e '(.data.allAccounts.totalCount | type) == "number" and 
   exit 1
 }
 echo "Smoke test OK."
+echo "::endgroup::"
+
+echo "::group::Connection filter test"
+# Connection filtering is opt-in and deliberately narrow, and the behavior strings that keep it that
+# way break in ways that only show up in the generated schema.
+SCHEMA=$(curl -fsS --max-time 10 -X POST "http://localhost:${HOST_PORT}/graphql" \
+  -H 'Content-Type: application/json' \
+  --data-binary @- <<'JSON'
+{"query":"{ queryType: __type(name: \"Query\") { fields { name args { name } } } eventFilter: __type(name: \"EventFilter\") { inputFields { name } } datetimeFilter: __type(name: \"DatetimeFilter\") { inputFields { name } } accountFilter: __type(name: \"AccountFilter\") { name } emptyFilterFilter: __type(name: \"EmptyFilterFilter\") { name } }"}
+JSON
+) || {
+  echo "Introspection request failed, container logs:"
+  docker logs "$CONTAINER"
+  exit 1
+}
+
+assert_schema() {
+  local description="$1"
+  shift
+  if ! echo "$SCHEMA" | jq -e "$@" >/dev/null; then
+    echo "Assertion failed: $description"
+    echo "Introspection response: $SCHEMA"
+    exit 1
+  fi
+  echo "OK: $description"
+}
+
+HAS_ARGUMENT='[.data.queryType.fields[] | select(.name == $field) | .args[].name] | index($argument)'
+
+# A table without the smart comment stays unfilterable, but keeps the built-in `condition` argument
+# that an unscoped `-filter` behavior would take away along with it.
+assert_schema 'allAccounts has no filter argument' \
+  --arg field allAccounts --arg argument filter "$HAS_ARGUMENT == null"
+assert_schema 'allAccounts keeps its condition argument' \
+  --arg field allAccounts --arg argument condition "$HAS_ARGUMENT"
+assert_schema 'AccountFilter is not part of the schema' '.data.accountFilter == null'
+
+# The opted-in table gets both.
+assert_schema 'allEvents has a filter argument' \
+  --arg field allEvents --arg argument filter "$HAS_ARGUMENT"
+assert_schema 'allEvents keeps its condition argument' \
+  --arg field allEvents --arg argument condition "$HAS_ARGUMENT"
+
+# Exactly the two datetime columns: no logical operators, no relations, no computed columns, and no
+# columns of other types.
+assert_schema 'EventFilter exposes only the datetime columns' \
+  '[.data.eventFilter.inputFields[].name] | sort == ["end", "start"]'
+assert_schema 'DatetimeFilter exposes only the allowed operators' \
+  '[.data.datetimeFilter.inputFields[].name] | sort == ["equalTo", "greaterThan", "greaterThanOrEqualTo", "isNull", "lessThan", "lessThanOrEqualTo", "notEqualTo"]'
+
+# Opting a table in without owning a single filterable column must not produce an empty input type,
+# which would fail schema validation and take the whole server down.
+assert_schema 'EmptyFilterFilter is not part of the schema' '.data.emptyFilterFilter == null'
+assert_schema 'allEmptyFilters has no filter argument' \
+  --arg field allEmptyFilters --arg argument filter "$HAS_ARGUMENT == null"
 echo "::endgroup::"
 
 echo "::group::Container logs"

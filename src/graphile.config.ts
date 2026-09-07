@@ -13,6 +13,7 @@ import {
   JWT_AUDIENCE,
   JWT_ISSUER,
 } from './graphile.ts'
+import { ConnectionFilterPreset } from './presets/connection-filter.ts'
 import { TurnstilePreset } from './presets/turnstile.ts'
 
 const ENVIRONMENT = getValidatedEnvironment([
@@ -24,7 +25,12 @@ const ENVIRONMENT_DEVELOPMENT = process.env['GRAPHILE_ENV'] === 'development'
 const SCHEMA_NAME = 'vibetype'
 
 const preset: GraphileConfig.Preset = {
-  extends: [PostGraphileAmberPreset, TurnstilePreset, postgisPreset],
+  extends: [
+    PostGraphileAmberPreset,
+    TurnstilePreset,
+    postgisPreset,
+    ConnectionFilterPreset,
+  ],
   gather: {
     pgJwtTypes: [`${SCHEMA_NAME}.jwt`],
   },
