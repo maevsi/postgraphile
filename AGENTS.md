@@ -8,6 +8,7 @@ This project is a PostGraphile v5 server that converts PostgreSQL schemas into a
 - `src/graphile.config.ts` contains the main PostGraphile configuration.
 - `src/graphile.ts` contains scripted logic.
 - `src/environment.ts` contains type-safe environment variable utilities.
+- `src/instrument.ts` contains the Sentry initialization.
 
 ## JWT
 - Algorithm: ES256
