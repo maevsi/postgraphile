@@ -1,3 +1,9 @@
+## [2.3.0](https://github.com/maevsi/postgraphile/compare/2.2.6...2.3.0) (2026-09-28)
+
+### Features
+
+* **sentry:** migrate to sdk v11 ([#50](https://github.com/maevsi/postgraphile/issues/50)) ([3356cc2](https://github.com/maevsi/postgraphile/commit/3356cc20ab08a2bf4dd281a89af5a676a8be08cc))
+
 ## [2.2.6](https://github.com/maevsi/postgraphile/compare/2.2.5...2.2.6) (2026-09-19)
 
 ### Bug Fixes
