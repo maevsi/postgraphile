@@ -1,3 +1,9 @@
+## [2.3.2](https://github.com/maevsi/postgraphile/compare/2.3.1...2.3.2) (2026-10-22)
+
+### Bug Fixes
+
+* schedule release ([c6820b8](https://github.com/maevsi/postgraphile/commit/c6820b85b415d659a439ab0177744e38820a85d8))
+
 ## [2.3.1](https://github.com/maevsi/postgraphile/compare/2.3.0...2.3.1) (2026-10-12)
 
 ### Bug Fixes
