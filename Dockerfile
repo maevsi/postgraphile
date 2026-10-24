@@ -1,13 +1,13 @@
 # syntax=docker/dockerfile:1
 
 # <DEPENDENCIES>
-FROM ghcr.io/maevsi/sqitch:12.3.0
+FROM ghcr.io/maevsi/sqitch:12.3.4
 # </DEPENDENCIES>
 
 ########################
 # Create base.
 
-FROM node:24.19.0-alpine AS base
+FROM node:24.21.0-alpine AS base
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -36,9 +36,9 @@ VOLUME /srv/app/node_modules
 
 USER node
 ENTRYPOINT ["/srv/app/docker-entrypoint.sh"]
-CMD ["pnpm", "exec", "postgraphile", "--config", "./src/graphile.config.ts", "-n", "0.0.0.0"]
+CMD pnpm exec postgraphile --config ./src/graphile.config.ts -n 0.0.0.0 -p "${POSTGRAPHILE_PORT:-5678}"
 EXPOSE 5678
-HEALTHCHECK --start-period=300s CMD RESPONSE=$(wget -q -O- --header='Content-Type: application/json' --post-data='{"query":"query health { allAccounts { totalCount } }"}' http://127.0.0.1:5678/graphql) && echo "$RESPONSE" | grep -q '"totalCount"' && ! echo "$RESPONSE" | grep -q '"errors"' || exit 1
+HEALTHCHECK --start-period=300s CMD RESPONSE=$(wget -q -O- --header='Content-Type: application/json' --post-data='{"query":"query health { __schema { queryType { name } } }"}' "http://127.0.0.1:${POSTGRAPHILE_PORT:-5678}/graphql") && echo "$RESPONSE" | grep -q '"queryType"' && ! echo "$RESPONSE" | grep -q '"errors"' || exit 1
 
 
 ########################
@@ -103,7 +103,7 @@ USER node
 RUN corepack prepare
 
 ENTRYPOINT ["/srv/app/docker-entrypoint.sh"]
-CMD ["pnpm", "exec", "postgraphile", "--config", "./src/graphile.config.ts", "-n", "0.0.0.0"]
+CMD pnpm exec postgraphile --config ./src/graphile.config.ts -n 0.0.0.0 -p "${POSTGRAPHILE_PORT:-5678}"
 EXPOSE 5678
-HEALTHCHECK --interval=10s --timeout=5s CMD RESPONSE=$(wget -q -O- --header='Content-Type: application/json' --post-data='{"query":"query health { allAccounts { totalCount } }"}' http://127.0.0.1:5678/graphql) && echo "$RESPONSE" | grep -q '"totalCount"' && ! echo "$RESPONSE" | grep -q '"errors"' || exit 1
-LABEL org.opencontainers.image.description="PostGraphile GraphQL API for the Vibetype platform; includes @graphile/postgis, Amber preset, Grafast optimizations, and JWT authentication."
+HEALTHCHECK --interval=10s --timeout=5s CMD RESPONSE=$(wget -q -O- --header='Content-Type: application/json' --post-data='{"query":"query health { __schema { queryType { name } } }"}' "http://127.0.0.1:${POSTGRAPHILE_PORT:-5678}/graphql") && echo "$RESPONSE" | grep -q '"queryType"' && ! echo "$RESPONSE" | grep -q '"errors"' || exit 1
+LABEL org.opencontainers.image.description="PostGraphile v5 GraphQL API server; schema, port, and default role via environment, optional JWT authentication and Turnstile verification, includes @graphile/postgis, Amber preset, and Grafast optimizations."

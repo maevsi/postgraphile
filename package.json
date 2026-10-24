@@ -27,7 +27,7 @@
     "postgraphile": "5.1.4",
     "tamedevil": "file:vendor/crystal-3109/tamedevil-0.1.1.tgz"
   },
-  "description": "PostGraphile GraphQL API for the Vibetype platform; includes @graphile/postgis, Amber preset, Grafast optimizations, and JWT authentication.",
+  "description": "PostGraphile v5 GraphQL API server; schema, port, and roles via environment variables, optional JWT authentication and Turnstile verification, includes @graphile/postgis, Amber preset, and Grafast optimizations.",
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "@eslint/json": "2.0.1",

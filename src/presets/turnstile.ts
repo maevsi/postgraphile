@@ -10,12 +10,8 @@ const TURNSTILE_BYPASS = process.env['TURNSTILE_BYPASS'] === 'true'
 const TURNSTILE_SECRET_KEY = process.env['TURNSTILE_SECRET_KEY']
 const TURNSTILE_SITEVERIFY_URL =
   'https://challenges.cloudflare.com/turnstile/v0/siteverify'
-
-if (!TURNSTILE_SECRET_KEY && !TURNSTILE_BYPASS) {
-  throw new Error(
-    'TURNSTILE_SECRET_KEY is required unless TURNSTILE_BYPASS is set to the exact string `true`.',
-  )
-}
+// Verification is inactive unless a secret key is present or the bypass is enabled, so deployments that do not use Turnstile set neither variable.
+const TURNSTILE_ACTIVE = Boolean(TURNSTILE_SECRET_KEY) || TURNSTILE_BYPASS
 
 interface TurnstileSiteverifyResponse {
   success: boolean
@@ -222,6 +218,10 @@ const TurnstilePlugin: GraphileConfig.Plugin = {
   grafserv: {
     middleware: {
       async processGraphQLRequestBody(next, event) {
+        if (!TURNSTILE_ACTIVE) {
+          return next()
+        }
+
         logger.debug('Request method', event.request?.method)
         logger.debug('Request body', event.body)
         logger.debug(
