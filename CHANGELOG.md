@@ -1,3 +1,13 @@
+## [3.0.0-beta.3](https://github.com/maevsi/postgraphile/compare/3.0.0-beta.2...3.0.0-beta.3) (2026-10-24)
+
+### ⚠ BREAKING CHANGES
+
+* configure schema, port, default role, and presets via environment (#54)
+
+### Features
+
+* configure schema, port, default role, and presets via environment ([#54](https://github.com/maevsi/postgraphile/issues/54)) ([dbf4ae8](https://github.com/maevsi/postgraphile/commit/dbf4ae8be988062ef9e9298eaab10c06d6b5b2a4))
+
 ## [3.0.0-beta.2](https://github.com/maevsi/postgraphile/compare/3.0.0-beta.1...3.0.0-beta.2) (2026-08-27)
 
 ### ⚠ BREAKING CHANGES
