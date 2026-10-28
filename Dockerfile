@@ -14,7 +14,7 @@ ENV CI=true
 
 WORKDIR /srv/app/
 
-RUN corepack enable
+RUN npm i -g corepack && corepack enable
 
 
 ########################
