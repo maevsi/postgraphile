@@ -10,7 +10,7 @@ if (process.env['SENTRY_DSN']) {
       cookies: false,
       databaseQueryData: false,
       graphQL: { document: false, variables: false },
-      httpBodies: [], // TODO: implement scrubbing, enable request bodies collection only then
+      httpBodies: [], // bodies are GraphQL documents and variables, like passwords on sign-in, which are excluded above too
       httpHeaders: {
         request: { deny: PII_DENY_KEYS },
         response: { deny: PII_DENY_KEYS },
