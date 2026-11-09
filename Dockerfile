@@ -1,20 +1,20 @@
 # syntax=docker/dockerfile:1
 
 # <DEPENDENCIES>
-FROM ghcr.io/maevsi/sqitch:12.3.4
+FROM ghcr.io/maevsi/sqitch:12.3.7
 # </DEPENDENCIES>
 
 ########################
 # Create base.
 
-FROM node:24.21.0-alpine AS base
+FROM node:26.13.0-alpine AS base
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
 
 WORKDIR /srv/app/
 
-RUN corepack enable
+RUN npm i -g corepack && corepack enable
 
 
 ########################
