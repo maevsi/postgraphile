@@ -1,3 +1,17 @@
+## [3.0.0-beta.4](https://github.com/maevsi/postgraphile/compare/3.0.0-beta.3...3.0.0-beta.4) (2026-11-09)
+
+### Features
+
+* **sentry:** migrate to sdk v11 ([#50](https://github.com/maevsi/postgraphile/issues/50)) ([3356cc2](https://github.com/maevsi/postgraphile/commit/3356cc20ab08a2bf4dd281a89af5a676a8be08cc))
+
+### Bug Fixes
+
+* schedule release ([baceb33](https://github.com/maevsi/postgraphile/commit/baceb3356267049ffc0ff4c829947a79d81ed82e))
+* schedule release ([c6820b8](https://github.com/maevsi/postgraphile/commit/c6820b85b415d659a439ab0177744e38820a85d8))
+* schedule release ([14bfbe6](https://github.com/maevsi/postgraphile/commit/14bfbe68c011b075cc015c695574b58d362a6747))
+* schedule release ([8f1a799](https://github.com/maevsi/postgraphile/commit/8f1a799fc550874253d147bff0df21fff9eef2db))
+* schedule release ([ef2f80b](https://github.com/maevsi/postgraphile/commit/ef2f80ba6edb9186121dc2bcfdde5390e52ef934))
+
 ## [3.0.0-beta.3](https://github.com/maevsi/postgraphile/compare/3.0.0-beta.2...3.0.0-beta.3) (2026-10-24)
 
 ### ⚠ BREAKING CHANGES
