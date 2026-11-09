@@ -1,3 +1,17 @@
+## [3.0.0](https://github.com/maevsi/postgraphile/compare/2.3.3...3.0.0) (2026-11-09)
+
+### ⚠ BREAKING CHANGES
+
+* configure schema, port, default role, and presets via environment (#54)
+* **turnstile:** protect by smart tag (#46)
+* **account:** reject weak passwords on registration and change (#40)
+
+### Features
+
+* **account:** reject weak passwords on registration and change ([#40](https://github.com/maevsi/postgraphile/issues/40)) ([b65342f](https://github.com/maevsi/postgraphile/commit/b65342ff53d09240ee8441f2a19bbacd20d460c8))
+* configure schema, port, default role, and presets via environment ([#54](https://github.com/maevsi/postgraphile/issues/54)) ([dbf4ae8](https://github.com/maevsi/postgraphile/commit/dbf4ae8be988062ef9e9298eaab10c06d6b5b2a4))
+* **turnstile:** protect by smart tag ([#46](https://github.com/maevsi/postgraphile/issues/46)) ([00a6f4a](https://github.com/maevsi/postgraphile/commit/00a6f4aed3371f518672ce3ac1edb7ef9d00a46b))
+
 ## [3.0.0-beta.4](https://github.com/maevsi/postgraphile/compare/3.0.0-beta.3...3.0.0-beta.4) (2026-11-09)
 
 ### Features
