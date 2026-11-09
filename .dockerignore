@@ -1,2 +1,4 @@
-node_modules
+.claude
 .eslintcache
+.worktrees
+node_modules
