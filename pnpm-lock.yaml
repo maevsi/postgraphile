@@ -168,22 +168,22 @@ importers:
     dependencies:
       '@dataplan/json':
         specifier: file:vendor/crystal-3109/dataplan-json-1.0.1.tgz
-        version: file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))
+        version: file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))
       '@dataplan/pg':
         specifier: file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz
-        version: file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@8.1.1)
+        version: file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@7.2.0)
       '@graphile/lru':
         specifier: file:vendor/crystal-3109/graphile-lru-5.0.0.tgz
         version: file:vendor/crystal-3109/graphile-lru-5.0.0.tgz
       '@graphile/postgis':
         specifier: file:vendor/crystal-3109/graphile-postgis-0.2.0.tgz
-        version: file:vendor/crystal-3109/graphile-postgis-0.2.0.tgz(@dataplan/pg@file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@8.1.1))(postgraphile@5.2.1(4c5a079b41faf583fc4ce7bc97f5048a))(supports-color@8.1.1)
+        version: file:vendor/crystal-3109/graphile-postgis-0.2.0.tgz(@dataplan/pg@file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@7.2.0))(postgraphile@5.2.1(b4213e182df5114b0304c2c8d9fe425a))(supports-color@7.2.0)
       '@sentry/node':
-        specifier: 11.11.0
-        version: 11.11.0
+        specifier: 11.12.0
+        version: 11.12.0
       '@sentry/profiling-node':
-        specifier: 11.11.0
-        version: 11.11.0
+        specifier: 11.12.0
+        version: 11.12.0
       '@zxcvbn-ts/core':
         specifier: 4.2.0
         version: 4.2.0
@@ -198,22 +198,22 @@ importers:
         version: 4.1.1
       grafast:
         specifier: file:vendor/crystal-3109/grafast-1.1.0.tgz
-        version: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)
+        version: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)
       grafserv:
         specifier: 1.0.3
-        version: 1.0.3(@types/node@22.20.5)(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@8.1.1)(use-sync-external-store@1.7.0(react@19.3.1))(ws@8.22.1)
+        version: 1.0.3(@types/node@22.20.5)(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)(use-sync-external-store@1.7.0(react@19.3.1))(ws@8.22.1)
       graphile:
         specifier: 5.1.1
-        version: 5.1.1(graphile-build@file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(postgraphile@5.2.1(4c5a079b41faf583fc4ce7bc97f5048a))(supports-color@8.1.1)
+        version: 5.1.1(graphile-build@file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(postgraphile@5.2.1(b4213e182df5114b0304c2c8d9fe425a))(supports-color@7.2.0)
       graphile-build:
         specifier: file:vendor/crystal-3109/graphile-build-5.1.0.tgz
-        version: file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(supports-color@8.1.1)
+        version: file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(supports-color@7.2.0)
       graphile-build-pg:
         specifier: file:vendor/crystal-3109/graphile-build-pg-5.1.0.tgz
-        version: file:vendor/crystal-3109/graphile-build-pg-5.1.0.tgz(10443de589cc187ce872f8735ddbb797)
+        version: file:vendor/crystal-3109/graphile-build-pg-5.1.0.tgz(59870bbe7f43299964ec6144d8785924)
       graphile-config:
         specifier: file:vendor/crystal-3109/graphile-config-1.1.0.tgz
-        version: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1)
+        version: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0)
       graphql:
         specifier: 16.15.0
         version: 16.15.0
@@ -228,26 +228,26 @@ importers:
         version: file:vendor/crystal-3109/pg-sql2-5.0.1.tgz
       postgraphile:
         specifier: 5.2.1
-        version: 5.2.1(4c5a079b41faf583fc4ce7bc97f5048a)
+        version: 5.2.1(b4213e182df5114b0304c2c8d9fe425a)
       tamedevil:
         specifier: file:vendor/crystal-3109/tamedevil-0.1.1.tgz
         version: file:vendor/crystal-3109/tamedevil-0.1.1.tgz
     devDependencies:
       '@eslint/js':
         specifier: 10.0.1
-        version: 10.0.1(eslint@10.14.0(supports-color@8.1.1))
+        version: 10.0.1(eslint@10.14.0(supports-color@7.2.0))
       '@eslint/json':
         specifier: 2.1.1
         version: 2.1.1
       eslint:
         specifier: 10.14.0
-        version: 10.14.0(supports-color@8.1.1)
+        version: 10.14.0(supports-color@7.2.0)
       eslint-config-prettier:
         specifier: 10.1.8
-        version: 10.1.8(eslint@10.14.0(supports-color@8.1.1))
+        version: 10.1.8(eslint@10.14.0(supports-color@7.2.0))
       eslint-plugin-prettier:
         specifier: 5.5.7
-        version: 5.5.7(eslint-config-prettier@10.1.8(eslint@10.14.0(supports-color@8.1.1)))(eslint@10.14.0(supports-color@8.1.1))(prettier@3.9.10)
+        version: 5.5.7(eslint-config-prettier@10.1.8(eslint@10.14.0(supports-color@7.2.0)))(eslint@10.14.0(supports-color@7.2.0))(prettier@3.9.10)
       prettier:
         specifier: 3.9.10
         version: 3.9.10
@@ -256,7 +256,7 @@ importers:
         version: 6.0.3
       typescript-eslint:
         specifier: 8.72.2
-        version: 8.72.2(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
+        version: 8.72.2(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
 
 packages:
 
@@ -931,8 +931,8 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
 
-  '@sentry/bundler-plugins@11.11.0':
-    resolution: {integrity: sha512-et1v8V74ARNOSQ+k4VG7PRiNJl2APGAzlRCiUt42izw8yD+X+E4oCe7wwHjohmv3zufvD1VntHDptSC0/9ChQw==}
+  '@sentry/bundler-plugins@11.12.0':
+    resolution: {integrity: sha512-7vBXoHMoYKjYu08anYv5I0nplSWOfQyl7BqV0VOrLxEtGoOpk1+DxL2dyBiaWoAtISkaqJEV/ft813OsCGuuMg==}
     engines: {node: '>=20.19.0 <22.0.0 || >=22.12.0 <23.0.0 || >=23.2.0'}
     peerDependencies:
       rollup: '>=3.2.0'
@@ -943,38 +943,38 @@ packages:
       webpack:
         optional: true
 
-  '@sentry/conventions@0.30.0':
-    resolution: {integrity: sha512-WTumd5A2iFmHTRubi6mc6gLHU8LswPQqoNaZu6T1cxiTUmy3WdEw0i8FAnVbcgxTlsumX5oh63/b4B9lY5wAPQ==}
+  '@sentry/conventions@0.32.0':
+    resolution: {integrity: sha512-WkSQcDhUUsz1SwxR23LpmyPKba+dgxxiH0DWV4VSM9yaAvhhl87ppW2Ts3g4piIKCVflc31aJeWy+biUbYfsMQ==}
     engines: {node: '>=14'}
 
-  '@sentry/core@11.11.0':
-    resolution: {integrity: sha512-PRrcEdPrTYuHcbDa6DhJZR9Qg2d+2gjKVXiv2QeiTgxvhvXDxYiaVSXH0lldKTR099Er5TAEChiX7aEu4yNlUw==}
+  '@sentry/core@11.12.0':
+    resolution: {integrity: sha512-HKER7EcRpPPgC8mLRe5BzP6njfRYFZ53BFLZxVp1whWbY6lp/b2mvTBk4q6+rKsUFhLhRDsd6jL8y/8ddEWv6A==}
     engines: {node: '>=20.19.0 <22.0.0 || >=22.12.0 <23.0.0 || >=23.2.0'}
 
   '@sentry/node-cpu-profiler@2.4.4':
     resolution: {integrity: sha512-FaYbFWxEyTTVqXLJccokJCkwx2cTuvTiRaM9kA+O4HbZVT49xYXqSV9cNLI5UqJhgdHiZDhelBd5LB4wj7IIRA==}
     engines: {node: '>=18'}
 
-  '@sentry/node@11.11.0':
-    resolution: {integrity: sha512-6hbFui4AwP/1KGQD7wgvG0rjve4vgb9x+cBAaHV2N7YwZDZUoKdVaJr/S4PYByuI6UPR8xtwGluFlMFXOScz+Q==}
+  '@sentry/node@11.12.0':
+    resolution: {integrity: sha512-MNSZDOd92Twrq5Z4ZAkxZdIfhr3YGytFb1T+vh5bNXVHkqByWpI/P2VtTSrzBR4Pi1IDRMz0i8t/OWNOsuAuBg==}
     engines: {node: '>=20.19.0 <22.0.0 || >=22.12.0 <23.0.0 || >=23.2.0'}
 
-  '@sentry/opentelemetry@11.11.0':
-    resolution: {integrity: sha512-L1lXAF1hNUSOTLG8NLkBaopvWWpXqlYgQ++cfWr8Gw4wdmReNp9ec533bEj4r6ZJ6PvIYNdIVNI22GdvmbP6xg==}
+  '@sentry/opentelemetry@11.12.0':
+    resolution: {integrity: sha512-oWJwUdc2OSSvyOPXn/E1nWkC3GV5KNTWfR5prbw/0XxlKJepdlBsW19y+FAE9n3QznZ52aMZmetWEAFMsPJ0KQ==}
     engines: {node: '>=20.19.0 <22.0.0 || >=22.12.0 <23.0.0 || >=23.2.0'}
     peerDependencies:
       '@opentelemetry/api': ^1.9.0
 
-  '@sentry/profiling-node@11.11.0':
-    resolution: {integrity: sha512-IJRugORcXAystjrIpZHE93ky7T74IXawsf92DQzmMOILFhcFadJP3KEikKdCok6Gge1mJgpWZcSibUB7+/PkGQ==}
+  '@sentry/profiling-node@11.12.0':
+    resolution: {integrity: sha512-I1SsOTOVCoJmmJzOUozL+dA8/MzOVMS6Gk5J4ZJKEmOdy+3hYf8H8Pj06ALgSAIGw+H5aHJOVlUZ0lzbPaosNg==}
     engines: {node: '>=20.19.0 <22.0.0 || >=22.12.0 <23.0.0 || >=23.2.0'}
 
-  '@sentry/server-runtime-injection@11.11.0':
-    resolution: {integrity: sha512-nHHWfOYi2sB7db9Hjr3i/H66e1/YK9WMlBx3MSI6p/Ha66BGHF3vea/+gILjPz21viQclg1xq37mj8k9KLkGJw==}
+  '@sentry/server-runtime-injection@11.12.0':
+    resolution: {integrity: sha512-fAZjCFyEfhvyfEdbav0/X13Yqbom5Ka1+hG0Nyl6bd7GxkQIWd68unSIw/Rvzfj/DSO8A1JidezST3D6omALkw==}
     engines: {node: '>=20.19.0 <22.0.0 || >=22.12.0 <23.0.0 || >=23.2.0'}
 
-  '@sentry/server-utils@11.11.0':
-    resolution: {integrity: sha512-t1lx9Zw+zhRre0ko+F3CsucG2BqB/7KOZmG1W+Wv/fSvYSnT06vg7WhIvmvH+df7BSFO+cFGBpkxwQWGq3zj+w==}
+  '@sentry/server-utils@11.12.0':
+    resolution: {integrity: sha512-gAP5FLhXSiMs9vsU7guc54QNY1OzUJmhqyXMjhiP4SYlhQltoKtipcyo8pFWVsmylIzIkA8e2eGR6e0YA6YF3A==}
     engines: {node: '>=20.19.0 <22.0.0 || >=22.12.0 <23.0.0 || >=23.2.0'}
 
   '@swc/helpers@0.5.24':
@@ -1938,8 +1938,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  sentry@0.45.0:
-    resolution: {integrity: sha512-kgmEbLlC22lL7uneeUm9Sjz65rp5cvwYOMTxXbZCmBum4sbVre/lLT3zTV3kwXHJ9/BM8ZS0/GhZe9Cl1t6WyA==}
+  sentry@0.49.0:
+    resolution: {integrity: sha512-9tjS0jTx5FQzhwAGhpcnwvqE0MlQiwJtunsIUNqGkw6E9CBOMbijlamIDUqvZTDtJAveVwa9L5ziP44bOJUzcQ==}
     engines: {node: '>=20.0'}
     hasBin: true
 
@@ -1974,10 +1974,6 @@ packages:
   supports-color@7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
-
-  supports-color@8.1.1:
-    resolution: {integrity: sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==}
-    engines: {node: '>=10'}
 
   synckit@0.12.3:
     resolution: {integrity: sha512-U+/AXT6LWsxnj2vz9HeUuPWBNgdWxjyIEjEPdbJARC9txmgPzo2VEdqnFo4hHaNyMPtycyVJrSaQYeQv/PoyyA==}
@@ -2148,22 +2144,22 @@ snapshots:
       hashery: 1.5.1
       keyv: 5.6.0
 
-  '@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))':
+  '@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))':
     dependencies:
       chalk: 4.1.2
-      grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)
+      grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)
       tslib: 2.9.1
 
-  '@dataplan/pg@file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@8.1.1)':
+  '@dataplan/pg@file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@7.2.0)':
     dependencies:
-      '@dataplan/json': file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))
+      '@dataplan/json': file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))
       '@graphile/lru': 5.0.1
       '@types/node': 22.20.5
       chalk: 4.1.2
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@7.2.0)
       eventemitter3: 5.0.4
-      grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)
-      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1)
+      grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)
+      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0)
       graphql: 16.15.0
       pg-sql2: file:vendor/crystal-3109/pg-sql2-5.0.1.tgz
       postgres-array: 3.0.4
@@ -2182,17 +2178,17 @@ snapshots:
 
   '@emotion/memoize@0.9.0': {}
 
-  '@eslint-community/eslint-utils@4.10.1(eslint@10.14.0(supports-color@8.1.1))':
+  '@eslint-community/eslint-utils@4.10.1(eslint@10.14.0(supports-color@7.2.0))':
     dependencies:
-      eslint: 10.14.0(supports-color@8.1.1)
+      eslint: 10.14.0(supports-color@7.2.0)
       eslint-visitor-keys: 3.4.3
 
   '@eslint-community/regexpp@4.12.2': {}
 
-  '@eslint/config-array@0.23.5(supports-color@8.1.1)':
+  '@eslint/config-array@0.23.5(supports-color@7.2.0)':
     dependencies:
       '@eslint/object-schema': 3.0.5
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@7.2.0)
       minimatch: 10.2.6
     transitivePeerDependencies:
       - supports-color
@@ -2205,9 +2201,9 @@ snapshots:
     dependencies:
       '@types/json-schema': 7.0.15
 
-  '@eslint/js@10.0.1(eslint@10.14.0(supports-color@8.1.1))':
+  '@eslint/js@10.0.1(eslint@10.14.0(supports-color@7.2.0))':
     optionalDependencies:
-      eslint: 10.14.0(supports-color@8.1.1)
+      eslint: 10.14.0(supports-color@7.2.0)
 
   '@eslint/json@2.1.1':
     dependencies:
@@ -2256,11 +2252,11 @@ snapshots:
     dependencies:
       tslib: 2.9.1
 
-  '@graphile/postgis@file:vendor/crystal-3109/graphile-postgis-0.2.0.tgz(@dataplan/pg@file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@8.1.1))(postgraphile@5.2.1(4c5a079b41faf583fc4ce7bc97f5048a))(supports-color@8.1.1)':
+  '@graphile/postgis@file:vendor/crystal-3109/graphile-postgis-0.2.0.tgz(@dataplan/pg@file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@7.2.0))(postgraphile@5.2.1(b4213e182df5114b0304c2c8d9fe425a))(supports-color@7.2.0)':
     dependencies:
-      '@dataplan/pg': file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@8.1.1)
-      debug: 4.4.3(supports-color@8.1.1)
-      postgraphile: 5.2.1(4c5a079b41faf583fc4ce7bc97f5048a)
+      '@dataplan/pg': file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@7.2.0)
+      debug: 4.4.3(supports-color@7.2.0)
+      postgraphile: 5.2.1(b4213e182df5114b0304c2c8d9fe425a)
       tslib: 2.9.1
     transitivePeerDependencies:
       - supports-color
@@ -2710,66 +2706,65 @@ snapshots:
     dependencies:
       react: 19.3.1
 
-  '@sentry/bundler-plugins@11.11.0':
+  '@sentry/bundler-plugins@11.12.0':
     dependencies:
-      '@sentry/core': 11.11.0
+      '@sentry/core': 11.12.0
       dotenv: 17.4.2
       glob: 14.0.4
       magic-string: 1.4.5
       oxc-parser: 0.152.0
-      sentry: 0.45.0
-      supports-color: 8.1.1
+      sentry: 0.49.0
 
-  '@sentry/conventions@0.30.0': {}
+  '@sentry/conventions@0.32.0': {}
 
-  '@sentry/core@11.11.0':
+  '@sentry/core@11.12.0':
     dependencies:
-      '@sentry/conventions': 0.30.0
+      '@sentry/conventions': 0.32.0
 
   '@sentry/node-cpu-profiler@2.4.4':
     dependencies:
       detect-libc: 2.1.2
       node-abi: 3.101.0
 
-  '@sentry/node@11.11.0':
+  '@sentry/node@11.12.0':
     dependencies:
       '@opentelemetry/api': 1.10.0
-      '@sentry/bundler-plugins': 11.11.0
-      '@sentry/conventions': 0.30.0
-      '@sentry/core': 11.11.0
-      '@sentry/opentelemetry': 11.11.0(@opentelemetry/api@1.10.0)
-      '@sentry/server-runtime-injection': 11.11.0
-      '@sentry/server-utils': 11.11.0
+      '@sentry/bundler-plugins': 11.12.0
+      '@sentry/conventions': 0.32.0
+      '@sentry/core': 11.12.0
+      '@sentry/opentelemetry': 11.12.0(@opentelemetry/api@1.10.0)
+      '@sentry/server-runtime-injection': 11.12.0
+      '@sentry/server-utils': 11.12.0
     transitivePeerDependencies:
       - rollup
       - webpack
 
-  '@sentry/opentelemetry@11.11.0(@opentelemetry/api@1.10.0)':
+  '@sentry/opentelemetry@11.12.0(@opentelemetry/api@1.10.0)':
     dependencies:
       '@opentelemetry/api': 1.10.0
-      '@sentry/conventions': 0.30.0
-      '@sentry/core': 11.11.0
+      '@sentry/conventions': 0.32.0
+      '@sentry/core': 11.12.0
 
-  '@sentry/profiling-node@11.11.0':
+  '@sentry/profiling-node@11.12.0':
     dependencies:
-      '@sentry/conventions': 0.30.0
-      '@sentry/core': 11.11.0
-      '@sentry/node': 11.11.0
+      '@sentry/conventions': 0.32.0
+      '@sentry/core': 11.12.0
+      '@sentry/node': 11.12.0
       '@sentry/node-cpu-profiler': 2.4.4
     transitivePeerDependencies:
       - rollup
       - webpack
 
-  '@sentry/server-runtime-injection@11.11.0':
+  '@sentry/server-runtime-injection@11.12.0':
     dependencies:
-      '@sentry/core': 11.11.0
-      '@sentry/server-utils': 11.11.0
+      '@sentry/core': 11.12.0
+      '@sentry/server-utils': 11.12.0
 
-  '@sentry/server-utils@11.11.0':
+  '@sentry/server-utils@11.12.0':
     dependencies:
       '@opentelemetry/api': 1.10.0
-      '@sentry/conventions': 0.30.0
-      '@sentry/core': 11.11.0
+      '@sentry/conventions': 0.32.0
+      '@sentry/core': 11.12.0
 
   '@swc/helpers@0.5.24': {}
 
@@ -2801,15 +2796,15 @@ snapshots:
 
   '@types/semver@7.8.0': {}
 
-  '@typescript-eslint/eslint-plugin@8.72.2(@typescript-eslint/parser@8.72.2(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)':
+  '@typescript-eslint/eslint-plugin@8.72.2(@typescript-eslint/parser@8.72.2(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
-      '@typescript-eslint/parser': 8.72.2(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
+      '@typescript-eslint/parser': 8.72.2(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
       '@typescript-eslint/scope-manager': 8.72.2
-      '@typescript-eslint/type-utils': 8.72.2(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
-      '@typescript-eslint/utils': 8.72.2(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
+      '@typescript-eslint/type-utils': 8.72.2(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.72.2(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
       '@typescript-eslint/visitor-keys': 8.72.2
-      eslint: 10.14.0(supports-color@8.1.1)
+      eslint: 10.14.0(supports-color@7.2.0)
       ignore: 7.0.14
       natural-compare: 1.4.0
       ts-api-utils: 2.5.0(typescript@6.0.3)
@@ -2817,23 +2812,23 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.72.2(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)':
+  '@typescript-eslint/parser@8.72.2(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)':
     dependencies:
       '@typescript-eslint/scope-manager': 8.72.2
       '@typescript-eslint/types': 8.72.2
-      '@typescript-eslint/typescript-estree': 8.72.2(supports-color@8.1.1)(typescript@6.0.3)
+      '@typescript-eslint/typescript-estree': 8.72.2(supports-color@7.2.0)(typescript@6.0.3)
       '@typescript-eslint/visitor-keys': 8.72.2
-      debug: 4.4.3(supports-color@8.1.1)
-      eslint: 10.14.0(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@7.2.0)
+      eslint: 10.14.0(supports-color@7.2.0)
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/project-service@8.72.2(supports-color@8.1.1)(typescript@6.0.3)':
+  '@typescript-eslint/project-service@8.72.2(supports-color@7.2.0)(typescript@6.0.3)':
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.72.2(typescript@6.0.3)
       '@typescript-eslint/types': 8.72.2
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@7.2.0)
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
@@ -2847,13 +2842,13 @@ snapshots:
     dependencies:
       typescript: 6.0.3
 
-  '@typescript-eslint/type-utils@8.72.2(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)':
+  '@typescript-eslint/type-utils@8.72.2(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)':
     dependencies:
       '@typescript-eslint/types': 8.72.2
-      '@typescript-eslint/typescript-estree': 8.72.2(supports-color@8.1.1)(typescript@6.0.3)
-      '@typescript-eslint/utils': 8.72.2(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
-      debug: 4.4.3(supports-color@8.1.1)
-      eslint: 10.14.0(supports-color@8.1.1)
+      '@typescript-eslint/typescript-estree': 8.72.2(supports-color@7.2.0)(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.72.2(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+      debug: 4.4.3(supports-color@7.2.0)
+      eslint: 10.14.0(supports-color@7.2.0)
       ts-api-utils: 2.5.0(typescript@6.0.3)
       typescript: 6.0.3
     transitivePeerDependencies:
@@ -2861,13 +2856,13 @@ snapshots:
 
   '@typescript-eslint/types@8.72.2': {}
 
-  '@typescript-eslint/typescript-estree@8.72.2(supports-color@8.1.1)(typescript@6.0.3)':
+  '@typescript-eslint/typescript-estree@8.72.2(supports-color@7.2.0)(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/project-service': 8.72.2(supports-color@8.1.1)(typescript@6.0.3)
+      '@typescript-eslint/project-service': 8.72.2(supports-color@7.2.0)(typescript@6.0.3)
       '@typescript-eslint/tsconfig-utils': 8.72.2(typescript@6.0.3)
       '@typescript-eslint/types': 8.72.2
       '@typescript-eslint/visitor-keys': 8.72.2
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@7.2.0)
       minimatch: 10.2.6
       semver: 7.8.6
       tinyglobby: 0.2.17
@@ -2876,13 +2871,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.72.2(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)':
+  '@typescript-eslint/utils@8.72.2(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.10.1(eslint@10.14.0(supports-color@8.1.1))
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.14.0(supports-color@7.2.0))
       '@typescript-eslint/scope-manager': 8.72.2
       '@typescript-eslint/types': 8.72.2
-      '@typescript-eslint/typescript-estree': 8.72.2(supports-color@8.1.1)(typescript@6.0.3)
-      eslint: 10.14.0(supports-color@8.1.1)
+      '@typescript-eslint/typescript-estree': 8.72.2(supports-color@7.2.0)(typescript@6.0.3)
+      eslint: 10.14.0(supports-color@7.2.0)
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
@@ -2892,9 +2887,9 @@ snapshots:
       '@typescript-eslint/types': 8.72.2
       eslint-visitor-keys: 5.0.1
 
-  '@typescript/vfs@1.6.6(supports-color@8.1.1)(typescript@5.9.3)':
+  '@typescript/vfs@1.6.6(supports-color@7.2.0)(typescript@5.9.3)':
     dependencies:
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@7.2.0)
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -2987,11 +2982,11 @@ snapshots:
 
   debounce-promise@3.1.2: {}
 
-  debug@4.4.3(supports-color@8.1.1):
+  debug@4.4.3(supports-color@7.2.0):
     dependencies:
       ms: 2.1.3
     optionalDependencies:
-      supports-color: 8.1.1
+      supports-color: 7.2.0
 
   deep-is@0.1.4: {}
 
@@ -3013,18 +3008,18 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-config-prettier@10.1.8(eslint@10.14.0(supports-color@8.1.1)):
+  eslint-config-prettier@10.1.8(eslint@10.14.0(supports-color@7.2.0)):
     dependencies:
-      eslint: 10.14.0(supports-color@8.1.1)
+      eslint: 10.14.0(supports-color@7.2.0)
 
-  eslint-plugin-prettier@5.5.7(eslint-config-prettier@10.1.8(eslint@10.14.0(supports-color@8.1.1)))(eslint@10.14.0(supports-color@8.1.1))(prettier@3.9.10):
+  eslint-plugin-prettier@5.5.7(eslint-config-prettier@10.1.8(eslint@10.14.0(supports-color@7.2.0)))(eslint@10.14.0(supports-color@7.2.0))(prettier@3.9.10):
     dependencies:
-      eslint: 10.14.0(supports-color@8.1.1)
+      eslint: 10.14.0(supports-color@7.2.0)
       prettier: 3.9.10
       prettier-linter-helpers: 1.0.1
       synckit: 0.12.3
     optionalDependencies:
-      eslint-config-prettier: 10.1.8(eslint@10.14.0(supports-color@8.1.1))
+      eslint-config-prettier: 10.1.8(eslint@10.14.0(supports-color@7.2.0))
 
   eslint-scope@9.1.2:
     dependencies:
@@ -3037,11 +3032,11 @@ snapshots:
 
   eslint-visitor-keys@5.0.1: {}
 
-  eslint@10.14.0(supports-color@8.1.1):
+  eslint@10.14.0(supports-color@7.2.0):
     dependencies:
-      '@eslint-community/eslint-utils': 4.10.1(eslint@10.14.0(supports-color@8.1.1))
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.14.0(supports-color@7.2.0))
       '@eslint-community/regexpp': 4.12.2
-      '@eslint/config-array': 0.23.5(supports-color@8.1.1)
+      '@eslint/config-array': 0.23.5(supports-color@7.2.0)
       '@eslint/config-helpers': 0.7.0
       '@eslint/core': 1.2.1
       '@eslint/plugin-kit': 0.7.3
@@ -3051,7 +3046,7 @@ snapshots:
       '@types/estree': 1.0.10
       ajv: 6.15.0
       cross-spawn: 7.0.6
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@7.2.0)
       escape-string-regexp: 4.0.0
       eslint-scope: 9.1.2
       eslint-visitor-keys: 5.0.1
@@ -3125,9 +3120,9 @@ snapshots:
 
   flatted@3.4.4: {}
 
-  follow-redirects@1.16.2(debug@4.4.3(supports-color@8.1.1)):
+  follow-redirects@1.16.2(debug@4.4.3(supports-color@7.2.0)):
     optionalDependencies:
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@7.2.0)
 
   framer-motion@13.5.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
@@ -3154,29 +3149,29 @@ snapshots:
       minipass: 7.1.3
       path-scurry: 3.0.0
 
-  grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1):
+  grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0):
     dependencies:
       '@graphile/lru': 5.0.1
       chalk: 4.1.2
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@7.2.0)
       eventemitter3: 5.0.4
-      graphile-config: 1.1.2(supports-color@8.1.1)
+      graphile-config: 1.1.2(supports-color@7.2.0)
       graphql: 16.15.0
       iterall: 1.3.0
       tslib: 2.9.1
     transitivePeerDependencies:
       - supports-color
 
-  grafserv@1.0.3(@types/node@22.20.5)(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@8.1.1)(use-sync-external-store@1.7.0(react@19.3.1))(ws@8.22.1):
+  grafserv@1.0.3(@types/node@22.20.5)(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)(use-sync-external-store@1.7.0(react@19.3.1))(ws@8.22.1):
     dependencies:
       '@graphile/lru': 5.0.1
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@7.2.0)
       eventemitter3: 5.0.4
-      grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)
-      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1)
+      grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)
+      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0)
       graphql: 16.15.0
       graphql-ws: 6.4.1(graphql@16.15.0)(ws@8.22.1)
-      ruru: 2.0.3(@types/node@22.20.5)(debug@4.4.3(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql-ws@6.4.1(graphql@16.15.0)(ws@8.22.1))(graphql@16.15.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(use-sync-external-store@1.7.0(react@19.3.1))
+      ruru: 2.0.3(@types/node@22.20.5)(debug@4.4.3(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql-ws@6.4.1(graphql@16.15.0)(ws@8.22.1))(graphql@16.15.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(use-sync-external-store@1.7.0(react@19.3.1))
       tslib: 2.9.1
     optionalDependencies:
       ws: 8.22.1
@@ -3192,14 +3187,14 @@ snapshots:
       - supports-color
       - use-sync-external-store
 
-  graphile-build-pg@file:vendor/crystal-3109/graphile-build-pg-5.1.0.tgz(10443de589cc187ce872f8735ddbb797):
+  graphile-build-pg@file:vendor/crystal-3109/graphile-build-pg-5.1.0.tgz(59870bbe7f43299964ec6144d8785924):
     dependencies:
-      '@dataplan/pg': file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@8.1.1)
+      '@dataplan/pg': file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@7.2.0)
       '@types/node': 22.20.5
-      debug: 4.4.3(supports-color@8.1.1)
-      grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)
-      graphile-build: file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(supports-color@8.1.1)
-      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@7.2.0)
+      grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)
+      graphile-build: file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(supports-color@7.2.0)
+      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0)
       graphql: 16.15.0
       jsonwebtoken: 9.0.3
       pg-introspection: 1.0.2
@@ -3211,15 +3206,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  graphile-build@file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(supports-color@8.1.1):
+  graphile-build@file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(supports-color@7.2.0):
     dependencies:
       '@types/node': 22.20.5
       '@types/pluralize': 0.0.33
       '@types/semver': 7.8.0
       chalk: 4.1.2
-      debug: 4.4.3(supports-color@8.1.1)
-      grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)
-      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@7.2.0)
+      grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)
+      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0)
       graphql: 16.15.0
       lodash: 4.18.1
       pluralize: 7.0.0
@@ -3230,10 +3225,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  graphile-config@1.1.2(supports-color@8.1.1):
+  graphile-config@1.1.2(supports-color@7.2.0):
     dependencies:
       chalk: 4.1.2
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@7.2.0)
       interpret: 3.1.1
       semver: 7.8.6
       tslib: 2.9.1
@@ -3241,10 +3236,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1):
+  graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0):
     dependencies:
       chalk: 4.1.2
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@7.2.0)
       interpret: 3.1.1
       semver: 7.8.6
       tslib: 2.9.1
@@ -3252,33 +3247,33 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  graphile-utils@5.1.0(f7b4cb1a3e63e6d87377590ec50c1158):
+  graphile-utils@5.1.0(3ffa0201764b8be10dc3898c558fa554):
     dependencies:
-      '@dataplan/pg': file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@8.1.1)
-      debug: 4.4.3(supports-color@8.1.1)
-      grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)
-      graphile-build: file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(supports-color@8.1.1)
-      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1)
+      '@dataplan/pg': file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@7.2.0)
+      debug: 4.4.3(supports-color@7.2.0)
+      grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)
+      graphile-build: file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(supports-color@7.2.0)
+      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0)
       graphql: 16.15.0
       json5: 2.2.3
       tamedevil: file:vendor/crystal-3109/tamedevil-0.1.1.tgz
       tslib: 2.9.1
     optionalDependencies:
-      graphile-build-pg: file:vendor/crystal-3109/graphile-build-pg-5.1.0.tgz(10443de589cc187ce872f8735ddbb797)
+      graphile-build-pg: file:vendor/crystal-3109/graphile-build-pg-5.1.0.tgz(59870bbe7f43299964ec6144d8785924)
     transitivePeerDependencies:
       - supports-color
 
-  graphile@5.1.1(graphile-build@file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(postgraphile@5.2.1(4c5a079b41faf583fc4ce7bc97f5048a))(supports-color@8.1.1):
+  graphile@5.1.1(graphile-build@file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(postgraphile@5.2.1(b4213e182df5114b0304c2c8d9fe425a))(supports-color@7.2.0):
     dependencies:
-      '@typescript/vfs': 1.6.6(supports-color@8.1.1)(typescript@5.9.3)
+      '@typescript/vfs': 1.6.6(supports-color@7.2.0)(typescript@5.9.3)
       chalk: 4.1.2
-      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1)
+      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0)
       source-map-js: 1.2.2
       tslib: 2.9.1
       typescript: 5.9.3
     optionalDependencies:
-      graphile-build: file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(supports-color@8.1.1)
-      postgraphile: 5.2.1(4c5a079b41faf583fc4ce7bc97f5048a)
+      graphile-build: file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(supports-color@7.2.0)
+      postgraphile: 5.2.1(b4213e182df5114b0304c2c8d9fe425a)
     transitivePeerDependencies:
       - supports-color
 
@@ -3324,10 +3319,10 @@ snapshots:
 
   hookified@2.2.0: {}
 
-  http-proxy@1.18.1(debug@4.4.3(supports-color@8.1.1)):
+  http-proxy@1.18.1(debug@4.4.3(supports-color@7.2.0)):
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.16.2(debug@4.4.3(supports-color@8.1.1))
+      follow-redirects: 1.16.2(debug@4.4.3(supports-color@7.2.0))
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -3589,20 +3584,20 @@ snapshots:
 
   pluralize@7.0.0: {}
 
-  postgraphile@5.2.1(4c5a079b41faf583fc4ce7bc97f5048a):
+  postgraphile@5.2.1(b4213e182df5114b0304c2c8d9fe425a):
     dependencies:
-      '@dataplan/json': file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))
-      '@dataplan/pg': file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@8.1.1)
+      '@dataplan/json': file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))
+      '@dataplan/pg': file:vendor/crystal-3109/dataplan-pg-1.1.0.tgz(@dataplan/json@file:vendor/crystal-3109/dataplan-json-1.0.1.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)))(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(pg-sql2@file:vendor/crystal-3109/pg-sql2-5.0.1.tgz)(pg@8.23.1)(supports-color@7.2.0)
       '@graphile/lru': 5.0.1
       '@types/node': 22.20.5
       '@types/pg': 8.23.1
-      debug: 4.4.3(supports-color@8.1.1)
-      grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1)
-      grafserv: 1.0.3(@types/node@22.20.5)(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@8.1.1)(use-sync-external-store@1.7.0(react@19.3.1))(ws@8.22.1)
-      graphile-build: file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql@16.15.0)(supports-color@8.1.1)
-      graphile-build-pg: file:vendor/crystal-3109/graphile-build-pg-5.1.0.tgz(10443de589cc187ce872f8735ddbb797)
-      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1)
-      graphile-utils: 5.1.0(f7b4cb1a3e63e6d87377590ec50c1158)
+      debug: 4.4.3(supports-color@7.2.0)
+      grafast: file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0)
+      grafserv: 1.0.3(@types/node@22.20.5)(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)(use-sync-external-store@1.7.0(react@19.3.1))(ws@8.22.1)
+      graphile-build: file:vendor/crystal-3109/graphile-build-5.1.0.tgz(grafast@file:vendor/crystal-3109/grafast-1.1.0.tgz(graphql@16.15.0)(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql@16.15.0)(supports-color@7.2.0)
+      graphile-build-pg: file:vendor/crystal-3109/graphile-build-pg-5.1.0.tgz(59870bbe7f43299964ec6144d8785924)
+      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0)
+      graphile-utils: 5.1.0(3ffa0201764b8be10dc3898c558fa554)
       graphql: 16.15.0
       iterall: 1.3.0
       jsonwebtoken: 9.0.3
@@ -3726,12 +3721,12 @@ snapshots:
       - immer
       - use-sync-external-store
 
-  ruru@2.0.3(@types/node@22.20.5)(debug@4.4.3(supports-color@8.1.1))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1))(graphql-ws@6.4.1(graphql@16.15.0)(ws@8.22.1))(graphql@16.15.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(use-sync-external-store@1.7.0(react@19.3.1)):
+  ruru@2.0.3(@types/node@22.20.5)(debug@4.4.3(supports-color@7.2.0))(graphile-config@file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0))(graphql-ws@6.4.1(graphql@16.15.0)(ws@8.22.1))(graphql@16.15.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(use-sync-external-store@1.7.0(react@19.3.1)):
     dependencies:
       '@emotion/is-prop-valid': 1.4.0
-      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@8.1.1)
+      graphile-config: file:vendor/crystal-3109/graphile-config-1.1.0.tgz(supports-color@7.2.0)
       graphql: 16.15.0
-      http-proxy: 1.18.1(debug@4.4.3(supports-color@8.1.1))
+      http-proxy: 1.18.1(debug@4.4.3(supports-color@7.2.0))
       ruru-types: 2.0.1(@types/node@22.20.5)(graphql-ws@6.4.1(graphql@16.15.0)(ws@8.22.1))(graphql@16.15.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(use-sync-external-store@1.7.0(react@19.3.1))
       tslib: 2.9.1
       yargs: 17.7.3
@@ -3753,7 +3748,7 @@ snapshots:
 
   semver@7.8.6: {}
 
-  sentry@0.45.0: {}
+  sentry@0.49.0: {}
 
   set-value@4.1.0:
     dependencies:
@@ -3781,10 +3776,6 @@ snapshots:
       ansi-regex: 5.0.1
 
   supports-color@7.2.0:
-    dependencies:
-      has-flag: 4.0.0
-
-  supports-color@8.1.1:
     dependencies:
       has-flag: 4.0.0
 
@@ -3822,13 +3813,13 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
 
-  typescript-eslint@8.72.2(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3):
+  typescript-eslint@8.72.2(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.72.2(@typescript-eslint/parser@8.72.2(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
-      '@typescript-eslint/parser': 8.72.2(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
-      '@typescript-eslint/typescript-estree': 8.72.2(supports-color@8.1.1)(typescript@6.0.3)
-      '@typescript-eslint/utils': 8.72.2(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
-      eslint: 10.14.0(supports-color@8.1.1)
+      '@typescript-eslint/eslint-plugin': 8.72.2(@typescript-eslint/parser@8.72.2(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+      '@typescript-eslint/parser': 8.72.2(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+      '@typescript-eslint/typescript-estree': 8.72.2(supports-color@7.2.0)(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.72.2(eslint@10.14.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+      eslint: 10.14.0(supports-color@7.2.0)
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
