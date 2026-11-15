@@ -1,14 +1,24 @@
 import * as Sentry from '@sentry/node'
 import { nodeProfilingIntegration } from '@sentry/profiling-node'
 
+// Network identity keys the SDK filtered by default up to v10; v11 sends them unless denied.
+const PII_DENY_KEYS = ['forwarded', '-ip', 'remote-', 'via', '-user']
+
 if (process.env['SENTRY_DSN']) {
   Sentry.init({
     dataCollection: {
+      cookies: false,
+      databaseQueryData: false,
+      graphQL: { document: false, variables: false },
+      httpBodies: [], // bodies are GraphQL documents and variables, like passwords on sign-in, which are excluded above too
+      httpHeaders: {
+        request: { deny: PII_DENY_KEYS },
+        response: { deny: PII_DENY_KEYS },
+      },
+      urlQueryParams: { deny: PII_DENY_KEYS },
       userInfo: false,
-      httpBodies: [], // TODO: implement scrubbing, enable request bodies collection only then
     },
     dsn: process.env['SENTRY_DSN'],
-    enableLogs: true,
     integrations: [nodeProfilingIntegration()],
     profileLifecycle: 'trace',
     profileSessionSampleRate:

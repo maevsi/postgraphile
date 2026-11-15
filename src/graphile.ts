@@ -1,11 +1,6 @@
 import { defaultMaskError } from 'grafserv'
-import { jwtVerify, importSPKI } from 'jose'
+import { importSPKI, jwtVerify } from 'jose'
 
-import { getValidatedEnvironment } from './environment.ts'
-
-const ENVIRONMENT = getValidatedEnvironment([
-  'POSTGRAPHILE_JWT_PUBLIC_KEY',
-] as const)
 const HTTP_STATUS_UNAUTHORIZED = 401
 export const JWT_ALGORITHM = 'ES256'
 export const JWT_AUDIENCE = 'postgraphile'
@@ -19,11 +14,34 @@ const JWT_CLAIMS = [
   'username',
 ]
 export const JWT_ISSUER = 'postgraphile'
-const JWT_PUBLIC_KEY = await importSPKI(
-  ENVIRONMENT.POSTGRAPHILE_JWT_PUBLIC_KEY,
-  JWT_ALGORITHM,
-)
-const ROLE_DEFAULT = 'vibetype_anonymous'
+const JWT_PUBLIC_KEY = process.env['POSTGRAPHILE_JWT_PUBLIC_KEY']
+const JWT_SECRET_KEY = process.env['POSTGRAPHILE_JWT_SECRET_KEY']
+
+if (Boolean(JWT_PUBLIC_KEY) !== Boolean(JWT_SECRET_KEY)) {
+  throw new Error(
+    'Both POSTGRAPHILE_JWT_PUBLIC_KEY and POSTGRAPHILE_JWT_SECRET_KEY must be set to enable JWT authentication',
+  )
+}
+
+// JWT keys, present when JWT authentication is enabled
+const jwtKeys =
+  JWT_PUBLIC_KEY && JWT_SECRET_KEY
+    ? { publicKey: JWT_PUBLIC_KEY, secretKey: JWT_SECRET_KEY }
+    : undefined
+
+export const isJwtEnabled = Boolean(jwtKeys)
+
+// The secret key used to sign JWTs, present when JWT authentication is enabled
+export const jwtSecretKey = jwtKeys?.secretKey
+
+const jwtPublicKey = jwtKeys
+  ? await importSPKI(jwtKeys.publicKey, JWT_ALGORITHM)
+  : undefined
+
+// The role for a request that resolves no role of its own.
+// With JWT authentication enabled, this is the fallback for a valid token without a `role` claim; requests without a token keep running as the connection role.
+// With JWT authentication disabled, this is the role for every request.
+const defaultRole = process.env['POSTGRAPHILE_DEFAULT_ROLE']
 
 export const grafastContext: NonNullable<
   GraphileConfig.GrafastOptions['context']
@@ -36,15 +54,18 @@ export const grafastContext: NonNullable<
     ...args.contextValue.pgSettings,
   }
 
-  if (token) {
+  if (token && isJwtEnabled && jwtPublicKey) {
     try {
-      const claims = await jwtVerify<{ role?: string }>(token, JWT_PUBLIC_KEY, {
+      const claims = await jwtVerify<{ role?: string }>(token, jwtPublicKey, {
         algorithms: [JWT_ALGORITHM],
         audience: JWT_AUDIENCE,
         issuer: JWT_ISSUER,
       })
 
-      pgSettings['role'] = claims.payload.role || ROLE_DEFAULT
+      const role = claims.payload.role || defaultRole
+      if (role) {
+        pgSettings['role'] = role
+      }
 
       for (const [key, value] of Object.entries(claims.payload)) {
         if (!JWT_CLAIMS.includes(key)) continue
@@ -57,8 +78,12 @@ export const grafastContext: NonNullable<
       if (requestContext.node) {
         requestContext.node.res.statusCode = HTTP_STATUS_UNAUTHORIZED
       }
-      throw new Error('JWT verification failed', { cause: e })
+      throw Object.assign(new Error('JWT verification failed', { cause: e }), {
+        statusCode: HTTP_STATUS_UNAUTHORIZED,
+      })
     }
+  } else if (!isJwtEnabled && defaultRole) {
+    pgSettings['role'] = defaultRole
   }
 
   return {

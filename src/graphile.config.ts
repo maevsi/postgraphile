@@ -9,30 +9,34 @@ import { getValidatedEnvironment } from './environment.ts'
 import {
   grafastContext,
   grafservMaskError,
+  isJwtEnabled,
   JWT_ALGORITHM,
   JWT_AUDIENCE,
   JWT_ISSUER,
+  jwtSecretKey,
 } from './graphile.ts'
 import { ConnectionFilterPreset } from './presets/connection-filter.ts'
+import { PasswordStrengthPreset } from './presets/passwordStrength.ts'
 import { TurnstilePreset } from './presets/turnstile.ts'
 
 const ENVIRONMENT = getValidatedEnvironment([
   'POSTGRAPHILE_CONNECTION',
   'POSTGRAPHILE_OWNER_CONNECTION',
-  'POSTGRAPHILE_JWT_SECRET_KEY',
+  'POSTGRAPHILE_SCHEMA',
 ] as const)
 const ENVIRONMENT_DEVELOPMENT = process.env['GRAPHILE_ENV'] === 'development'
-const SCHEMA_NAME = 'vibetype'
+const SCHEMA_NAME = ENVIRONMENT.POSTGRAPHILE_SCHEMA
 
 const preset: GraphileConfig.Preset = {
   extends: [
     PostGraphileAmberPreset,
     TurnstilePreset,
+    PasswordStrengthPreset,
     postgisPreset,
     ConnectionFilterPreset,
   ],
   gather: {
-    pgJwtTypes: [`${SCHEMA_NAME}.jwt`],
+    ...(isJwtEnabled ? { pgJwtTypes: [`${SCHEMA_NAME}.jwt`] } : {}),
   },
   grafast: {
     context: grafastContext,
@@ -55,13 +59,17 @@ const preset: GraphileConfig.Preset = {
   schema: {
     dontSwallowErrors: !ENVIRONMENT_DEVELOPMENT,
     pgForbidSetofFunctionsToReturnNull: true,
-    pgJwtSecret: ENVIRONMENT.POSTGRAPHILE_JWT_SECRET_KEY,
-    pgJwtSignOptions: {
-      algorithm: JWT_ALGORITHM,
-      audience: JWT_AUDIENCE,
-      issuer: JWT_ISSUER,
-    },
     retryOnInitFail: true, // required to prevent postgraphile from caching a connection failure and never completing startup
+    ...(isJwtEnabled && jwtSecretKey
+      ? {
+          pgJwtSecret: jwtSecretKey,
+          pgJwtSignOptions: {
+            algorithm: JWT_ALGORITHM,
+            audience: JWT_AUDIENCE,
+            issuer: JWT_ISSUER,
+          },
+        }
+      : {}),
   },
 }
 
