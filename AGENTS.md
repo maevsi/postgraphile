@@ -49,6 +49,8 @@ This project is a PostGraphile v5 server that converts a PostgreSQL schema into 
 ## Workflow
 
 - Lint with `pnpm run lint`.
+- A change is breaking when it removes or changes something a client relies on, or when it only works with something new from another service of the stack, for example a column that only a newer `sqitch` provides
+  - Breaking changes get `!` in the title and target a `beta` branch, where they wait until the stack releases the majors of its services together; the rules are in [`stack`'s release bundle document](https://github.com/maevsi/stack/blob/main/docs/release-bundle.md)
 
 ## General
 
