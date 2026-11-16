@@ -160,10 +160,18 @@ echo "::group::Set up database schema"
 # prove that POSTGRAPHILE_DEFAULT_ROLE is applied.
 # `account` also carries the '@turnstileProtected' tag, so its mutations are
 # covered by the Turnstile assertions.
+# `event` holds one row per combination of a past or future end, with and
+# without an explicit end, for the `hasEnded` condition assertions.
 docker exec "$CONTAINER_DB" psql -U postgres -d postgraphile -c '
   CREATE SCHEMA smoke_test;
   CREATE TABLE smoke_test.account (id serial PRIMARY KEY);
   INSERT INTO smoke_test.account DEFAULT VALUES;
+  CREATE TABLE smoke_test.event (id integer PRIMARY KEY, start timestamptz NOT NULL, "end" timestamptz);
+  INSERT INTO smoke_test.event (id, start, "end") VALUES
+    (1, now() - $$2 days$$::interval, now() - $$1 day$$::interval),
+    (2, now() - $$1 day$$::interval, now() + $$1 day$$::interval),
+    (3, now() - $$1 day$$::interval, NULL),
+    (4, now() + $$1 day$$::interval, NULL);
   CREATE TABLE smoke_test.secret (id serial PRIMARY KEY);
   INSERT INTO smoke_test.secret DEFAULT VALUES;
   COMMENT ON TABLE smoke_test.account IS $$@turnstileProtected$$;
@@ -227,6 +235,28 @@ if [ "$STATUS_CODE" != "422" ]; then
   exit 1
 fi
 echo "$BODY" | jq -e '.errors[0].message == "Turnstile token not provided"' || fail "$CONTAINER_JWT"
+
+# Event 2 would count as ended when judged by `start` alone, and event 3 would
+# never count as ended when judged by `"end"` alone.
+RESPONSE="$(graphql_query "$HOST_PORT_JWT" '{"query":"{ allEvents(condition: {hasEnded: false}) { nodes { rowId } } }"}')"
+echo "Events not ended: $RESPONSE"
+echo "$RESPONSE" | jq -e '([.data.allEvents.nodes[].rowId] | sort) == [2, 4] and (.errors | not)' || fail "$CONTAINER_JWT"
+
+RESPONSE="$(graphql_query "$HOST_PORT_JWT" '{"query":"{ allEvents(condition: {hasEnded: true}) { nodes { rowId } } }"}')"
+echo "Events ended: $RESPONSE"
+echo "$RESPONSE" | jq -e '([.data.allEvents.nodes[].rowId] | sort) == [1, 3] and (.errors | not)' || fail "$CONTAINER_JWT"
+
+RESPONSE="$(graphql_query "$HOST_PORT_JWT" '{"query":"{ allEvents { nodes { rowId } } }"}')"
+echo "Events unconditioned: $RESPONSE"
+echo "$RESPONSE" | jq -e '([.data.allEvents.nodes[].rowId] | sort) == [1, 2, 3, 4] and (.errors | not)' || fail "$CONTAINER_JWT"
+
+RESPONSE="$(graphql_query "$HOST_PORT_JWT" '{"query":"{ __type(name: \"EventCondition\") { inputFields { name type { name } } } }"}')"
+echo "EventCondition fields: $RESPONSE"
+echo "$RESPONSE" | jq -e 'any(.data.__type.inputFields[]; .name == "hasEnded" and .type.name == "Boolean")' || fail "$CONTAINER_JWT"
+
+# The condition replaces a `filter` argument, so none may exist on any field.
+RESPONSE="$(graphql_query "$HOST_PORT_JWT" '{"query":"{ __schema { types { fields { args { name } } } } }"}')"
+echo "$RESPONSE" | jq -e '[.data.__schema.types[].fields // [] | .[].args[].name] | (length > 0) and (index("filter") | not)' || fail "$CONTAINER_JWT"
 echo "Run 1 OK."
 echo "::endgroup::"
 

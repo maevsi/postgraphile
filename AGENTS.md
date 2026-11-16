@@ -23,6 +23,7 @@ This project is a PostGraphile v5 server that converts a PostgreSQL schema into 
 - `src/presets/turnstile.ts` contains the Turnstile verification preset.
 - `src/presets/passwordStrength.ts` contains the zxcvbn password strength preset.
 - `src/presets/graphqlOperation.ts` resolves the operation a request will actually execute, shared by the presets above.
+- `src/presets/eventHasEnded.ts` contains the preset adding the `hasEnded` condition to events.
 
 ## JWT
 
@@ -31,6 +32,12 @@ This project is a PostGraphile v5 server that converts a PostgreSQL schema into 
 - PostgreSQL composite type: `<POSTGRAPHILE_SCHEMA>.jwt`
 - Role for a request: the token's `role` claim, falling back to `POSTGRAPHILE_DEFAULT_ROLE`; requests without a token run as the connection role
 - Invalid tokens are rejected with HTTP 401 (set via `statusCode` on the thrown error, because grafserv derives the response status from the error object)
+
+## Event condition
+
+- `EventCondition.hasEnded` selects events by `COALESCE("end", start) < now()` (`true`) or `>= now()` (`false`), so an event without an end ends at its start, as in iCalendar (RFC 5545)
+- `now()` is the database clock, so clients send no timestamp
+- It applies to the table `event` in `POSTGRAPHILE_SCHEMA`; a schema without that table logs `WARNING: failed to add condition 'hasEnded'` on every schema build
 
 ## Workflow
 
