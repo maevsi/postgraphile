@@ -23,7 +23,7 @@ This project is a PostGraphile v5 server that converts a PostgreSQL schema into 
 - `src/presets/turnstile.ts` contains the Turnstile verification preset.
 - `src/presets/passwordStrength.ts` contains the zxcvbn password strength preset.
 - `src/presets/graphqlOperation.ts` resolves the operation a request will actually execute, shared by the presets above.
-- `src/presets/eventHasEnded.ts` contains the preset adding the `hasEnded` condition to events.
+- `src/presets/eventCondition.ts` contains the preset adding the `hasEnded` and time range conditions to events.
 
 ## JWT
 
@@ -35,9 +35,16 @@ This project is a PostGraphile v5 server that converts a PostgreSQL schema into 
 
 ## Event condition
 
-- `EventCondition.hasEnded` selects events by `COALESCE("end", start) < now()` (`true`) or `>= now()` (`false`), so an event without an end ends at its start, as in iCalendar (RFC 5545)
-- `now()` is the database clock, so clients send no timestamp
-- It applies to the table `event` in `POSTGRAPHILE_SCHEMA`; a schema without that table logs `WARNING: failed to add condition 'hasEnded'` on every schema build
+- The conditions compare `effective_end`, a stored generated column `COALESCE("end", start)` that `maevsi/sqitch` provides and hides from the GraphQL schema with `@behavior -*`, so an event without an end ends at its start, as in iCalendar (RFC 5545)
+  - Under row level security Postgres uses an index on that plain column but not one on the expression
+- `EventCondition.hasEnded` selects events by `effective_end < now()` (`true`) or `>= now()` (`false`)
+  - `now()` is the database clock, so clients send no timestamp
+- `EventCondition.startsFrom` and `startsBefore` select events by `start >= value` and `start < value`
+- `EventCondition.endsFrom` and `endsBefore` select events by `effective_end >= value` and `effective_end < value`
+- The ranges are half-open, so `startsBefore` and `endsFrom` together select every event overlapping a window, and `startsFrom` and `startsBefore` every event starting in it
+- A null or omitted condition adds nothing
+- They apply to the table `event` in `POSTGRAPHILE_SCHEMA`; a schema without that table logs `WARNING: failed to add condition '<name>'` for each of them on every schema build
+- An `event` table without `effective_end` still builds the schema, but every query using one of these conditions fails
 
 ## Workflow
 

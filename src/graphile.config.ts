@@ -15,7 +15,7 @@ import {
   JWT_ISSUER,
   jwtSecretKey,
 } from './graphile.ts'
-import { EventHasEndedPreset } from './presets/eventHasEnded.ts'
+import { EventConditionPreset } from './presets/eventCondition.ts'
 import { PasswordStrengthPreset } from './presets/passwordStrength.ts'
 import { TurnstilePreset } from './presets/turnstile.ts'
 
@@ -32,7 +32,7 @@ const preset: GraphileConfig.Preset = {
     PostGraphileAmberPreset,
     TurnstilePreset,
     PasswordStrengthPreset,
-    EventHasEndedPreset,
+    EventConditionPreset,
     postgisPreset,
   ],
   gather: {

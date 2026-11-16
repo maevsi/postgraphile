@@ -161,19 +161,21 @@ echo "::group::Set up database schema"
 # `account` also carries the '@turnstileProtected' tag, so its mutations are
 # covered by the Turnstile assertions.
 # `event` holds one row per combination of a past or future end, with and
-# without an explicit end, for the `hasEnded` condition assertions.
+# without an explicit end, for the event condition assertions.
+# The past rows have fixed timestamps, so the range bounds can hit them exactly.
 docker exec "$CONTAINER_DB" psql -U postgres -d postgraphile -c '
   CREATE SCHEMA smoke_test;
   CREATE TABLE smoke_test.account (id serial PRIMARY KEY);
   INSERT INTO smoke_test.account DEFAULT VALUES;
-  CREATE TABLE smoke_test.event (id integer PRIMARY KEY, start timestamptz NOT NULL, "end" timestamptz);
+  CREATE TABLE smoke_test.event (id integer PRIMARY KEY, start timestamptz NOT NULL, "end" timestamptz, effective_end timestamptz GENERATED ALWAYS AS (COALESCE("end", start)) STORED);
   INSERT INTO smoke_test.event (id, start, "end") VALUES
-    (1, now() - $$2 days$$::interval, now() - $$1 day$$::interval),
+    (1, $$2020-01-01T00:00:00Z$$, $$2020-01-05T00:00:00Z$$),
     (2, now() - $$1 day$$::interval, now() + $$1 day$$::interval),
-    (3, now() - $$1 day$$::interval, NULL),
+    (3, $$2020-01-03T00:00:00Z$$, NULL),
     (4, now() + $$1 day$$::interval, NULL);
   CREATE TABLE smoke_test.secret (id serial PRIMARY KEY);
   INSERT INTO smoke_test.secret DEFAULT VALUES;
+  COMMENT ON COLUMN smoke_test.event.effective_end IS $$@behavior -*$$;
   COMMENT ON TABLE smoke_test.account IS $$@turnstileProtected$$;
   CREATE ROLE smoke_role NOLOGIN;
   GRANT USAGE ON SCHEMA smoke_test TO smoke_role;
@@ -250,9 +252,31 @@ RESPONSE="$(graphql_query "$HOST_PORT_JWT" '{"query":"{ allEvents { nodes { rowI
 echo "Events unconditioned: $RESPONSE"
 echo "$RESPONSE" | jq -e '([.data.allEvents.nodes[].rowId] | sort) == [1, 2, 3, 4] and (.errors | not)' || fail "$CONTAINER_JWT"
 
+# Each bound equals a fixed row instant, so `From` must include it and `Before` must exclude it.
+# Event 3 has no end, so it ends at its start.
+assert_events() {
+  local condition="$1"
+  local expected="$2"
+  RESPONSE="$(graphql_query "$HOST_PORT_JWT" "{\"query\":\"{ allEvents(condition: {${condition}}) { nodes { rowId } } }\"}")"
+  echo "Events ${condition}: $RESPONSE"
+  echo "$RESPONSE" | jq -e --argjson expected "$expected" '([.data.allEvents.nodes[].rowId] | sort) == $expected and (.errors | not)' || fail "$CONTAINER_JWT"
+}
+assert_events 'endsBefore: \"2020-01-05T00:00:00Z\"' '[3]'
+assert_events 'endsFrom: \"2020-01-05T00:00:00Z\"' '[1, 2, 4]'
+assert_events 'startsBefore: \"2020-01-03T00:00:00Z\"' '[1]'
+assert_events 'startsFrom: \"2020-01-03T00:00:00Z\"' '[2, 3, 4]'
+# Everything overlapping the window from 2020-01-04 until now: event 3 ended before it, event 4 starts after it.
+assert_events "startsBefore: \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\", endsFrom: \\\"2020-01-04T00:00:00Z\\\"" '[1, 2]'
+
 RESPONSE="$(graphql_query "$HOST_PORT_JWT" '{"query":"{ __type(name: \"EventCondition\") { inputFields { name type { name } } } }"}')"
 echo "EventCondition fields: $RESPONSE"
 echo "$RESPONSE" | jq -e 'any(.data.__type.inputFields[]; .name == "hasEnded" and .type.name == "Boolean")' || fail "$CONTAINER_JWT"
+echo "$RESPONSE" | jq -e '[.data.__type.inputFields[] | [.name, .type.name]] | sort == [["endsBefore", "Datetime"], ["endsFrom", "Datetime"], ["hasEnded", "Boolean"], ["rowId", "Int"], ["startsBefore", "Datetime"], ["startsFrom", "Datetime"]]' || fail "$CONTAINER_JWT"
+
+# `effective_end` is tagged `@behavior -*`, so it must stay out of the schema.
+RESPONSE="$(graphql_query "$HOST_PORT_JWT" '{"query":"{ __type(name: \"Event\") { fields { name } } }"}')"
+echo "Event fields: $RESPONSE"
+echo "$RESPONSE" | jq -e '[.data.__type.fields[].name] | (index("start") != null) and (index("effectiveEnd") | not)' || fail "$CONTAINER_JWT"
 
 # The condition replaces a `filter` argument, so none may exist on any field.
 RESPONSE="$(graphql_query "$HOST_PORT_JWT" '{"query":"{ __schema { types { fields { args { name } } } } }"}')"
