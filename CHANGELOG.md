@@ -1,3 +1,9 @@
+## [3.1.0](https://github.com/maevsi/postgraphile/compare/3.0.0...3.1.0) (2026-11-16)
+
+### Features
+
+* **event:** add conditions for ended events and time ranges ([#63](https://github.com/maevsi/postgraphile/issues/63)) ([d853e81](https://github.com/maevsi/postgraphile/commit/d853e81394ba2d8ba8a88dbbe3efc5106c670235))
+
 ## [3.0.0](https://github.com/maevsi/postgraphile/compare/2.3.3...3.0.0) (2026-11-09)
 
 ### ⚠ BREAKING CHANGES
