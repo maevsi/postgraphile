@@ -23,7 +23,7 @@ This project is a PostGraphile v5 server that converts a PostgreSQL schema into 
 - `src/presets/turnstile.ts` contains the Turnstile verification preset.
 - `src/presets/passwordStrength.ts` contains the zxcvbn password strength preset.
 - `src/presets/graphqlOperation.ts` resolves the operation a request will actually execute, shared by the presets above.
-- `src/presets/eventCondition.ts` contains the preset adding the `hasEnded` and time range conditions to events.
+- `src/presets/eventCondition.ts` contains the preset adding the `hasEnded`, `isAttending` and time range conditions to events.
 
 ## JWT
 
@@ -41,6 +41,9 @@ This project is a PostGraphile v5 server that converts a PostgreSQL schema into 
   - `now()` is the database clock, so clients send no timestamp
 - `EventCondition.startsFrom` and `startsBefore` select events by `start >= value` and `start < value`
 - `EventCondition.endsFrom` and `endsBefore` select events by `effective_end >= value` and `effective_end < value`
+- `EventCondition.isAttending` selects events for which one of the invoker's contacts has a guest row with feedback `accepted` (`true`), or none (`false`)
+  - It is a correlated `exists` over `guest` and `contact` on `contact.account_id = invoker_account_id()`, run under row level security, so anonymous requests match no event for `true`
+  - Combined with `hasEnded` and `orderBy` it serves a "my events" page, upcoming (`hasEnded: false`, `START_ASC`) and past (`hasEnded: true`, `START_DESC`), paged through the connection arguments
 - The ranges are half-open, so `startsBefore` and `endsFrom` together select every event overlapping a window, and `startsFrom` and `startsBefore` every event starting in it
 - A null or omitted condition adds nothing
 - They apply to the table `event` in `POSTGRAPHILE_SCHEMA`; a schema without that table logs `WARNING: failed to add condition '<name>'` for each of them on every schema build
