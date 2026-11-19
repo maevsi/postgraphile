@@ -32,6 +32,32 @@ const EventHasEndedPlugin = addPgTableCondition(
   }),
 )
 
+// The invoker attends an event when one of their contacts has an accepted guest row for it.
+// Guest and contact row level security apply, so the subquery sees only what the invoker may see, and the planner turns it into a semi join that starts at `contact(account_id)` and reaches `guest(contact_id)`, so the cost follows the invoker's own guests, not the event count.
+const EventIsAttendingPlugin = addPgTableCondition(
+  EVENT,
+  'isAttending',
+  ({ graphql: { GraphQLBoolean } }) => ({
+    apply(condition: PgCondition, value: boolean | null) {
+      if (value === null) return
+
+      const attending = sql`exists (
+        select 1
+        from ${sql.identifier(POSTGRAPHILE_SCHEMA, 'guest')} g
+        join ${sql.identifier(POSTGRAPHILE_SCHEMA, 'contact')} c on c.id = g.contact_id
+        where g.event_id = ${condition.alias}.id
+          and g.feedback = 'accepted'
+          and c.account_id = ${sql.identifier(POSTGRAPHILE_SCHEMA, 'invoker_account_id')}()
+      )`
+
+      condition.where(value ? attending : sql`not ${attending}`)
+    },
+    description:
+      'Whether the invoker attends the event, that is whether one of their contacts accepted a guest invitation to it. Combine with `hasEnded` to split upcoming from past events.',
+    type: GraphQLBoolean,
+  }),
+)
+
 const EventRangePlugins = (
   [
     [
@@ -86,5 +112,5 @@ const EventRangePlugins = (
 )
 
 export const EventConditionPreset: GraphileConfig.Preset = {
-  plugins: [EventHasEndedPlugin, ...EventRangePlugins],
+  plugins: [EventHasEndedPlugin, EventIsAttendingPlugin, ...EventRangePlugins],
 }
