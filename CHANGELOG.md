@@ -1,3 +1,9 @@
+## [3.2.0](https://github.com/maevsi/postgraphile/compare/3.1.0...3.2.0) (2026-11-19)
+
+### Features
+
+* **event:** add attending condition ([#67](https://github.com/maevsi/postgraphile/issues/67)) ([9a76a06](https://github.com/maevsi/postgraphile/commit/9a76a06788e6c2000528955d52b82bdbb735cb36))
+
 ## [3.1.0](https://github.com/maevsi/postgraphile/compare/3.0.0...3.1.0) (2026-11-16)
 
 ### Features
