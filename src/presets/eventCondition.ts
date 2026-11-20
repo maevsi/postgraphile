@@ -58,6 +58,38 @@ const EventIsAttendingPlugin = addPgTableCondition(
   }),
 )
 
+// The invoker is invited to an event when they hold a claim to one of its guest rows, as after opening an invitation link, or when one of their contacts has a guest row for it, whatever the feedback.
+// This mirrors `vibetype_private.events_invited()` in `maevsi/sqitch`, which the event row level security uses but which the private schema keeps out of GraphQL.
+const EventIsInvitedPlugin = addPgTableCondition(
+  EVENT,
+  'isInvited',
+  ({ graphql: { GraphQLBoolean } }) => ({
+    apply(condition: PgCondition, value: boolean | null) {
+      if (value === null) return
+
+      const invited = sql`exists (
+        select 1
+        from ${sql.identifier(POSTGRAPHILE_SCHEMA, 'guest')} g
+        where g.event_id = ${condition.alias}.id
+          and (
+            g.id = any (${sql.identifier(POSTGRAPHILE_SCHEMA, 'guest_claim_array')}())
+            or exists (
+              select 1
+              from ${sql.identifier(POSTGRAPHILE_SCHEMA, 'contact')} c
+              where c.id = g.contact_id
+                and c.account_id = ${sql.identifier(POSTGRAPHILE_SCHEMA, 'invoker_account_id')}()
+            )
+          )
+      )`
+
+      condition.where(value ? invited : sql`not ${invited}`)
+    },
+    description:
+      'Whether the invoker is invited to the event, that is whether they claimed one of its guest invitations or one of their contacts was invited to it, whatever the feedback. Combine with `hasEnded` to split upcoming from past invitations.',
+    type: GraphQLBoolean,
+  }),
+)
+
 const EventRangePlugins = (
   [
     [
@@ -112,5 +144,10 @@ const EventRangePlugins = (
 )
 
 export const EventConditionPreset: GraphileConfig.Preset = {
-  plugins: [EventHasEndedPlugin, EventIsAttendingPlugin, ...EventRangePlugins],
+  plugins: [
+    EventHasEndedPlugin,
+    EventIsAttendingPlugin,
+    EventIsInvitedPlugin,
+    ...EventRangePlugins,
+  ],
 }

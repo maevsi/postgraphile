@@ -163,7 +163,7 @@ echo "::group::Set up database schema"
 # `event` holds one row per combination of a past or future end, with and
 # without an explicit end, for the event condition assertions.
 # The past rows have fixed timestamps, so the range bounds can hit them exactly.
-# `contact` and `guest` let account 1, the stubbed invoker, accept events 1 and 4 and cancel event 2, while account 2 accepts event 3, for the attendance assertions.
+# `contact` and `guest` let account 1, the stubbed invoker, accept events 1 and 4 and cancel event 2, while account 2 accepts event 3, for the attendance and invitation assertions; `guest_claim_array` holds no claims.
 docker exec "$CONTAINER_DB" psql -U postgres -d postgraphile -c '
   CREATE SCHEMA smoke_test;
   CREATE TABLE smoke_test.account (id serial PRIMARY KEY);
@@ -184,6 +184,8 @@ docker exec "$CONTAINER_DB" psql -U postgres -d postgraphile -c '
     (4, 2, 3, $$accepted$$);
   CREATE FUNCTION smoke_test.invoker_account_id() RETURNS integer LANGUAGE sql STABLE AS $$SELECT 1$$;
   COMMENT ON FUNCTION smoke_test.invoker_account_id() IS $$@behavior -*$$;
+  CREATE FUNCTION smoke_test.guest_claim_array() RETURNS integer[] LANGUAGE sql STABLE AS $$SELECT ARRAY[]::integer[]$$;
+  COMMENT ON FUNCTION smoke_test.guest_claim_array() IS $$@behavior -*$$;
   CREATE TABLE smoke_test.secret (id serial PRIMARY KEY);
   INSERT INTO smoke_test.secret DEFAULT VALUES;
   COMMENT ON COLUMN smoke_test.event.effective_end IS $$@behavior -*$$;
@@ -282,11 +284,14 @@ assert_events "startsBefore: \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\", endsFrom: \
 assert_events 'isAttending: true' '[1, 4]'
 assert_events 'isAttending: false' '[2, 3]'
 assert_events 'isAttending: true, hasEnded: false' '[4]'
+# Invited counts event 2 despite its cancellation, while event 3 stays out because only another account was invited to it.
+assert_events 'isInvited: true' '[1, 2, 4]'
+assert_events 'isInvited: false' '[3]'
 
 RESPONSE="$(graphql_query "$HOST_PORT_JWT" '{"query":"{ __type(name: \"EventCondition\") { inputFields { name type { name } } } }"}')"
 echo "EventCondition fields: $RESPONSE"
 echo "$RESPONSE" | jq -e 'any(.data.__type.inputFields[]; .name == "hasEnded" and .type.name == "Boolean")' || fail "$CONTAINER_JWT"
-echo "$RESPONSE" | jq -e '[.data.__type.inputFields[] | [.name, .type.name]] | sort == [["endsBefore", "Datetime"], ["endsFrom", "Datetime"], ["hasEnded", "Boolean"], ["isAttending", "Boolean"], ["rowId", "Int"], ["startsBefore", "Datetime"], ["startsFrom", "Datetime"]]' || fail "$CONTAINER_JWT"
+echo "$RESPONSE" | jq -e '[.data.__type.inputFields[] | [.name, .type.name]] | sort == [["endsBefore", "Datetime"], ["endsFrom", "Datetime"], ["hasEnded", "Boolean"], ["isAttending", "Boolean"], ["isInvited", "Boolean"], ["rowId", "Int"], ["startsBefore", "Datetime"], ["startsFrom", "Datetime"]]' || fail "$CONTAINER_JWT"
 
 # `effective_end` is tagged `@behavior -*`, so it must stay out of the schema.
 RESPONSE="$(graphql_query "$HOST_PORT_JWT" '{"query":"{ __type(name: \"Event\") { fields { name } } }"}')"
