@@ -163,7 +163,7 @@ echo "::group::Set up database schema"
 # `event` holds one row per combination of a past or future end, with and
 # without an explicit end, for the event condition assertions.
 # The past rows have fixed timestamps, so the range bounds can hit them exactly.
-# Events carry a `name` and a `created_by` account, and `event_search_match` is a stand-in for the sqitch matcher that returns the events whose name contains the query, for the search condition assertions.
+# Events carry a `name` and an indexed `created_by` account, which PostGraphile needs to offer `createdBy` as a condition, and `event_search_match` is a stand-in for the sqitch matcher that returns the events whose name contains the query, for the search condition assertions.
 # `contact` and `guest` let account 1, the stubbed invoker, accept events 1 and 4 and cancel event 2, while account 2 accepts event 3, for the attendance and invitation assertions; `guest_claim_array` holds no claims.
 docker exec "$CONTAINER_DB" psql -U postgres -d postgraphile -c '
   CREATE SCHEMA smoke_test;
@@ -175,6 +175,7 @@ docker exec "$CONTAINER_DB" psql -U postgres -d postgraphile -c '
     (2, $$Summer Concert$$, 2, now() - $$1 day$$::interval, now() + $$1 day$$::interval),
     (3, $$Winter Party$$, 1, $$2020-01-03T00:00:00Z$$, NULL),
     (4, $$Autumn Party$$, 2, now() + $$1 day$$::interval, NULL);
+  CREATE INDEX idx_event_created_by ON smoke_test.event (created_by);
   CREATE FUNCTION smoke_test.event_search_match(query text) RETURNS TABLE(event_id integer, score real) LANGUAGE sql STABLE STRICT AS $$SELECT e.id, 1::real FROM smoke_test.event e WHERE strpos(lower(e.name), lower(event_search_match.query)) > 0$$;
   COMMENT ON FUNCTION smoke_test.event_search_match(text) IS $$@behavior -*$$;
   CREATE TABLE smoke_test.contact (id integer PRIMARY KEY, account_id integer);
@@ -299,7 +300,7 @@ assert_events 'createdBy: 1, search: \"  \"' '[1, 3]'
 RESPONSE="$(graphql_query "$HOST_PORT_JWT" '{"query":"{ __type(name: \"EventCondition\") { inputFields { name type { name } } } }"}')"
 echo "EventCondition fields: $RESPONSE"
 echo "$RESPONSE" | jq -e 'any(.data.__type.inputFields[]; .name == "hasEnded" and .type.name == "Boolean")' || fail "$CONTAINER_JWT"
-echo "$RESPONSE" | jq -e '[.data.__type.inputFields[] | [.name, .type.name]] | sort == [["createdBy", "Int"], ["endsBefore", "Datetime"], ["endsFrom", "Datetime"], ["hasEnded", "Boolean"], ["isAttending", "Boolean"], ["isInvited", "Boolean"], ["name", "String"], ["rowId", "Int"], ["search", "String"], ["startsBefore", "Datetime"], ["startsFrom", "Datetime"]]' || fail "$CONTAINER_JWT"
+echo "$RESPONSE" | jq -e '[.data.__type.inputFields[] | [.name, .type.name]] | sort == [["createdBy", "Int"], ["endsBefore", "Datetime"], ["endsFrom", "Datetime"], ["hasEnded", "Boolean"], ["isAttending", "Boolean"], ["isInvited", "Boolean"], ["rowId", "Int"], ["search", "String"], ["startsBefore", "Datetime"], ["startsFrom", "Datetime"]]' || fail "$CONTAINER_JWT"
 
 # `effective_end` is tagged `@behavior -*`, so it must stay out of the schema.
 RESPONSE="$(graphql_query "$HOST_PORT_JWT" '{"query":"{ __type(name: \"Event\") { fields { name } } }"}')"
