@@ -1,3 +1,9 @@
+## [3.4.0](https://github.com/maevsi/postgraphile/compare/3.3.0...3.4.0) (2026-11-20)
+
+### Features
+
+* **event:** add search condition ([#69](https://github.com/maevsi/postgraphile/issues/69)) ([49c8026](https://github.com/maevsi/postgraphile/commit/49c802641b6ae6f24e67feb7b71fd7fda5852a9a))
+
 ## [3.3.0](https://github.com/maevsi/postgraphile/compare/3.2.0...3.3.0) (2026-11-20)
 
 ### Features
