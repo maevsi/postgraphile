@@ -90,6 +90,29 @@ const EventIsInvitedPlugin = addPgTableCondition(
   }),
 )
 
+// A condition instead of the `eventSearch` function, because PostGraphile omits condition and `orderBy` arguments on function connections, so the function cannot be scoped, while a condition composes with others such as `createdBy`.
+// The ids come from `event_search_match`, which skips the relevance ranking `eventSearch` applies, so the order stays with the query's `orderBy`, which is acceptable for the events of one account.
+// The outer query reads `event` as the invoker, so row level security still drops every event the invoker may not see, although the matcher itself is security definer.
+// A null or blank value adds nothing, as an empty search box applies no filter.
+const EventSearchPlugin = addPgTableCondition(
+  EVENT,
+  'search',
+  ({ graphql: { GraphQLString } }) => ({
+    apply(condition: PgCondition, value: string | null) {
+      const trimmed = value?.trim()
+
+      if (!trimmed) return
+
+      condition.where(
+        sql`${condition.alias}.id in (select event_id from ${sql.identifier(POSTGRAPHILE_SCHEMA, 'event_search_match')}(${sql.value(trimmed)}))`,
+      )
+    },
+    description:
+      'Events matching the search text by prefix on their name and description, or by similarity to their name. A blank text matches every event. Combine with other conditions such as `createdBy` to search within a subset.',
+    type: GraphQLString,
+  }),
+)
+
 const EventRangePlugins = (
   [
     [
@@ -148,6 +171,7 @@ export const EventConditionPreset: GraphileConfig.Preset = {
     EventHasEndedPlugin,
     EventIsAttendingPlugin,
     EventIsInvitedPlugin,
+    EventSearchPlugin,
     ...EventRangePlugins,
   ],
 }

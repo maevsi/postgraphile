@@ -23,7 +23,7 @@ This project is a PostGraphile v5 server that converts a PostgreSQL schema into 
 - `src/presets/turnstile.ts` contains the Turnstile verification preset.
 - `src/presets/passwordStrength.ts` contains the zxcvbn password strength preset.
 - `src/presets/graphqlOperation.ts` resolves the operation a request will actually execute, shared by the presets above.
-- `src/presets/eventCondition.ts` contains the preset adding the `hasEnded`, `isAttending`, `isInvited` and time range conditions to events.
+- `src/presets/eventCondition.ts` contains the preset adding the `hasEnded`, `isAttending`, `isInvited`, `search` and time range conditions to events.
 
 ## JWT
 
@@ -47,6 +47,9 @@ This project is a PostGraphile v5 server that converts a PostgreSQL schema into 
 - `EventCondition.isInvited` selects events for which the invoker claimed a guest row, or one of their contacts has a guest row with any feedback (`true`), or neither (`false`)
   - It mirrors `vibetype_private.events_invited()` from `maevsi/sqitch`, which the event row level security uses but GraphQL cannot reach, so a change to who counts as invited belongs in both
   - Combined with `hasEnded` and `orderBy` it serves an invitations page the same way `isAttending` serves "my events"
+- `EventCondition.search` selects events whose id `vibetype.event_search_match(query)` returns, the matcher behind `eventSearch`, for the trimmed text; null or blank adds nothing
+  - It exists because condition and `orderBy` arguments are omitted on function connections, so `eventSearch` cannot be scoped, while `allEvents(condition: {createdBy: $id, search: $query})` can
+  - Ordering stays with `orderBy`, with no relevance ranking, and event row level security still applies because the outer query reads `event` as the invoker
 - The ranges are half-open, so `startsBefore` and `endsFrom` together select every event overlapping a window, and `startsFrom` and `startsBefore` every event starting in it
 - A null or omitted condition adds nothing
 - They apply to the table `event` in `POSTGRAPHILE_SCHEMA`; a schema without that table logs `WARNING: failed to add condition '<name>'` for each of them on every schema build
