@@ -1,3 +1,9 @@
+## [3.3.0](https://github.com/maevsi/postgraphile/compare/3.2.0...3.3.0) (2026-11-20)
+
+### Features
+
+* **event:** add invited condition ([#68](https://github.com/maevsi/postgraphile/issues/68)) ([d1fc691](https://github.com/maevsi/postgraphile/commit/d1fc69107e797d186e1e2156a5631efa716d44fd))
+
 ## [3.2.0](https://github.com/maevsi/postgraphile/compare/3.1.0...3.2.0) (2026-11-19)
 
 ### Features
