@@ -17,7 +17,7 @@ This project is a PostGraphile v5 server that converts a PostgreSQL schema into 
 ## Files
 
 - `src/graphile.config.ts` contains the main PostGraphile configuration.
-- `src/graphile.ts` contains scripted logic (JWT verification, default role).
+- `src/graphile.ts` contains scripted logic (JWT verification, default role, event link).
 - `src/environment.ts` contains type-safe environment variable utilities.
 - `src/instrument.ts` contains the Sentry initialization.
 - `src/presets/turnstile.ts` contains the Turnstile verification preset.
@@ -32,6 +32,12 @@ This project is a PostGraphile v5 server that converts a PostgreSQL schema into 
 - PostgreSQL composite type: `<POSTGRAPHILE_SCHEMA>.jwt`
 - Role for a request: the token's `role` claim, falling back to `POSTGRAPHILE_DEFAULT_ROLE`; requests without a token run as the connection role
 - Invalid tokens are rejected with HTTP 401 (set via `statusCode` on the thrown error, because grafserv derives the response status from the error object)
+
+## Event link
+
+- A request's `Event-Link` header, `<username>/<slug>`, becomes the settings `event_link.username` and `event_link.slug`
+- `maevsi/sqitch` reads them to show the unlisted event behind that link like a public one, so the event never appears in a listing for a request that does not name it
+- A value that does not match the username and slug constraints of `maevsi/sqitch`, letters, digits and hyphens of up to 100 characters each, sets nothing
 
 ## Event condition
 

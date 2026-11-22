@@ -43,6 +43,11 @@ const jwtPublicKey = jwtKeys
 // With JWT authentication disabled, this is the role for every request.
 const defaultRole = process.env['POSTGRAPHILE_DEFAULT_ROLE']
 
+// The event link a request names, as `<username>/<slug>`, which lets the database show that unlisted event like a public one.
+// Both parts follow the database's username and slug constraints, so nothing else reaches the settings.
+const EVENT_LINK_HEADER = 'event-link'
+const EVENT_LINK_PATTERN = /^([-A-Za-z0-9]{1,100})\/([-A-Za-z0-9]{1,100})$/
+
 export const grafastContext: NonNullable<
   GraphileConfig.GrafastOptions['context']
 > = async (requestContext, args) => {
@@ -84,6 +89,16 @@ export const grafastContext: NonNullable<
     }
   } else if (!isJwtEnabled && defaultRole) {
     pgSettings['role'] = defaultRole
+  }
+
+  const eventLink = EVENT_LINK_PATTERN.exec(
+    String(req?.headers?.[EVENT_LINK_HEADER] ?? ''),
+  )
+
+  if (eventLink) {
+    const [, username, slug] = eventLink
+    pgSettings['event_link.username'] = username
+    pgSettings['event_link.slug'] = slug
   }
 
   return {
