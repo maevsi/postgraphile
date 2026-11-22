@@ -21,7 +21,12 @@ const MODERATION_INPUT_FIELD_NAMES = new Set([
 const MODERATION_MODEL = 'omni-moderation-latest'
 const MODERATION_TIMEOUT_MS = 5000
 const MODERATION_URL = 'https://api.openai.com/v1/moderations'
-const OPENAI_API_KEY = process.env['OPENAI_API_KEY']
+// dargstack fills a third-party secret nobody provided with this placeholder, which must count as unset, or every event mutation of a development stack would fail on OpenAI's rejection.
+const OPENAI_API_KEY_PLACEHOLDER = 'UNSET THIRD PARTY SECRET'
+const OPENAI_API_KEY =
+  process.env['OPENAI_API_KEY'] === OPENAI_API_KEY_PLACEHOLDER
+    ? undefined
+    : process.env['OPENAI_API_KEY']
 
 interface ModerationResponse {
   results: { flagged: boolean }[]
