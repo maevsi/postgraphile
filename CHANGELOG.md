@@ -1,3 +1,9 @@
+## [3.4.1](https://github.com/maevsi/postgraphile/compare/3.4.0...3.4.1) (2026-11-22)
+
+### Bug Fixes
+
+* **docker:** forward stop signals to the server ([#72](https://github.com/maevsi/postgraphile/issues/72)) ([d520ae7](https://github.com/maevsi/postgraphile/commit/d520ae71f9b419958c98ddd8ce7deb66ac89d7d9))
+
 ## [3.4.0](https://github.com/maevsi/postgraphile/compare/3.3.0...3.4.0) (2026-11-20)
 
 ### Features
