@@ -16,7 +16,7 @@ WORKDIR /srv/app/
 
 # tini forwards stop signals, which the pnpm wrapper on PID 1 does not pass on.
 RUN apk add --no-cache tini \
-    && npm i -g corepack && corepack enable
+    && npm i -g pnpm
 
 
 ########################
@@ -101,8 +101,8 @@ ENV NODE_ENV=production
 
 USER node
 
-# Install package manager as `node` user.
-RUN corepack prepare
+# Download the pinned pnpm version as `node` user, as the global one only switches to it on first use.
+RUN pnpm --version
 
 ENTRYPOINT ["/sbin/tini", "--", "/srv/app/docker-entrypoint.sh"]
 CMD ["pnpm", "exec", "postgraphile", "--config", "./src/graphile.config.ts"]
