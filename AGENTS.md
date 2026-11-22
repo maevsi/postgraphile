@@ -12,6 +12,9 @@ This project is a PostGraphile v5 server that converts a PostgreSQL schema into 
 - Optional: `POSTGRAPHILE_PORT` (default 5678), `POSTGRAPHILE_DEFAULT_ROLE`, `SENTRY_DSN`
 - JWT authentication is enabled when both `POSTGRAPHILE_JWT_PUBLIC_KEY` and `POSTGRAPHILE_JWT_SECRET_KEY` are set; one alone fails startup
 - The Turnstile preset is active when `TURNSTILE_SECRET_KEY` is set or `TURNSTILE_BYPASS` is the exact string `true`; it verifies mutations on resources tagged `@turnstileProtected` against Cloudflare; `TURNSTILE_BYPASS` skips verification
+- The moderation preset is active when `OPENAI_API_KEY` is set to anything but dargstack's placeholder `UNSET THIRD PARTY SECRET`; it sends the `name`, `description` and `displayName` input values of `create` and `update` mutations on accounts and events to OpenAI's moderation model before they run
+  - Flagged text fails with HTTP 422 and the extension `errcode: VTMOD`, which clients map to their own message like the database's `VT` codes
+  - An unreachable or failing OpenAI fails the mutation with HTTP 503, as Turnstile does, so text never gets published unchecked
 - Secrets can be delivered as files in `/run/environment-variables` (loaded by `docker-entrypoint.sh`); `POSTGRAPHILE_PORT` must be a container-level environment variable because the image `HEALTHCHECK` does not see the entrypoint's exports
 
 ## Files
@@ -21,6 +24,7 @@ This project is a PostGraphile v5 server that converts a PostgreSQL schema into 
 - `src/environment.ts` contains type-safe environment variable utilities.
 - `src/instrument.ts` contains the Sentry initialization.
 - `src/presets/turnstile.ts` contains the Turnstile verification preset.
+- `src/presets/moderation.ts` contains the text moderation preset.
 - `src/presets/passwordStrength.ts` contains the zxcvbn password strength preset.
 - `src/presets/graphqlOperation.ts` resolves the operation a request will actually execute, shared by the presets above.
 - `src/presets/eventCondition.ts` contains the preset adding the `hasEnded`, `isAttending`, `isInvited`, `search` and time range conditions to events.
