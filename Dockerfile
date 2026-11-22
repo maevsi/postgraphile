@@ -36,7 +36,7 @@ VOLUME /srv/app/node_modules
 
 USER node
 ENTRYPOINT ["/srv/app/docker-entrypoint.sh"]
-CMD pnpm exec postgraphile --config ./src/graphile.config.ts -p "${POSTGRAPHILE_PORT:-5678}"
+CMD ["pnpm", "exec", "postgraphile", "--config", "./src/graphile.config.ts"]
 EXPOSE 5678
 HEALTHCHECK --start-period=300s CMD RESPONSE=$(wget -q -O- --header='Content-Type: application/json' --post-data='{"query":"query health { __schema { queryType { name } } }"}' "http://127.0.0.1:${POSTGRAPHILE_PORT:-5678}/graphql") && echo "$RESPONSE" | grep -q '"queryType"' && ! echo "$RESPONSE" | grep -q '"errors"' || exit 1
 
@@ -103,7 +103,7 @@ USER node
 RUN corepack prepare
 
 ENTRYPOINT ["/srv/app/docker-entrypoint.sh"]
-CMD pnpm exec postgraphile --config ./src/graphile.config.ts -p "${POSTGRAPHILE_PORT:-5678}"
+CMD ["pnpm", "exec", "postgraphile", "--config", "./src/graphile.config.ts"]
 EXPOSE 5678
 HEALTHCHECK --interval=10s --timeout=5s CMD RESPONSE=$(wget -q -O- --header='Content-Type: application/json' --post-data='{"query":"query health { __schema { queryType { name } } }"}' "http://127.0.0.1:${POSTGRAPHILE_PORT:-5678}/graphql") && echo "$RESPONSE" | grep -q '"queryType"' && ! echo "$RESPONSE" | grep -q '"errors"' || exit 1
 LABEL org.opencontainers.image.description="PostGraphile v5 GraphQL API server; schema, port, and default role via environment, optional JWT authentication and Turnstile verification, includes @graphile/postgis, Amber preset, and Grafast optimizations."
