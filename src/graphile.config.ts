@@ -44,6 +44,7 @@ const preset: GraphileConfig.Preset = {
   },
   grafserv: {
     maskError: grafservMaskError,
+    port: Number(process.env['POSTGRAPHILE_PORT']) || 5678,
     watch: ENVIRONMENT_DEVELOPMENT,
   },
   pgServices: [
