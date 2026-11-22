@@ -14,7 +14,9 @@ ENV CI=true
 
 WORKDIR /srv/app/
 
-RUN npm i -g corepack && corepack enable
+# tini forwards stop signals, which the pnpm wrapper on PID 1 does not pass on.
+RUN apk add --no-cache tini \
+    && npm i -g corepack && corepack enable
 
 
 ########################
@@ -35,7 +37,7 @@ VOLUME /srv/app
 VOLUME /srv/app/node_modules
 
 USER node
-ENTRYPOINT ["/srv/app/docker-entrypoint.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "/srv/app/docker-entrypoint.sh"]
 CMD ["pnpm", "exec", "postgraphile", "--config", "./src/graphile.config.ts"]
 EXPOSE 5678
 HEALTHCHECK --start-period=300s CMD RESPONSE=$(wget -q -O- --header='Content-Type: application/json' --post-data='{"query":"query health { __schema { queryType { name } } }"}' "http://127.0.0.1:${POSTGRAPHILE_PORT:-5678}/graphql") && echo "$RESPONSE" | grep -q '"queryType"' && ! echo "$RESPONSE" | grep -q '"errors"' || exit 1
@@ -102,7 +104,7 @@ USER node
 # Install package manager as `node` user.
 RUN corepack prepare
 
-ENTRYPOINT ["/srv/app/docker-entrypoint.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "/srv/app/docker-entrypoint.sh"]
 CMD ["pnpm", "exec", "postgraphile", "--config", "./src/graphile.config.ts"]
 EXPOSE 5678
 HEALTHCHECK --interval=10s --timeout=5s CMD RESPONSE=$(wget -q -O- --header='Content-Type: application/json' --post-data='{"query":"query health { __schema { queryType { name } } }"}' "http://127.0.0.1:${POSTGRAPHILE_PORT:-5678}/graphql") && echo "$RESPONSE" | grep -q '"queryType"' && ! echo "$RESPONSE" | grep -q '"errors"' || exit 1
