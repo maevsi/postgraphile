@@ -16,6 +16,7 @@ import {
   jwtSecretKey,
 } from './graphile.ts'
 import { EventConditionPreset } from './presets/eventCondition.ts'
+import { ModerationPreset } from './presets/moderation.ts'
 import { PasswordStrengthPreset } from './presets/passwordStrength.ts'
 import { TurnstilePreset } from './presets/turnstile.ts'
 
@@ -32,6 +33,7 @@ const preset: GraphileConfig.Preset = {
     PostGraphileAmberPreset,
     TurnstilePreset,
     PasswordStrengthPreset,
+    ModerationPreset,
     EventConditionPreset,
     postgisPreset,
   ],
