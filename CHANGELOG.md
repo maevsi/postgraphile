@@ -1,3 +1,9 @@
+## [3.5.0](https://github.com/maevsi/postgraphile/compare/3.4.1...3.5.0) (2026-11-22)
+
+### Features
+
+* **moderation:** filter event and account text ([#74](https://github.com/maevsi/postgraphile/issues/74)) ([8559e4f](https://github.com/maevsi/postgraphile/commit/8559e4f91b2b2cadd6a178b675255ba73d1f939e))
+
 ## [3.4.1](https://github.com/maevsi/postgraphile/compare/3.4.0...3.4.1) (2026-11-22)
 
 ### Bug Fixes
