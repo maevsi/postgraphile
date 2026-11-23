@@ -1,13 +1,13 @@
-# syntax=docker/dockerfile:1
+# syntax=docker/dockerfile:1@sha256:572cebbc2b15e6f84c077742952674889cb63cd5e9b80abdffcbe587b6f19183
 
 # <DEPENDENCIES>
-FROM ghcr.io/maevsi/sqitch:13.4.0
+FROM ghcr.io/maevsi/sqitch:13.11.0@sha256:954a63391f8b08d6b055b0fe130b4c8dc258cbee24ab4d744e7cb3ad6a842e06
 # </DEPENDENCIES>
 
 ########################
 # Create base.
 
-FROM node:26.13.1-alpine AS base
+FROM node:26.13.1-alpine@sha256:6bd9ab43c0ec0190ca7b2d193906cb8b7edf6e7f4afa43ddeccd6452710bffb5 AS base
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
