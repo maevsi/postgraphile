@@ -1,3 +1,9 @@
+## [3.5.1](https://github.com/maevsi/postgraphile/compare/3.5.0...3.5.1) (2026-11-23)
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([c2c4656](https://github.com/maevsi/postgraphile/commit/c2c46562f9daa74c55c703664aeab1c3772c491e))
+
 ## [3.5.0](https://github.com/maevsi/postgraphile/compare/3.4.1...3.5.0) (2026-11-22)
 
 ### Features
