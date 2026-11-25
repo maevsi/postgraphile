@@ -1,3 +1,9 @@
+## [3.5.2](https://github.com/maevsi/postgraphile/compare/3.5.1...3.5.2) (2026-11-25)
+
+### Bug Fixes
+
+* **config:** reload schema on change in production ([#76](https://github.com/maevsi/postgraphile/issues/76)) ([f85bbad](https://github.com/maevsi/postgraphile/commit/f85bbadf88aba9ed0a137194c2270f80425fd8ec))
+
 ## [3.5.1](https://github.com/maevsi/postgraphile/compare/3.5.0...3.5.1) (2026-11-23)
 
 ### Bug Fixes
