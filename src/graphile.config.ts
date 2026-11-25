@@ -47,7 +47,7 @@ const preset: GraphileConfig.Preset = {
   grafserv: {
     maskError: grafservMaskError,
     port: Number(process.env['POSTGRAPHILE_PORT']) || 5678,
-    watch: ENVIRONMENT_DEVELOPMENT,
+    watch: true, // without it, a migration applied after startup leaves the GraphQL schema stale until restart, also in production
   },
   pgServices: [
     makePgService({
